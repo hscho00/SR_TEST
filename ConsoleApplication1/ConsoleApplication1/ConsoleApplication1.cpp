@@ -8,12 +8,17 @@ void Hello()
 	cout << "Hi Hi Hi Hi " << endl;
 
 }
+void Test2()
+{
+	cout << "HAHAHAHAHA" << endl;
+}
 int main()
 {
     std::cout << "Hello World!\n";
 	std::cout << "Hello2";
 
 	Hello();
+	Test2();
 }
 
 
