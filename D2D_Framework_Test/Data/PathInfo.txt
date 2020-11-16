@@ -1,0 +1,5 @@
+..\Texture\Stage\Player\Walk_Down\Walk_Down_%d.png|Player|Walk_Down|4
+..\Texture\Stage\Player\Walk_Left\Walk_Left_%d.png|Player|Walk_Left|4
+..\Texture\Stage\Player\Walk_Right\Walk_Right_%d.png|Player|Walk_Right|4
+..\Texture\Stage\Player\Walk_Up\Walk_Up_%d.png|Player|Walk_Up|4
+..\Texture\Stage\Terrain\Background\Background_%d.png|Terrain|Background|1
