@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.Systems">
+      <UniqueIdentifier>{9cbab793-0912-4d7a-a757-a75b02afdb5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities">
+      <UniqueIdentifier>{830afd46-74ad-4fbe-99d0-593cbee0c121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Headers">
+      <UniqueIdentifier>{d50e6b88-2db9-4db7-88d8-07f88e2b7c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Systems\00.Graphic_Device">
+      <UniqueIdentifier>{36a3eadc-ebcc-439f-9355-f1ca40d4b5c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\00.Superclass">
+      <UniqueIdentifier>{02725a5e-09ff-4452-9bef-dd183ceec61f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Codes\Base.cpp">
+      <Filter>01.Utilities\00.Superclass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Graphic_Device.cpp">
+      <Filter>00.Systems\00.Graphic_Device</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Headers\Base.h">
+      <Filter>01.Utilities\00.Superclass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Define.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Enum.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Function.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Include.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Struct.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Engine_Typedef.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Grahpic_Device.h">
+      <Filter>00.Systems\00.Graphic_Device</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
