@@ -15,7 +15,7 @@ void Test2()
 int main()
 {
     std::cout << "Hello World!\n";
-	std::cout << "Hello2";
+	std::cout << "TEST";
 
 	Hello();
 	Test2();
