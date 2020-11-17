@@ -24,6 +24,7 @@ private:
 	CGraphic_Device* m_pGraphic_Device;
 
 	int iA;
+	int iB;
 };
 
 #define __MAINAPP_H__
