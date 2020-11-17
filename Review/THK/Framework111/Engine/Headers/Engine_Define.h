@@ -9,7 +9,7 @@
 #endif
 
 #define PRINT_LOG(caption, message)	\
-::MessageBox(0, message, caption, MB_OK);
+::MessageBoxW(0, message, caption, MB_OK);
 
 
 #define NO_COPY(ClassName)						\

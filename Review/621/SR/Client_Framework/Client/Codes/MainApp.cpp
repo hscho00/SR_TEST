@@ -36,4 +36,5 @@ MainApp* MainApp::Create()
 
 void MainApp::Free()
 {
+	GraphicDevice::Get_Instance()->
 }

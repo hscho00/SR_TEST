@@ -17,7 +17,7 @@ HRESULT GraphicDevice::ReadyGraphicDevice(HWND hWnd, _uint iWinCX, _uint iWinCY,
 
 	if (FAILED(Sdk_->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &DeviceCaps)))
 	{
-		//LOG_MSG(LPCSTR(L"Error"), LPCSTR(L"Device Caps Load Failed"));
+		LOG_MSG(L"Error", L"Device Caps Load Failed");
 		return E_FAIL;
 	}
 

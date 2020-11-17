@@ -43,5 +43,5 @@ CMainApp* CMainApp::Create()
 
 void CMainApp::Free()
 {
-
+	m_pGraphicDevice->Free();
 }
