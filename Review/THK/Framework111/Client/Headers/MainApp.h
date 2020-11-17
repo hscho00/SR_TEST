@@ -23,6 +23,7 @@ public:
 private:
 	CGraphic_Device* m_pGraphic_Device;
 
+	int iA;
 };
 
 #define __MAINAPP_H__

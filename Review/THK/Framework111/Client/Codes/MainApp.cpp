@@ -9,6 +9,7 @@ CMainApp::CMainApp()
 HRESULT CMainApp::ReadyMainApp()
 {
 	m_pGraphic_Device->Ready_Graphic_Device(g_hWnd, WINCX, WINCY, EDisplayMode::Window);
+
 	return S_OK;
 }
 
