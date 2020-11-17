@@ -3,22 +3,15 @@
 
 #include <iostream>
 using namespace std;
-void Hello()
-{
-	cout << "Hi Hi Hi Hi " << endl;
-
-}
-void Test2()
-{
-	cout << "HAHAHAHAHA" << endl;
-}
 int main()
 {
     std::cout << "Hello World!\n";
 	std::cout << "TEST";
 
-	Hello();
-	Test2();
+	// TEST------------------------------------------------------------------------------------
+
+	//Hello();
+	//Test2();
 }
 
 
