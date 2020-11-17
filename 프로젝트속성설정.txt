@@ -1,0 +1,43 @@
+Engine 프로젝트 속성
+
+> 일반
+대상 플랫폼 버전 8.1
+출력 디렉토리 ../Bin/
+플랫폼 도구 집합 v140
+
+> C/C++
+>> 일반
+추가 포함 디렉터리 ../Headers/;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)
+>> 전처리기
+전처리기 정의 ENGINE_EXPORT
+>> 고급
+특정 경고 사용 안함 4005
+
+> 링커
+>> 일반
+추가 라이브러리 디렉터리 $(DXSDK_DIR)Lib/x86;%(AdditionalLibraryDirectories)
+>> 입력
+추가 종속성 d3d9.lib;d3dx9d.lib;winmm.lib;%(AdditionalDependencies)
+
+-------------------
+
+Client 프로젝트 속성
+
+> 일반
+대상 플랫폼 버전 8.1
+출력 디렉토리 ../Bin/
+플랫폼 도구 집합 v140
+
+> C/C++
+>> 일반
+추가 포함 디렉터리 ./;../Headers/;$(DXSDK_DIR)Include;../../Reference/Headers;%(AdditionalIncludeDirectories)
+>> 미리 컴파일된 헤더
+미리 컴파일된 헤더 사용
+>> 고급
+특정 경고 사용 안함 4005
+
+> 링커
+>> 일반
+추가 라이브러리 디렉터리 $(DXSDK_DIR)Lib/x86;../../Reference/Libraries/;%(AdditionalLibraryDirectories)
+>> 입력
+추가 종속성 d3d9.lib;d3dx9d.lib;winmm.lib;Engine.lib;%(AdditionalDependencies)
