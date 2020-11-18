@@ -1,7 +1,9 @@
 #pragma once
+#ifndef __MAINAPP_H__
+#define __MAINAPP_H__
 
 #include "Base.h"
-class GraphicDevice;
+USING(Engine)
 
 class MainApp final : public CBase
 {
@@ -20,5 +22,7 @@ public:
 	virtual void Free() override;
 
 private:
-	GraphicDevice* m_pGraphic_device;
+	Mangement* m_pManagement = nullptr;
 };
+
+#endif

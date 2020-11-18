@@ -16,4 +16,6 @@ typedef D3DXVECTOR3 _vector3;
 typedef D3DXVECTOR4 _vector4;
 typedef D3DXMATRIX _matrix;
 
+typedef LPDIRECT3DDEVICE9 _LPD3DD9;
+
 #endif
