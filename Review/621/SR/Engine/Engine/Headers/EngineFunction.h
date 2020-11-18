@@ -23,13 +23,13 @@ void SafeDeleteArray(T& _ptr)
 }
 
 template<typename T>
-_uint SafeAddref(T& _ptr)
+_uint SafeAddRef(T& _ptr)
 {
 	_uint	reference_count = 0;
 
 	if (_ptr)
 	{
-		reference_count = ptr->AddRef();
+		reference_count = _ptr->AddRef();
 	}
 
 	return reference_count;

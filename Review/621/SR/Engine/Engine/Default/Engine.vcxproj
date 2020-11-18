@@ -27,6 +27,9 @@
     <ClInclude Include="..\Headers\EngineStruct.h" />
     <ClInclude Include="..\Headers\EngineTypedef.h" />
     <ClInclude Include="..\Headers\GraphicDevice.h" />
+    <ClInclude Include="..\Headers\Management.h" />
+    <ClInclude Include="..\Headers\Scene.h" />
+    <ClInclude Include="..\Headers\SceneManager.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +38,9 @@
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp" />
     <ClCompile Include="..\Codes\GraphicDevice.cpp" />
+    <ClCompile Include="..\Codes\Management.cpp" />
+    <ClCompile Include="..\Codes\Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Text.txt" />

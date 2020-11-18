@@ -4,6 +4,7 @@
 
 #include "Base.h"
 
+BEGIN(Engine)
 class ENGINE_DLL GraphicDevice final :
     public CBase
 {
@@ -28,6 +29,6 @@ private:
 	LPDIRECT3D9 Sdk_; // 그래픽카드의 수준을 조사하고 생성하는 객체. 
 	LPDIRECT3DDEVICE9 Device_; // 애가 실질적으로 그래픽 장치를 제어하는 객체. 
 };
-
+END
 #endif
 
