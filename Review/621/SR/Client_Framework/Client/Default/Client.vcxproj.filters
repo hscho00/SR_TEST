@@ -63,5 +63,6 @@
     <Text Include="ReadMe.txt">
       <Filter>99.Default</Filter>
     </Text>
+    <Text Include="..\..\Text.txt" />
   </ItemGroup>
 </Project>

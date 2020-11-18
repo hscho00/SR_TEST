@@ -8,9 +8,8 @@
 #define ENGINE_DLL	_declspec(dllimport)
 #endif
 
-#define LOG_MSG(caption, message)		\
-::MessageBox(0, message, caption, MB_OK);
-
+#define LOG_MSG(caption, message)				\
+::MessageBoxW(0, message, caption, MB_OK);
 
 #define NO_COPY(ClassName)						\
 private:										\

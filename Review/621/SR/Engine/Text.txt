@@ -81,3 +81,26 @@ DLL 파일은 실행파일과 같은 위치에 있거나 따로 경로를 지정해줘야된다.
 d3d9.lib
 d3d9x.lib 추가
 
+
+// 201118 begin
+
+// Define 되어 있는 Destroy_Instance 수정 (레퍼런스 카운트 삽입 및 Delete 코드 수정)
+
+// namespace 추가 (Engine)
+
+// define
+#define BEGIN(NAME) namespace Name {
+#define	END	}
+#define USING(Name) using namespace Name;
+
+// Management 클래스 추가
+
+// 레퍼런스 카운터를 증가시키는 기준
+-> 외부 포인터를 참조 할 때(외부 클래스의 멤버 변수의 포인터를 참조 할 때)
+-> 소유자가 있는 포인터를 참조할 때
+-> 최초 소유자가 아니면 무조건 증가.....
+
+// explicit
+// 묵시적 형변환을 방지하기 위해
+// 명시적 형변환으로만 클래스를 생성 할 수 있게( c++ 스타일 강제)
+// 인자있는 생성자를 작성할 때 무조건 사용

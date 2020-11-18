@@ -17,7 +17,7 @@ HRESULT GraphicDevice::ReadyGraphicDevice(HWND hWnd, _uint iWinCX, _uint iWinCY,
 
 	if (FAILED(Sdk_->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &DeviceCaps)))
 	{
-		//LOG_MSG(LPCSTR(L"Error"), LPCSTR(L"Device Caps Load Failed"));
+		LOG_MSG(L"Error", L"Device Caps Load Failed");
 		return E_FAIL;
 	}
 
@@ -49,7 +49,7 @@ HRESULT GraphicDevice::ReadyGraphicDevice(HWND hWnd, _uint iWinCX, _uint iWinCY,
 
 	if (FAILED(Sdk_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, vp, &d3dpp, &Device_)))
 	{
-		//PRINT_LOG(L"Error", L"GraphicDevice Creating Failed");
+		LOG_MSG(L"Error", L"GraphicDevice Creating Failed");
 		return E_FAIL;
 	}
 
@@ -73,11 +73,11 @@ void GraphicDevice::Free()
 {
 	if (SafeRelease(Device_))
 	{
-	/*	LOG_MSG(L"Warning", L"Failed To Releasing m_pDevice");*/
+		LOG_MSG(L"Error", L"Device release failed.");
 	}
 
 	if (SafeRelease(Sdk_))
 	{
-		//LOG_MSG(L"Warning", L"Failed To Releasing m_pSDK");
+		LOG_MSG(L"Error", L"SDK release failed.");
 	}
 }
