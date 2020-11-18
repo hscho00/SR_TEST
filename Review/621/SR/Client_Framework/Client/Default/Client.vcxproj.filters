@@ -13,6 +13,15 @@
     <Filter Include="98.Header\Include">
       <UniqueIdentifier>{ec5f09ec-8e69-4b64-acef-e734aee90ca2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Scene">
+      <UniqueIdentifier>{4eadf308-6335-41cb-9f8a-1c9dad9dfcd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\00.Logo">
+      <UniqueIdentifier>{aa3b60b1-36d4-44e1-8b18-7e3a5daac48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\01.Stage">
+      <UniqueIdentifier>{4c9d2008-edd0-48f3-af15-90e23ed13df5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -36,6 +45,15 @@
     <ClInclude Include="stdafx.h">
       <Filter>98.Header</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Logo.h">
+      <Filter>01.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ClientEnum.h">
+      <Filter>98.Header\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Stage.h">
+      <Filter>01.Scene\01.Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -44,6 +62,12 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="..\Codes\MainApp.cpp">
       <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Logo.cpp">
+      <Filter>01.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Stage.cpp">
+      <Filter>01.Scene\01.Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
