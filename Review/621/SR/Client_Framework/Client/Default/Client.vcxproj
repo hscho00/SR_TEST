@@ -155,6 +155,7 @@
     <ClInclude Include="..\Headers\ClientDefine.h" />
     <ClInclude Include="..\Headers\ClientEnum.h" />
     <ClInclude Include="..\Headers\ClientExtern.h" />
+    <ClInclude Include="..\Headers\ClientStruct.h" />
     <ClInclude Include="..\Headers\Logo.h" />
     <ClInclude Include="..\Headers\MainApp.h" />
     <ClInclude Include="..\Headers\Stage.h" />

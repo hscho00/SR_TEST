@@ -24,4 +24,5 @@ User
 #include "ClientDefine.h"
 #include "ClientExtern.h"
 #include "ClientEnum.h"
+#include "ClientStruct.h"
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.

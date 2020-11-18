@@ -54,6 +54,9 @@
     <ClInclude Include="..\Headers\Stage.h">
       <Filter>01.Scene\01.Stage</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\ClientStruct.h">
+      <Filter>98.Header\Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
