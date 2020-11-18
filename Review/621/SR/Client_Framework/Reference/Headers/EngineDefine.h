@@ -8,15 +8,9 @@
 #define ENGINE_DLL	_declspec(dllimport)
 #endif
 
-#define LOG_MSG(caption, message)				\
-::MessageBoxW(0, message, caption, MB_OK);
+#define LOG_MSG(caption, message)		\
+::MessageBox(0, message, caption, MB_OK);
 
-#define BEGIN(Name) namespace Name {		
-#define END	}
-#define USING(Name)	using namespace Name;
-
-#define NO_EVENT		0
-#define CHANGE_SCENE	1
 
 #define NO_COPY(ClassName)						\
 private:										\
@@ -27,7 +21,7 @@ private:										\
 		NO_COPY(ClassName)						\
 public:											\
 	static ClassName* Get_Instance();			\
-	static _uint Destroy_Instance();			\
+	static void Destroy_Instance();				\
 private:										\
 	static ClassName* m_pInstance;
 
@@ -39,14 +33,13 @@ ClassName* ClassName::Get_Instance()			\
 		m_pInstance = new ClassName;			\
 	return m_pInstance;							\
 }												\
-_uint ClassName::Destroy_Instance()				\
+void ClassName::Destroy_Instance()				\
 {												\
-	_uint iRefCnt = 0;							\
 	if (m_pInstance)							\
 	{											\
-		iRefCnt = m_pInstance->Release();		\
+		delete m_pInstance;						\
+		m_pInstance = nullptr;					\
 	}											\
-	return iRefCnt;								\
 }
 
 #endif

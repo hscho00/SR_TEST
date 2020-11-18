@@ -1,7 +1,5 @@
 #include "GraphicDevice.h"
 
-USING(Engine)
-
 IMPLEMENT_SINGLETON(GraphicDevice)
 
 GraphicDevice::GraphicDevice()
