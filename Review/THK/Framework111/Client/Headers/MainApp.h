@@ -3,7 +3,8 @@
 #ifndef __MAINAPP_H__
 
 #include "Base.h"
-#include "Graphic_Device.h"
+
+class CGraphic_Device;
 class CMainApp final : public CBase
 {
 private:

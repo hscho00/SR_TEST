@@ -36,4 +36,6 @@ CMainApp* CMainApp::Create()
 
 void CMainApp::Free()
 {
+	m_pGraphic_Device->Free();
+	//»≠¿Ã∆√.
 }

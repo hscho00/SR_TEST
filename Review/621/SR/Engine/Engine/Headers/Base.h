@@ -18,4 +18,3 @@ protected:
 protected:
 	_uint reference_count_ = 0;
 };
-

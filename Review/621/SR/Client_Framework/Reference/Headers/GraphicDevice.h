@@ -4,7 +4,8 @@
 
 #include "Base.h"
 
-class ENGINE_DLL GraphicDevice final :
+BEGIN(Engine)
+class GraphicDevice final :
     public CBase
 {
     DECLARE_SINGLETON(GraphicDevice)
@@ -28,6 +29,6 @@ private:
 	LPDIRECT3D9 Sdk_; // 그래픽카드의 수준을 조사하고 생성하는 객체. 
 	LPDIRECT3DDEVICE9 Device_; // 애가 실질적으로 그래픽 장치를 제어하는 객체. 
 };
-
+END
 #endif
 

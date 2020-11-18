@@ -11,7 +11,7 @@ CMainApp::CMainApp()
 HRESULT CMainApp::ReadyMainApp()
 {
 	m_pGraphicDevice->Ready_Graphic_Device(g_hWnd, WINCX, WINCY, EDisplayMode::Windowed);
-	int a = 0;
+
 	return S_OK;
 }
 
@@ -43,5 +43,5 @@ CMainApp* CMainApp::Create()
 
 void CMainApp::Free()
 {
-
+	m_pGraphicDevice->Free();
 }
