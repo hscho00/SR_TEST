@@ -4,8 +4,7 @@
 
 #include "Base.h"
 
-class CGraphic_Device;
-
+USING(Engine)
 class CMainApp final : public CBase
 {
 private:
@@ -14,14 +13,15 @@ private:
 
 public:
 	HRESULT ReadyMainApp();
-	int UpdateMainApp();
+	_int UpdateMainApp();
 
 public:
 	static CMainApp* Create();
 	virtual void Free() override;
 
 private:
-	CGraphic_Device* m_pGraphicDevice;
+	CManagement* m_pManagement;
+
 };
 
 #define __MAINAPP_H__

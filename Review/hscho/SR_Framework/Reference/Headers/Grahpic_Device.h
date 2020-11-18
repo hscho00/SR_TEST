@@ -3,6 +3,7 @@
 
 #include "Base.h"
 
+BEGIN(Engine)
 class CGraphic_Device final : public CBase
 {
 	DECLARE_SINGLETON(CGraphic_Device)
@@ -27,6 +28,7 @@ private:
 	LPDIRECT3DDEVICE9 m_pDevice;
 
 };
+END
 
 #define __GRAPHIC_DEVICE_H__
 #endif

@@ -5,6 +5,10 @@
 /*
 Standard
 */
+#include <vector>
+#pragma warning(disable : 4251)
+
+#include <cassert>
 
 /*
 dx9

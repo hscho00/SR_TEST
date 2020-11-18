@@ -16,6 +16,21 @@
     <Filter Include="01.Utilities\00.Superclass">
       <UniqueIdentifier>{02725a5e-09ff-4452-9bef-dd183ceec61f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\01.Management">
+      <UniqueIdentifier>{2c0cbc18-308f-4c54-9f36-3a5997301763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene">
+      <UniqueIdentifier>{0499a749-d0e8-452b-b55b-c6b8c2e6992c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\03.Renderer">
+      <UniqueIdentifier>{3e55bb64-62f0-4cd7-b197-2183d1646768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene\00.Manager">
+      <UniqueIdentifier>{eb6dcd6b-3ba5-4050-b4b5-c304ff8e26ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.Vertices">
+      <UniqueIdentifier>{839f46c5-0c93-4997-bec1-61a4fdc281f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp">
@@ -23,6 +38,18 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Graphic_Device.cpp">
       <Filter>00.Systems\00.Graphic_Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Scene.cpp">
+      <Filter>01.Utilities\02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\SceneManager.cpp">
+      <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Management.cpp">
+      <Filter>01.Utilities\01.Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Vertices.cpp">
+      <Filter>01.Utilities\04.Vertices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="..\Headers\Grahpic_Device.h">
       <Filter>00.Systems\00.Graphic_Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Scene.h">
+      <Filter>01.Utilities\02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\SceneManager.h">
+      <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Management.h">
+      <Filter>01.Utilities\01.Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Vertices.h">
+      <Filter>01.Utilities\04.Vertices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

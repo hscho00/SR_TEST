@@ -10,6 +10,15 @@
     <Filter Include="99.Headers">
       <UniqueIdentifier>{827302b8-ae3e-4209-924f-d0c057f233ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Scene">
+      <UniqueIdentifier>{d220088b-a796-4ccc-88ae-4410a748a785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\00.Logo">
+      <UniqueIdentifier>{516562d3-25b0-41a1-88b4-cd0012f746fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\01.Stage">
+      <UniqueIdentifier>{7676543f-6f53-4b70-ae2b-b7be05004791}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -33,6 +42,15 @@
     <ClInclude Include="..\Headers\MainApp.h">
       <Filter>00.MainApp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Client_Enum.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Logo.h">
+      <Filter>01.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Stage.h">
+      <Filter>01.Scene\01.Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -51,6 +69,12 @@
     </ClCompile>
     <ClCompile Include="..\Codes\MainApp.cpp">
       <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Logo.cpp">
+      <Filter>01.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Stage.cpp">
+      <Filter>01.Scene\01.Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

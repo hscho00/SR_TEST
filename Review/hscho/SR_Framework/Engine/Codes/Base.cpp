@@ -1,5 +1,7 @@
 #include "..\Headers\Base.h"
 
+USING(Engine)
+
 CBase::CBase()
 	: m_iReferenceCount(0)
 {

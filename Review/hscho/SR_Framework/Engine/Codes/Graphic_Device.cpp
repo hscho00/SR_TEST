@@ -1,5 +1,6 @@
 #include "Grahpic_Device.h"
 
+USING(Engine)
 IMPLEMENT_SINGLETON(CGraphic_Device)
 
 CGraphic_Device::CGraphic_Device()
@@ -73,11 +74,11 @@ void CGraphic_Device::Free()
 {
 	if (SafeRelease(m_pDevice))
 	{
-		PRINT_LOG(L"Warning", L"Failed To Releasing m_pDevice");
+		PRINT_LOG(L"Warning", L"Failed To Release m_pDevice");
 	}
 
 	if (SafeRelease(m_pSDK))
 	{
-		PRINT_LOG(L"Warning", L"Failed To Releasing m_pSDK");
+		PRINT_LOG(L"Warning", L"Failed To Release m_pSDK");
 	}
 }

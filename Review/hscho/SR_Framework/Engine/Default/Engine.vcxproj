@@ -21,6 +21,10 @@
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp" />
     <ClCompile Include="..\Codes\Graphic_Device.cpp" />
+    <ClCompile Include="..\Codes\Management.cpp" />
+    <ClCompile Include="..\Codes\Scene.cpp" />
+    <ClCompile Include="..\Codes\SceneManager.cpp" />
+    <ClCompile Include="..\Codes\Vertices.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\Base.h" />
@@ -31,6 +35,10 @@
     <ClInclude Include="..\Headers\Engine_Struct.h" />
     <ClInclude Include="..\Headers\Engine_Typedef.h" />
     <ClInclude Include="..\Headers\Grahpic_Device.h" />
+    <ClInclude Include="..\Headers\Management.h" />
+    <ClInclude Include="..\Headers\Scene.h" />
+    <ClInclude Include="..\Headers\SceneManager.h" />
+    <ClInclude Include="..\Headers\Vertices.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

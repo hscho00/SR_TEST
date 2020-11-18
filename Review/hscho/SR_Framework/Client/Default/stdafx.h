@@ -17,10 +17,13 @@
 #include <memory.h>
 #include <tchar.h>
 
+//
+#include <vector>
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include "Client_Define.h"
 #include "Client_Extern.h"
+#include "Client_Enum.h"
 
-#include "Grahpic_Device.h"
+#include "Management.h"
 
