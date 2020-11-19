@@ -11,7 +11,6 @@ CVertices::CVertices()
     , m_pIndexBuffer(nullptr)
     , m_iVerticesCount(0)
     , m_iPrimCount(0)
-    , m_matWorld()
 {
 
 }

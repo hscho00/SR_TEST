@@ -6,6 +6,8 @@
 BEGIN(Engine)
 class ENGINE_DLL CVertices final : public CBase
 {
+	///////////////// 나중에 VI 버퍼 컴포넌트로 갈것임~~~~~~~~~~~~~~~ /////////////////////////////
+
 private:
 	CVertices();
 	virtual ~CVertices() = default;
@@ -18,19 +20,13 @@ public:
 	IDirect3DIndexBuffer9* Get_IndexBuffer() const { return m_pIndexBuffer; }
 	_uint Get_VerticesCount() const { return m_iVerticesCount; }
 	_uint Get_PrimCount() const { return m_iPrimCount; }
-
-	// 임시
-	const _matrix& Get_MatWorld() const { return m_matWorld; }
-	void Set_MatWorld(const _matrix& matWorld) { m_matWorld = matWorld; }
+	const DWORD Get_FVF() const { return Vertex::FVF; }
 
 private:
 	IDirect3DVertexBuffer9* m_pVertexBuffer;
 	IDirect3DIndexBuffer9* m_pIndexBuffer;
 	_uint m_iVerticesCount;
 	_uint m_iPrimCount;
-
-	// 임시
-	_matrix m_matWorld;
 
 public:
 	static CVertices* Create(Vertex vertices[], _uint verticesCount, WORD indices[], _uint indicesCount, _uint primCount);

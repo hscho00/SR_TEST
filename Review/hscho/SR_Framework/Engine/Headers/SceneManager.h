@@ -5,7 +5,7 @@
 #include "Scene.h"
 
 BEGIN(Engine)
-class CSceneManager : public CBase
+class CSceneManager final : public CBase
 {
 	DECLARE_SINGLETON(CSceneManager)
 	

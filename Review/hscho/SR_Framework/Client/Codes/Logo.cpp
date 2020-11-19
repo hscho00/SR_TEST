@@ -7,7 +7,7 @@
 CLogo::CLogo(LPDIRECT3DDEVICE9 pDevice)
     : CScene(pDevice)
 {
-
+	m_iSceneIndex = (_int)ESceneID::Logo;
 }
 
 HRESULT CLogo::ReadyScene()

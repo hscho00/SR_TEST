@@ -19,6 +19,10 @@ public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual void Free() override;
 
+private:
+	CManagement* m_pManagement;	// CScene이 갖고 있으면 좋을듯
+	CGameObject* m_pPlayer;
+
 };
 
 #define __STAGE_H__

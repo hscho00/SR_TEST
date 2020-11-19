@@ -1,13 +1,19 @@
 #include "stdafx.h"
 #include "..\Headers\Stage.h"
 
-#include "Vertices.h"
+#include "Layer.h"
+#include "Player.h"
 
 
 CStage::CStage(LPDIRECT3DDEVICE9 pDevice)
     : CScene(pDevice)
+    , m_pManagement(CManagement::Get_Instance())
+    , m_pPlayer(nullptr)
 {
+    m_iSceneIndex = (_int)ESceneID::Stage;
 
+    // ㅠㅠ
+    //SafeAddRef(m_pManagement);
 }
 
 HRESULT CStage::ReadyScene()
@@ -18,7 +24,19 @@ HRESULT CStage::ReadyScene()
     PRINT_LOG(L"Stage", L"Stage");
 
     /////////////////////////////////////////////////
-    //
+    // 플레이어 레이어 추가
+    m_pManagement->AddLayer(m_iSceneIndex, L"Player", 1);
+
+    // 플레이어 프로토타입 생성
+    CPlayer* pPlayer = new CPlayer(m_pDevice);
+    pPlayer->ReadyGameObjectPrototype();
+    m_pManagement->AddObjPrototype(m_iSceneIndex, L"Player_0", pPlayer);
+
+    // 플레이어 클론 생성
+    m_pPlayer = m_pManagement->CloneObjPrototype(m_iSceneIndex, L"Player_0");
+    m_pManagement->AddObjInLayer(m_iSceneIndex, L"Player", m_pPlayer);
+
+    // View Mat
     _vec3 cameraPos(0.f, 0.f, -5.f);
     _vec3 targetPos(0.f, 0.f, 0.f);
     _vec3 up(0.f, 1.f, 0.f);
@@ -26,7 +44,7 @@ HRESULT CStage::ReadyScene()
     D3DXMatrixLookAtLH(&viewMat, &cameraPos, &targetPos, &up);
     m_pDevice->SetTransform(D3DTS_VIEW, &viewMat);
 
-    //
+    // Proj Mat
     _matrix projMat;
     D3DXMatrixPerspectiveFovLH(&projMat,
                                 D3DX_PI * 0.5f,
@@ -35,50 +53,8 @@ HRESULT CStage::ReadyScene()
                                 1000.f);
     m_pDevice->SetTransform(D3DTS_PROJECTION, &projMat);
 
-    //
+    // RenderState
     m_pDevice->SetRenderState(D3DRS_LIGHTING, false);
-
-    //
-    CVertices* pVertex = nullptr;
-    _matrix matScale, matTrans, matWorld;
-    Vertex vertices[4] = {};
-    WORD indices[6] = {};
-
-    std::vector<CVertices*>& vecVertices = CManagement::Get_Instance()->Get_VecVertices();
-    vecVertices.reserve(2);
-
-    vertices[0] = Vertex(-1.f, -1.f, 0.f, D3DCOLOR_XRGB(255, 0, 0));
-    vertices[1] = Vertex(0.f, 1.f, 0.f, D3DCOLOR_XRGB(0, 0, 255));
-    vertices[2] = Vertex(1.f, -1.f, 0.f, D3DCOLOR_XRGB(255, 255, 0));
-    indices[0] = 0;
-    indices[1] = 1;
-    indices[2] = 2;
-    D3DXMatrixScaling(&matScale, 2.f, 2.f, 1.f);
-    D3DXMatrixTranslation(&matTrans, -3.f, 1.f, 0.f);
-    matWorld = matScale * matTrans;
-    pVertex = CVertices::Create(vertices, 3, indices, 4, 1);
-    assert(pVertex);
-    pVertex->Set_MatWorld(matWorld);
-    vecVertices.push_back(pVertex);
-
-    vertices[0] = Vertex(-1.f, -1.f, 0.f, D3DCOLOR_XRGB(0, 255, 0));
-    vertices[1] = Vertex(-1.f, 1.f, 0.f, D3DCOLOR_XRGB(255, 0, 255));
-    vertices[2] = Vertex(1.f, 1.f, 0.f, D3DCOLOR_XRGB(255, 255, 255));
-    vertices[3] = Vertex(1.f, -1.f, 0.f, D3DCOLOR_XRGB(0, 255, 255));
-    indices[0] = 0;
-    indices[1] = 1;
-    indices[2] = 2;
-    indices[3] = 0;
-    indices[4] = 2;
-    indices[5] = 3;
-    D3DXMatrixScaling(&matScale, 2.f, 2.f, 1.f);
-    D3DXMatrixTranslation(&matTrans, 3.f, -1.f, 0.f);
-    matWorld = matScale * matTrans;
-    pVertex = CVertices::Create(vertices, 4, indices, 6, 2);
-    assert(pVertex);
-    pVertex->Set_MatWorld(matWorld);
-    vecVertices.push_back(pVertex);
-    /////////////////////////////////////////////////
 
     return S_OK;
 }
@@ -88,6 +64,20 @@ _uint CStage::UpdateScene()
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::UpdateScene();
 
+    if (!m_pPlayer && (GetAsyncKeyState('Z') & 0x8000))
+    {
+        m_pPlayer = m_pManagement->GetObjInLayerOrNull(m_iSceneIndex, L"Player", 0);
+        assert(m_pPlayer);
+        m_pPlayer->Set_Using(true);
+    }
+    if (m_pPlayer && (GetAsyncKeyState('X') & 0x8000))
+    {
+        m_pPlayer->Set_Dead(true);
+        m_pPlayer = nullptr;
+    }
+
+    m_pManagement->UpdateGameObject(m_iSceneIndex);
+
 	return NO_EVENT;
 }
 
@@ -95,6 +85,8 @@ _uint CStage::LateUpdateScene()
 {
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::LateUpdateScene();
+
+    m_pManagement->LateUpdateGameObject(m_iSceneIndex);
 
 	return NO_EVENT;
 }
@@ -118,4 +110,6 @@ void CStage::Free()
 {
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::Free();
+
+    //SafeRelease(m_pManagement);
 }
