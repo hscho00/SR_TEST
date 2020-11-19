@@ -11,8 +11,8 @@
 #define LOG_MSG(caption, message)				\
 ::MessageBoxW(0, message, caption, MB_OK);
 
-#define BEGIN(Name) namespace Name {
-#define END }
+#define CODEBEGIN(Name) namespace Name {
+#define CODEEND }
 #define USING(Name) using namespace Name;
 
 #define NO_EVENT		0

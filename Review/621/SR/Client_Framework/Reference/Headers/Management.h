@@ -6,7 +6,7 @@
 #include "GraphicDevice.h"
 #include "SceneManager.h"
 
-BEGIN(Engine)
+CODEBEGIN(Engine)
 class ENGINE_DLL Management final:
     public CBase
 {
@@ -41,5 +41,5 @@ private:
 	_uint m_iUpdateEvent = 0;
 };
 
-END
+	CODEEND
 #endif
