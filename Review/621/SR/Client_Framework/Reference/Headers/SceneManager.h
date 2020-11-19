@@ -5,7 +5,7 @@
 #include "Base.h"
 #include "Scene.h"
 
-BEGIN(Engine)
+CODEBEGIN(Engine)
 class SceneManager final : public CBase
 {
 	DECLARE_SINGLETON(SceneManager)
@@ -26,7 +26,7 @@ private:
 	Scene* m_pCurrentScene = nullptr;
 	_int  m_iSceneID = -1;
 };
-END
+CODEEND
 
 #endif
 

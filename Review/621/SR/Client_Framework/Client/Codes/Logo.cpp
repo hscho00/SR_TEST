@@ -140,7 +140,6 @@ HRESULT Logo::ReadyScene()
 	// 렌더 상태를 지정한다.
 	m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-	m_cube_rotation_y = 3.14f / 4.f;
 	return S_OK;
 }
 
@@ -178,6 +177,14 @@ _uint Logo::UpdateScene()
 	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
 		m_cube_position.y -= 0.01f;
+	}
+	else if (GetAsyncKeyState('T') & 0x8000)
+	{
+		m_cube_position.z += 0.01f;
+	}
+	else if (GetAsyncKeyState('G') & 0x8000)
+	{
+		m_cube_position.z -= 0.01f;
 	}
 
 	return _uint();
