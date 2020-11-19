@@ -203,19 +203,21 @@ _uint CLogo::UpdateScene()
 		m_pDevice->SetStreamSource(0, Triangle, 0,sizeof(ColorVertex));
 		m_pDevice->SetFVF(ColorVertex::FVF);
 
-		D3DXMATRIX p, t;
+		D3DXMATRIX p, t , z;
+
 		D3DXMatrixScaling(&p, 3.f, 3.f, 1.f);
-		D3DXMatrixTranslation(&t, -2.f, 0.f, 0.f);
-		World = p * t;
+		D3DXMatrixTranslation(&t, m_fX, m_fY, m_fZ);
+		D3DXMatrixRotationZ(&z, m_fAngle);
+		World = p * z * t;
 
 		m_pDevice->SetTransform(D3DTS_WORLD, &World);
 		m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
 		m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 
-		D3DXMatrixTranslation(&World, 2.f, 0.f, 0.f);
+		/*D3DXMatrixTranslation(&World, 2.f, 0.f, 0.f);
 		m_pDevice->SetTransform(D3DTS_WORLD, &World);
 		m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
-		m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
+		m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);*/
 
 		m_pDevice->EndScene();
 		m_pDevice->Present(0, 0, g_hWnd, 0);
@@ -246,6 +248,25 @@ _uint CLogo::LateUpdateScene()
 
 		return CHANGE_SCNENE;
 	}
+
+
+	if (GetAsyncKeyState(VK_RIGHT))
+		m_fX += 0.01f;
+	else if (GetAsyncKeyState(VK_LEFT))
+		m_fX -= 0.01f;
+	else if (GetAsyncKeyState(VK_UP))
+		m_fY += 0.01f;
+	else if (GetAsyncKeyState(VK_DOWN))
+		m_fY -= 0.01f;
+	else if (GetAsyncKeyState('W'))
+		m_fZ += 0.01f;
+	else if (GetAsyncKeyState('S'))
+		m_fZ -= 0.01f;
+	else if (GetAsyncKeyState('A'))
+		m_fAngle -= 0.01f;
+	else if (GetAsyncKeyState('D'))
+		m_fAngle += 0.01f;
+
 	return _uint();
 }
 
@@ -267,4 +288,10 @@ CLogo * CLogo::Create(LPDIRECT3DDEVICE9 pDevice)
 void CLogo::Free()
 {
 	CScene::Free();
+	if(Triangle)
+	{
+		Triangle->Release(); Triangle = nullptr;
+	}
+		
+	SafeRelease(m_pDevice);
 }
