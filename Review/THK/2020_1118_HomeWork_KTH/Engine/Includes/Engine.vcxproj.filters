@@ -28,6 +28,21 @@
     <Filter Include="01.Utilities\03.Renderer">
       <UniqueIdentifier>{0946fb1d-f650-4345-996e-ceb526f1dc41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\04.GameObject">
+      <UniqueIdentifier>{dad679e0-a291-45b9-8fbc-b9d120265899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component">
+      <UniqueIdentifier>{c67e34e8-5028-4e64-897e-29713b71f66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\00.Manager">
+      <UniqueIdentifier>{c750044d-d7ce-4f34-9d22-752a2085ffdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\00.Manager">
+      <UniqueIdentifier>{685210b8-d304-4cd4-b1b1-9541270a8fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\01.Layer">
+      <UniqueIdentifier>{ebb8d85d-9657-4bac-b9dd-04eceb7cc436}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp">
@@ -44,6 +59,21 @@
     </ClCompile>
     <ClCompile Include="..\Codes\SceneManager.cpp">
       <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObject.cpp">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Component.cpp">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\ComponentManager.cpp">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObjectManager.cpp">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Layer.cpp">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="..\Headers\SceneManager.h">
       <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObject.h">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Component.h">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ComponentManager.h">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObjectManager.h">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Layer.h">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

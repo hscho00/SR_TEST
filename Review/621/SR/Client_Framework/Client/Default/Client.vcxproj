@@ -152,6 +152,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Headers\Camera.h" />
     <ClInclude Include="..\Headers\ClientDefine.h" />
     <ClInclude Include="..\Headers\ClientEnum.h" />
     <ClInclude Include="..\Headers\ClientExtern.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Codes\Camera.cpp" />
     <ClCompile Include="..\Codes\Logo.cpp" />
     <ClCompile Include="..\Codes\MainApp.cpp" />
     <ClCompile Include="..\Codes\Stage.cpp" />

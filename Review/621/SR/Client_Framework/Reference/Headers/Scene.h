@@ -3,7 +3,7 @@
 
 #include "Base.h"
 
-BEGIN(Engine)
+CODEBEGIN(Engine)
 class ENGINE_DLL Scene abstract : public CBase
 {
 protected:
@@ -21,7 +21,7 @@ public:
 protected:
 	LPDIRECT3DDEVICE9	m_pDevice;
 };
-END
+CODEEND
 
 #define __SCENE_H__
 #endif

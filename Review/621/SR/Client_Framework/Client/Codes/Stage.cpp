@@ -37,7 +37,7 @@ HRESULT Stage::ReadyScene()
 		1000.f
 	);
 	m_pDevice->SetTransform(D3DTS_PROJECTION, &proj);
-
+	m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	m_pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	return S_OK;
@@ -102,6 +102,11 @@ Stage* Stage::Create(LPDIRECT3DDEVICE9 pDevice)
 void Stage::Free()
 {
 	Scene::Free();
+	if (Triangle)
+	{
+		Triangle->Release();
+	}
+
 
 	m_pDevice->Release();
 }
