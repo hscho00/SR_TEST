@@ -296,3 +296,8 @@ void CLogo::Free()
 		
 	SafeRelease(m_pDevice);
 }
+
+void CLogo::Study()
+{
+	
+}
