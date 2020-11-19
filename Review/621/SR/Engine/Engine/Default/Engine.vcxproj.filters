@@ -31,6 +31,24 @@
     <Filter Include="01.Utilities\02.Scene\00.Manager">
       <UniqueIdentifier>{478ec746-97f3-4727-b277-00282da693e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\03.Renerer">
+      <UniqueIdentifier>{7f617389-c21e-4d49-92f3-035601763d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject">
+      <UniqueIdentifier>{ba110009-fb72-4ac2-bd9a-b7ef1bebee21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component">
+      <UniqueIdentifier>{5bf38e1d-9ec5-4424-a6a3-a15f6776d12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\00.Manager">
+      <UniqueIdentifier>{9f0aef2b-1081-4bac-a3f2-ef40e895614e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\00.Manager">
+      <UniqueIdentifier>{f791cbb2-3e6c-4038-9d37-3138dc1b403a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\01.Layer">
+      <UniqueIdentifier>{3a5b059e-af5e-4faa-b68b-f7fffd0df0ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -69,6 +87,21 @@
     <ClInclude Include="..\Headers\SceneManager.h">
       <Filter>01.Utilities\02.Scene\00.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\GameObject.h">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Component.h">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ComponentManager.h">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObjectManager.h">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Layer.h">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc">
@@ -90,6 +123,21 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObject.cpp">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Component.cpp">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\ComponentManager.cpp">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Layer.cpp">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
