@@ -178,4 +178,5 @@ CStage * CStage::Create(LPDIRECT3DDEVICE9 pDevice)
 void CStage::Free()
 {
 	CScene::Free();
+	SafeRelease(m_pDevice);
 }

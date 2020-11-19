@@ -5,6 +5,14 @@
 /*
 Standard
 */
+#include <list>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
 
 /*
 dx9
