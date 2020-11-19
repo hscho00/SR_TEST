@@ -288,5 +288,10 @@ CLogo * CLogo::Create(LPDIRECT3DDEVICE9 pDevice)
 void CLogo::Free()
 {
 	CScene::Free();
+	if(Triangle)
+	{
+		Triangle->Release(); Triangle = nullptr;
+	}
+		
 	SafeRelease(m_pDevice);
 }
