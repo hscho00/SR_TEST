@@ -102,6 +102,11 @@ Stage* Stage::Create(LPDIRECT3DDEVICE9 pDevice)
 void Stage::Free()
 {
 	Scene::Free();
+	if (Triangle)
+	{
+		Triangle->Release();
+	}
+
 
 	m_pDevice->Release();
 }

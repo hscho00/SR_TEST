@@ -140,56 +140,14 @@ HRESULT Logo::ReadyScene()
 	// 렌더 상태를 지정한다.
 	m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
+	m_cube_rotation_y = 3.14f / 4.f;
 	return S_OK;
 }
 
 _uint Logo::UpdateScene()
 {
 	Scene::UpdateScene();
-	if (m_pDevice)
-	{
-		// Render 
-		// 회전
-		_matrix rotation_x, rotation_y;
-
-		m_cube_rotation_y += 0.005f;
-		m_cube_rotation_x += 0.005f;
-
-		if (m_cube_rotation_y >= 6.28f)
-			m_cube_rotation_y = 0.f;
-
-		// x축으로 45도 회전
-		D3DXMatrixRotationX(&rotation_x, m_cube_rotation_x);
-		// 프레임 당 y 회전
-		D3DXMatrixRotationY(&rotation_y, m_cube_rotation_y);
-
-
-
-		_matrix world = rotation_x * rotation_y;
-		m_pDevice->SetTransform(D3DTS_WORLD, &world);
-
-		m_pDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0xffffffff/*D3DCOLOR_ARGB(255,0,0,0)*/, 1.f, 0);
-		
-		m_pDevice->BeginScene();
-
-		m_pDevice->SetStreamSource(0, VB, 0, sizeof(Vertex));
-		m_pDevice->SetIndices(IB);
-		m_pDevice->SetFVF(Vertex::FVF);
-		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12);
-
-		m_pDevice->EndScene();
-		m_pDevice->Present(0, 0, g_hWnd, 0);
-	}
-
-
-
-	return _uint();
-}
-
-_uint Logo::LateUpdateScene()
-{
-	Scene::LateUpdateScene();
-
+	
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		Management* pManagement = Management::Get_Instance();
@@ -205,14 +163,76 @@ _uint Logo::LateUpdateScene()
 
 		return CHANGE_SCNENE;
 	}
+	else if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
+		m_cube_position.x -= 0.01f;
+	}
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+		m_cube_position.x += 0.01f;
+	}
+	else if (GetAsyncKeyState(VK_UP) & 0x8000)
+	{
+		m_cube_position.y += 0.01f;
+	}
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	{
+		m_cube_position.y -= 0.01f;
+	}
+
+	return _uint();
+}
+
+_uint Logo::LateUpdateScene()
+{
+	Scene::LateUpdateScene();
+
+
+	if (m_pDevice)
+	{
+		// Render 
+		// 회전
+		_matrix rotation_x, rotation_y, mat_trans;
+
+		//m_cube_rotation_y += 0.005f;
+		//m_cube_rotation_x += 0.005f;
+
+		//if (m_cube_rotation_y >= 6.28f)
+		//	m_cube_rotation_y = 0.f;
+
+		// x축으로 45도 회전
+
+		// 프레임 당 y 회전
+
+	/*	D3DXMatrixRotationX(&rotation_x, m_cube_rotation_x);*/
+		D3DXMatrixRotationY(&rotation_y, m_cube_rotation_y);
+		D3DXMatrixTranslation(&mat_trans, m_cube_position.x, m_cube_position.y, m_cube_position.z);
+
+
+		_matrix world = rotation_y * mat_trans /** rotation_y*/;
+		m_pDevice->SetTransform(D3DTS_WORLD, &world);
+
+		m_pDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0xffffffff/*D3DCOLOR_ARGB(255,0,0,0)*/, 1.f, 0);
+
+		m_pDevice->BeginScene();
+
+		m_pDevice->SetStreamSource(0, VB, 0, sizeof(Vertex));
+		m_pDevice->SetIndices(IB);
+		m_pDevice->SetFVF(Vertex::FVF);
+		m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12);
+
+		m_pDevice->EndScene();
+		m_pDevice->Present(0, 0, g_hWnd, 0);
+	}
 
 	return _uint();
 }
 
 void Logo::Free()
 {
+	Scene::Free();
 	VB->Release();
 	IB->Release();
 	m_pDevice->Release();
-	Scene::Free();
+
 }

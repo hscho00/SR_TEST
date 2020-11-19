@@ -22,6 +22,9 @@
     <Filter Include="01.Scene\01.Stage">
       <UniqueIdentifier>{4c9d2008-edd0-48f3-af15-90e23ed13df5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{9880906a-66bc-47e6-8446-26072d79c231}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -57,6 +60,9 @@
     <ClInclude Include="..\Headers\ClientStruct.h">
       <Filter>98.Header\Include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -71,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Stage.cpp">
       <Filter>01.Scene\01.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
