@@ -171,6 +171,7 @@ CStage * CStage::Create(LPDIRECT3DDEVICE9 pDevice)
 		PRINT_LOG(L"Error", L"Failed To Create CStage");
 		SafeRelease(pInstance);
 	}
+	
 
 	return pInstance;
 }
@@ -178,5 +179,6 @@ CStage * CStage::Create(LPDIRECT3DDEVICE9 pDevice)
 void CStage::Free()
 {
 	CScene::Free();
+
 	SafeRelease(m_pDevice);
 }
