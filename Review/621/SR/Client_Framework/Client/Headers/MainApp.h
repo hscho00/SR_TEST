@@ -14,17 +14,19 @@ private:
 	virtual ~MainApp() = default;
 
 public:
-	HRESULT ReadyMainApp();
-
-public:
-	int UpdateMainApp();
-
-public:
 	static MainApp* Create();
 	virtual void Free() override;
 
+public:
+	HRESULT ReadyMainApp();
+	int UpdateMainApp();
+
+private:
+	HRESULT	ReadyStaticResources();
+
 private:
 	Management* m_pManagement = nullptr;
+	_lpd3dd9	m_pDevice = nullptr;
 };
 
 #endif

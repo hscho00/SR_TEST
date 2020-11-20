@@ -13,12 +13,13 @@ private:
     virtual ~Layer() = default;
 
 public:
-	HRESULT AddGameObjectInLayer(class GameObject* pGameObject);
-	_uint UpdateGameObject(float fDeltaTime);
-	_uint LateUpdateGameObject(float fDeltaTime);
+	static Layer* Create();
+	virtual void	Free() override;
 
 public:
-	virtual void Free() override;
+	HRESULT AddGameObjectInLayer(class GameObject* pGameObject);
+	_uint UpdateGameObject(DOUBLE fDeltaTime);
+	_uint LateUpdateGameObject(DOUBLE fDeltaTime);
 
 private:
 	typedef list<class GameObject*>	GAMEOBJECTS;

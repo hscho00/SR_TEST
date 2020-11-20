@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MainApp.h"
 #include "Logo.h"
+#include "Player.h"
+
 MainApp::MainApp()
 	: m_pManagement(Management::Get_Instance())
 {
@@ -10,14 +12,21 @@ MainApp::MainApp()
 HRESULT MainApp::ReadyMainApp()
 {
 	if (FAILED(m_pManagement->ReadyEngine(g_hWnd, WINCX, WINCY,
-		DisplayMode::WINDOW)))
+		DisplayMode::WINDOW, (_uint)SceneID::End)))
 	{
 		LOG_MSG(L"Error", L"Preparation of Graphic_Device has Failed");
 		return E_FAIL;
 	}
 
-		if (FAILED(m_pManagement->SetUpCurrentScene((_int)SceneID::Logo,
-		Logo::Create(m_pManagement->GetDevice()))))
+	m_pDevice = m_pManagement->GetDevice();
+	if (nullptr == m_pDevice)
+	{
+		return E_FAIL;
+	}
+	SafeAddRef(m_pDevice);
+
+	if (FAILED(m_pManagement->SetUpCurrentScene((_int)SceneID::Logo,
+	Logo::Create(m_pManagement->GetDevice()))))
 	{
 		LOG_MSG(L"Error", L"Failed To SetUpCurrentScene");
 		return E_FAIL;
@@ -28,8 +37,24 @@ HRESULT MainApp::ReadyMainApp()
 int MainApp::UpdateMainApp()
 {
 	m_pManagement->UpdateEngine();
-
+	m_pManagement->LateUpdateEngine();
+	m_pManagement->RenderEngine();
 	return 0;
+}
+
+HRESULT MainApp::ReadyStaticResources()
+{
+	/* GameObject */
+#pragma region GameObject_Player
+	if (FAILED(m_pManagement->AddGameObjectPrototype(
+		(_int)SceneID::Static,
+		L"GameObject_Player",
+		Player::Create(m_pDevice))))
+	{
+		return E_FAIL;
+	}
+#pragma endregion
+	return S_OK;
 }
 
 MainApp* MainApp::Create()
@@ -45,6 +70,7 @@ MainApp* MainApp::Create()
 
 void MainApp::Free()
 {
+	SafeRelease(m_pDevice);
 	SafeRelease(m_pManagement);
 	Management::ReleaseEngine();
 }

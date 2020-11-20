@@ -15,25 +15,27 @@ private:
 	virtual ~GameObjectManager() = default;
 
 public:
-	HRESULT ReserveSizePrototypeContainer(_int iSceneCount);
+	HRESULT ReserveSizeContainer(_int iSceneCount);
 	HRESULT AddGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, GameObject* pPrototype);
-	
-	
-	GameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+	HRESULT AddGameObjectinLayer(_int prototype_index, const wstring& gameobject_tag, _int clone_index, const wstring& layer_tag, void* pArg = nullptr);
 	HRESULT ClearForScene(_int iSceneIndex);
 
 public:
-	_uint	UpdateGameObject(float fDeltaTime);
-	_uint	LateUpdateGameObject(float fDeltaTime);
+	_uint	UpdateGameObject(DOUBLE fDeltaTime);
+	_uint	LateUpdateGameObject(DOUBLE fDeltaTime);
 
 public:
 	virtual void Free() override;
 
 private:
+	GameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+
+private:
 	typedef unordered_map<wstring, GameObject*> PROTOTYPES;
 	PROTOTYPES* m_pPrototypes = nullptr;
 
-	// 레이어 리스트 추가
+	typedef unordered_map<wstring, class Layer*>	LAYERS;
+	LAYERS* m_pLayers = nullptr;
 
 	_int m_iSceneCount = 0;
 
