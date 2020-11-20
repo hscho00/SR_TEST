@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.Systems">
+      <UniqueIdentifier>{9a7186dd-730a-4cec-839f-ad88bb0ff1ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities">
+      <UniqueIdentifier>{21ff2cc9-3a19-4f38-8aa9-1ab648cc5a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default">
+      <UniqueIdentifier>{c980286c-84d3-4458-92cb-1dce7c239708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Headers">
+      <UniqueIdentifier>{f3f1b7c6-de3c-4b23-9c0a-24b5f85125ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\00.SuperClass">
+      <UniqueIdentifier>{3982f7a9-a41d-4a99-92dc-bf9a3ed0b3be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Headers\Include">
+      <UniqueIdentifier>{b25ad4bf-c25a-47ed-a94f-c27fd542ec0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Systems\00.GraphicDevice">
+      <UniqueIdentifier>{ccc7ef4c-bca7-4782-ab12-c881b214b010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\01.Management">
+      <UniqueIdentifier>{7939a86e-cda9-4c70-b628-e470d15cc864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene">
+      <UniqueIdentifier>{23f14802-ee50-44aa-8dd4-2a87835ad9e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene\00.Manager">
+      <UniqueIdentifier>{478ec746-97f3-4727-b277-00282da693e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\03.Renerer">
+      <UniqueIdentifier>{7f617389-c21e-4d49-92f3-035601763d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject">
+      <UniqueIdentifier>{ba110009-fb72-4ac2-bd9a-b7ef1bebee21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component">
+      <UniqueIdentifier>{5bf38e1d-9ec5-4424-a6a3-a15f6776d12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\00.Manager">
+      <UniqueIdentifier>{9f0aef2b-1081-4bac-a3f2-ef40e895614e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\00.Manager">
+      <UniqueIdentifier>{f791cbb2-3e6c-4038-9d37-3138dc1b403a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\01.Layer">
+      <UniqueIdentifier>{3a5b059e-af5e-4faa-b68b-f7fffd0df0ac}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Base.h">
+      <Filter>01.Utilities\00.SuperClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineDefine.h">
+      <Filter>98.Headers\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineEnum.h">
+      <Filter>98.Headers\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineFunction.h">
+      <Filter>98.Headers\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineStruct.h">
+      <Filter>98.Headers\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineInclude.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineTypedef.h">
+      <Filter>98.Headers\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GraphicDevice.h">
+      <Filter>00.Systems\00.GraphicDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Management.h">
+      <Filter>01.Utilities\01.Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Scene.h">
+      <Filter>01.Utilities\02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\SceneManager.h">
+      <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObject.h">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Component.h">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ComponentManager.h">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObjectManager.h">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Layer.h">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Engine.rc">
+      <Filter>99.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Codes\Base.cpp">
+      <Filter>01.Utilities\00.SuperClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GraphicDevice.cpp">
+      <Filter>00.Systems\00.GraphicDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Management.cpp">
+      <Filter>01.Utilities\01.Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Scene.cpp">
+      <Filter>01.Utilities\02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>01.Utilities\02.Scene\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObject.cpp">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Component.cpp">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\ComponentManager.cpp">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Layer.cpp">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Text.txt" />
+  </ItemGroup>
+</Project>

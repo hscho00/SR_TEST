@@ -17,6 +17,8 @@ private:
 public:
 	HRESULT ReserveSizePrototypeContainer(_int iSceneCount);
 	HRESULT AddGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, GameObject* pPrototype);
+	
+	
 	GameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
 	HRESULT ClearForScene(_int iSceneIndex);
 
@@ -30,6 +32,8 @@ public:
 private:
 	typedef unordered_map<wstring, GameObject*> PROTOTYPES;
 	PROTOTYPES* m_pPrototypes = nullptr;
+
+	// 레이어 리스트 추가
 
 	_int m_iSceneCount = 0;
 

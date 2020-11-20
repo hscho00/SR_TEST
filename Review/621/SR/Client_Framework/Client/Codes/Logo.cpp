@@ -186,6 +186,14 @@ _uint Logo::UpdateScene()
 	{
 		m_cube_position.z -= 0.01f;
 	}
+	else if (GetAsyncKeyState('F') & 0x8000)
+	{
+		m_cube_rotation_y += 0.01f;
+	}
+	else if (GetAsyncKeyState('H') & 0x8000)
+	{
+		m_cube_rotation_y -= 0.01f;
+	}
 
 	return _uint();
 }
@@ -211,12 +219,12 @@ _uint Logo::LateUpdateScene()
 
 		// 프레임 당 y 회전
 
-	/*	D3DXMatrixRotationX(&rotation_x, m_cube_rotation_x);*/
+		D3DXMatrixRotationX(&rotation_x, m_cube_rotation_x);
 		D3DXMatrixRotationY(&rotation_y, m_cube_rotation_y);
 		D3DXMatrixTranslation(&mat_trans, m_cube_position.x, m_cube_position.y, m_cube_position.z);
 
 
-		_matrix world = rotation_y * mat_trans /** rotation_y*/;
+		_matrix world = rotation_x * rotation_y * mat_trans /** rotation_y*/;
 		m_pDevice->SetTransform(D3DTS_WORLD, &world);
 
 		m_pDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0xffffffff/*D3DCOLOR_ARGB(255,0,0,0)*/, 1.f, 0);
