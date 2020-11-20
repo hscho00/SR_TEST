@@ -5,10 +5,16 @@
 /*
 Standard
 */
+#include <list>
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <functional>
 #pragma warning(disable : 4251)
 
 #include <cassert>
+
+using namespace std;
 
 /*
 dx9

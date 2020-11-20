@@ -4,10 +4,10 @@
 #include "Base.h"
 #include "Grahpic_Device.h"
 #include "SceneManager.h"
+#include "GameObjectManager.h"
+#include "ComponentManager.h"
+#include "TimeManager.h"
 
-////////////////////////////
-#include "Vertices.h"
-////////////////////////////
 
 BEGIN(Engine)
 class ENGINE_DLL CManagement final : public CBase
@@ -24,10 +24,6 @@ public:
 	_uint UpdateEngine();
 	_uint RenderEngine();
 
-	////////////////////////////
-	std::vector<CVertices*>& Get_VecVertices() { return m_vecVertices; }
-	////////////////////////////
-
 public:
 	/* For.GraphicDev */
 	LPDIRECT3DDEVICE9 GetDevice();
@@ -40,18 +36,32 @@ public:
 	/* For.Renderer */
 
 public:
+	/* For.GameObjectManager */
+	HRESULT ReadyGameObjectManager(_int iSceneCount);
+	HRESULT AddObjPrototype(_int iSceneIndex, const wstring & GameObjectTag, CGameObject * pPrototype);
+	CGameObject* CloneObjPrototype(_int iSceneIndex, const wstring & GameObjectTag, void* pArg = nullptr);
+	HRESULT ClearForScene(_int iSceneIndex);
+	HRESULT AddLayer(_int iSceneIndex, const wstring& LayerTag, _uint vecCapacity);
+	HRESULT AddObjInLayer(_int iSceneIndex, const wstring& LayerTag, CGameObject* pClone);
+	CGameObject* GetObjInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx);
+	HRESULT UpdateGameObject(_int iSceneIndex);
+	HRESULT LateUpdateGameObject(_int iSceneIndex);
+
+public:
+	/* For.ComponentManager */
+
+public:
 	virtual void Free() override;
 	static void ReleaseEngine();
 
 private:
 	CGraphic_Device* m_pGraphic_Dev;
 	CSceneManager* m_pSceneManager;
+	CGameObjectManager* m_pGameObjectManager;
+	CComponentManager* m_pComponentManager;
+	CTimeManager* m_pTimeManager;
 
 	_uint m_iUpdateEvent;
-
-	////////////////////////////
-	std::vector<CVertices*> m_vecVertices;
-	////////////////////////////
 };
 END
 

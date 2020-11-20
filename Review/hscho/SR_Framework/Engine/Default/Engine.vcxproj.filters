@@ -28,8 +28,26 @@
     <Filter Include="01.Utilities\02.Scene\00.Manager">
       <UniqueIdentifier>{eb6dcd6b-3ba5-4050-b4b5-c304ff8e26ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utilities\04.Vertices">
+    <Filter Include="01.Utilities\04.GameObject">
+      <UniqueIdentifier>{35bfd44d-4166-43ff-b499-ec79acca3197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component">
+      <UniqueIdentifier>{3da22448-3111-4c63-b2ea-9cc86269c813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\00.Manager">
+      <UniqueIdentifier>{87df787d-a357-4a5f-aca9-e119337a7f7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\00.Manager">
+      <UniqueIdentifier>{c970c339-166e-4a35-bde6-f2da64d84fbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\04.GameObject\01.Layer">
+      <UniqueIdentifier>{211be22e-167d-4cad-ba48-efa5a9bf4efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\99.Vertices">
       <UniqueIdentifier>{839f46c5-0c93-4997-bec1-61a4fdc281f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\06.TimeManager">
+      <UniqueIdentifier>{5698c7ee-a47e-4341-83e3-1ec88558c80d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +67,25 @@
       <Filter>01.Utilities\01.Management</Filter>
     </ClCompile>
     <ClCompile Include="..\Codes\Vertices.cpp">
-      <Filter>01.Utilities\04.Vertices</Filter>
+      <Filter>01.Utilities\99.Vertices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Component.cpp">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\ComponentManager.cpp">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObject.cpp">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Layer.cpp">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\GameObjectManager.cpp">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\TimeManager.cpp">
+      <Filter>01.Utilities\06.TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +123,25 @@
       <Filter>01.Utilities\01.Management</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\Vertices.h">
-      <Filter>01.Utilities\04.Vertices</Filter>
+      <Filter>01.Utilities\99.Vertices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Component.h">
+      <Filter>01.Utilities\05.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ComponentManager.h">
+      <Filter>01.Utilities\05.Component\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObject.h">
+      <Filter>01.Utilities\04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Layer.h">
+      <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\GameObjectManager.h">
+      <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\TimeManager.h">
+      <Filter>01.Utilities\06.TimeManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

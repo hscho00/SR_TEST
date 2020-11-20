@@ -22,6 +22,7 @@
 #define NO_EVENT		0
 #define CHANGE_SCENE	1
 #define ERROR			2
+#define OBJ_DEAD		3
 
 
 #define NO_COPY(ClassName)						\

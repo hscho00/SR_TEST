@@ -24,6 +24,7 @@ public:
 	static CLogo* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual void Free() override;
 
+
 private:
 	float m_fX = -2.f;
 	float m_fY = 0.f;

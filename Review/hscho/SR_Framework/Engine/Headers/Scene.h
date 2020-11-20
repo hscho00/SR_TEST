@@ -21,6 +21,8 @@ public:
 protected:
 	LPDIRECT3DDEVICE9	m_pDevice;
 
+	_int m_iSceneIndex;
+
 };
 END
 

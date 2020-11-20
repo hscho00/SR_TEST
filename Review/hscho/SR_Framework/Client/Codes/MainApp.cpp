@@ -4,6 +4,7 @@
 #include "Logo.h"
 
 
+
 CMainApp::CMainApp()
 	: m_pManagement(CManagement::Get_Instance())
 {
@@ -28,6 +29,9 @@ HRESULT CMainApp::ReadyMainApp()
 		return E_FAIL;
 	}
 
+	/////////////////////////
+	m_pManagement->ReadyGameObjectManager((_int)ESceneID::End);
+
 	return S_OK;
 }
 
@@ -35,6 +39,9 @@ _int CMainApp::UpdateMainApp()
 {
 	m_pManagement->UpdateEngine();
 	m_pManagement->RenderEngine();
+	///////////////////////////////////
+	m_pManagement->RenderEngine();
+	///////////////////////////////////
 
 	return 0;
 }
