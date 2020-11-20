@@ -17,12 +17,15 @@ public:
 public:
 	int UpdateMainApp();
 
+private:
+	HRESULT ReadyStaticResources();
 public:
 	static CMainApp* Create();
 	virtual void Free() override;
 
 private:
 	CManagement* m_pManagement = nullptr;
+	LPDIRECT3DDEVICE9 m_pDevice = nullptr;
 };
 
 #define __MAINAPP_H__

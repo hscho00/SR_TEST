@@ -1,4 +1,5 @@
 #include "..\Headers\GameObjectManager.h"
+#include "Layer.h"
 
 USING(Engine)
 
@@ -21,6 +22,17 @@ HRESULT CGameObjectManager::ReserveSizePrototypeContainer(_int iSceneCount)
 		PRINT_LOG(L"Error", L"Failed To ReserveSizePrototypeContainer");
 		return E_FAIL;
 	}
+
+	m_pLayers = new LAYERS[m_iSceneCount];
+	if (nullptr == m_pLayers)
+	{
+		PRINT_LOG(L"Error", L"Failed to ReserveSizeContainer");
+		return E_FAIL;
+	}
+	
+
+
+
 
 	return S_OK;
 }
@@ -46,6 +58,119 @@ HRESULT CGameObjectManager::AddGameObjectPrototype(
 	return S_OK;
 }
 
+HRESULT CGameObjectManager::AddGameObjectInLayer(_int iFromSceneIndex, 
+	const wstring & GameObjectTag, 
+	_int iToSceneIndex, 
+	const wstring & LayerTag, 
+	void * pArg)
+{
+	if (0 > iFromSceneIndex || m_iSceneCount <= iFromSceneIndex)
+	{
+		PRINT_LOG(L"Error", L"Out of range GameObjectMagager Containers");
+		return E_FAIL;
+	}
+
+	if (0 > iToSceneIndex ||
+		m_iSceneCount <= iToSceneIndex)
+	{
+		PRINT_LOG(L"Error", L"Out of range GameObjectMagager Containers");
+		return E_FAIL;
+	}
+
+	auto iter_find = m_pPrototypes[iFromSceneIndex].find(GameObjectTag);
+
+	if (m_pPrototypes[iFromSceneIndex].end() == iter_find)
+	{
+		TCHAR szBuffer[128] = L"";
+		swprintf_s(szBuffer, L"Not found %s Prototype", GameObjectTag.c_str());
+
+		PRINT_LOG(L"Warning", szBuffer);
+		return E_FAIL;
+	}
+
+	auto pClone = iter_find->second->Clone(pArg);
+	if (nullptr == pClone)
+	{
+		TCHAR szBuffer[128] = L"";
+		swprintf_s(szBuffer, L"Failed To Clone %s Prototype", GameObjectTag.c_str());
+
+		PRINT_LOG(L"Warning", szBuffer);
+		return E_FAIL;
+	}
+
+	auto iter_find_Layer = m_pLayers[iToSceneIndex].find(LayerTag);
+	if (m_pLayers[iToSceneIndex].end() == iter_find_Layer)
+	{
+		CLayer* pLayer = CLayer::Create();
+		m_pLayers[iToSceneIndex].insert(make_pair(LayerTag, pLayer));
+	}
+
+	if (FAILED(m_pLayers[iToSceneIndex][LayerTag]->AddGameObjectInLayer(pClone)))
+	{
+		TCHAR szBuffer[128] = L"";
+		swprintf_s(szBuffer, L"Failed To AddGameObjectInLayer %s Clone", LayerTag.c_str());
+
+		PRINT_LOG(L"Warning", szBuffer);
+		return E_FAIL;
+	}
+
+	return S_OK;
+}
+
+
+
+HRESULT CGameObjectManager::ClearForScene(_int iSceneIndex)
+{
+	if (0 > iSceneIndex ||
+		m_iSceneCount <= iSceneIndex)
+	{
+		PRINT_LOG(L"Error", L"Out of range GameObject PrototypeContainer");
+		return E_FAIL;
+	}
+
+	for (auto& Pair : m_pLayers[iSceneIndex])
+	{
+		SafeRelease(Pair.second);
+	}
+
+	for (auto& Pair : m_pPrototypes[iSceneIndex])
+	{
+		SafeRelease(Pair.second);
+	}
+
+	
+	m_pPrototypes[iSceneIndex].clear();
+
+	return S_OK;
+}
+
+_uint CGameObjectManager::UpdateGameObject(float fDeltaTime)
+{
+	for (_int i = 0; i < m_iSceneCount; ++i)
+	{
+		for (auto& Pair : m_pLayers[i])
+		{
+			Pair.second->UpdateGameObject(fDeltaTime);
+		}
+	}
+
+
+	return _uint();
+}
+
+_uint CGameObjectManager::LateUpdateGameObject(float fDeltaTime)
+{
+	for (_int i = 0; i < m_iSceneCount; ++i)
+	{
+		for (auto& Pair : m_pLayers[i])
+		{
+			Pair.second->LateUpdateGameObject(fDeltaTime);
+		}
+	}
+	return _uint();
+}
+
+
 CGameObject * CGameObjectManager::CloneGameObjectPrototype(
 	_int iSceneIndex,
 	const wstring & GameObjectTag,
@@ -70,38 +195,18 @@ CGameObject * CGameObjectManager::CloneGameObjectPrototype(
 
 	return iter_find->second->Clone(pArg);
 }
-
-HRESULT CGameObjectManager::ClearForScene(_int iSceneIndex)
-{
-	if (0 > iSceneIndex ||
-		m_iSceneCount <= iSceneIndex)
-	{
-		PRINT_LOG(L"Error", L"Out of range GameObject PrototypeContainer");
-		return E_FAIL;
-	}
-
-	for (auto& Pair : m_pPrototypes[iSceneIndex])
-	{
-		SafeRelease(Pair.second);
-	}
-
-	m_pPrototypes[iSceneIndex].clear();
-
-	return S_OK;
-}
-
-_uint CGameObjectManager::UpdateGameObject(float fDeltaTime)
-{
-	return _uint();
-}
-
-_uint CGameObjectManager::LateUpdateGameObject(float fDeltaTime)
-{
-	return _uint();
-}
-
 void CGameObjectManager::Free()
 {
+	for (_int i = 0; i < m_iSceneCount; ++i)
+	{
+		for (auto& Pair : m_pLayers[i])
+		{
+			SafeRelease(Pair.second);
+		}
+		m_pLayers[i].clear();
+	}
+
+
 	for (_int i = 0; i < m_iSceneCount; ++i)
 	{
 		for (auto& Pair : m_pPrototypes[i])
@@ -111,5 +216,7 @@ void CGameObjectManager::Free()
 		m_pPrototypes[i].clear();
 	}
 
+
+	SafeDeleteArray(m_pLayers);
 	SafeDeleteArray(m_pPrototypes);
 }

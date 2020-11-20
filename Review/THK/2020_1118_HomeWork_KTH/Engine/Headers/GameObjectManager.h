@@ -16,16 +16,25 @@ public:
 public:
 	HRESULT ReserveSizePrototypeContainer(_int iSceneCount);
 	HRESULT AddGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, CGameObject* pPrototype);
-	CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+	HRESULT AddGameObjectInLayer(_int iFromSceneIndex, const wstring& GameObjectTag, _int iToSceneIndex, const wstring& LayerTag, void* pArg = nullptr);
 	HRESULT ClearForScene(_int iSceneIndex);
+
 public:
 	_uint UpdateGameObject(float fDeltaTime);
 	_uint LateUpdateGameObject(float fDeltatime);
+
+private:
+	CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+
 public:
 	virtual void Free() override;
+
 private:
 	typedef unordered_map<wstring, CGameObject*> PROTOTYPES;
 	PROTOTYPES* m_pPrototypes = nullptr;
+
+	typedef unordered_map<wstring, class CLayer*> LAYERS;
+	LAYERS* m_pLayers = nullptr;
 
 	_int m_iSceneCount = 0;
 };

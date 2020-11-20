@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainApp.h"
 #include "Logo.h"
+#include "Player.h"
 
 CMainApp::CMainApp()
 	: m_pManagement(CManagement::Get_Instance())
@@ -11,11 +12,16 @@ CMainApp::CMainApp()
 HRESULT CMainApp::ReadyMainApp()
 {
 	if (FAILED(m_pManagement->ReadyEngine(g_hWnd, WINCX, WINCY, 
-		EDisplayMode::Window)))
+		EDisplayMode::Window ,(_uint)ESceneID::MaxCount)))
 	{
 		PRINT_LOG(L"Error", L"Failed To ReadyEngine");
 		return E_FAIL;
 	}
+	m_pDevice = m_pManagement->GetDevice();
+	if (nullptr == m_pDevice)
+		return E_FAIL;
+
+	SafeAddRef(m_pDevice);
 
 	if (FAILED(m_pManagement->SetUpCurrentScene((_int)ESceneID::Logo,
 		CLogo::Create(m_pManagement->GetDevice()))))
@@ -33,6 +39,20 @@ int CMainApp::UpdateMainApp()
 	//m_pManagement->RenderEngine();
 
 	return 0;
+}
+
+HRESULT CMainApp::ReadyStaticResources()
+{
+#pragma  region Gameobject_Player
+	if (FAILED(m_pManagement->AddGameObjectPrototype(
+		(_int)ESceneID::Static,
+		L"GameObject_Player",
+		CPlayer::Create(m_pDevice))))
+		return E_FAIL;
+#pragma endregion
+
+
+	return S_OK;
 }
 
 CMainApp* CMainApp::Create()

@@ -15,6 +15,7 @@ public:
 	_uint   UpdateGameObject(float fDeltaTime);
 	_uchar	LateUpdateGameObject(float fDeltaTime);
 public:
+	static CLayer* Create();
 	virtual void Free() override;
 private:
 	typedef list<class CGameObject*> GAMEOBJECTS;
