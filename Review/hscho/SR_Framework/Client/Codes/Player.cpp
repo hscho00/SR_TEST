@@ -31,7 +31,7 @@ HRESULT CPlayer::ReadyGameObjectPrototype()
     indices[0] = 0;
     indices[1] = 1;
     indices[2] = 2;
-    m_pVertices = CVertices::Create(vertices, 3, indices, 4, 1);
+    m_pVertices = CVertices::Create(vertices, 3, indices, 3, 1);
     assert(m_pVertices);
 
     return S_OK;

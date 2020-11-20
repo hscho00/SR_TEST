@@ -11,7 +11,7 @@ HRESULT CStage::ReadyScene()
 {
 	CScene::ReadyScene();
 
-	PRINT_LOG(L"Stage", L"Stage");
+	MessageBox(g_hWnd, L"Stage", L"Stage", NULL);
 
 	m_pDevice->CreateVertexBuffer(
 		8 * sizeof(ColorVertex),

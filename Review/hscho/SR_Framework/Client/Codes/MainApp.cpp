@@ -4,6 +4,7 @@
 #include "Logo.h"
 
 
+
 CMainApp::CMainApp()
 	: m_pManagement(CManagement::Get_Instance())
 {
