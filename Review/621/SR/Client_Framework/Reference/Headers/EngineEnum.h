@@ -9,4 +9,13 @@ enum class DisplayMode : BOOL
 	WINDOW
 };
 
+enum class RenderID : _uint
+{
+	PRIORITY,
+	NOALPHA,
+	ALPHA,
+	UI,
+	MAX
+};
+
 #endif

@@ -9,7 +9,8 @@
 #endif
 
 #define LOG_MSG(caption, message)				\
-::MessageBoxW(0, message, caption, MB_OK);
+::MessageBoxW(0, message, caption, MB_OK);		
+
 
 #define CODEBEGIN(Name) namespace Name {
 #define CODEEND }

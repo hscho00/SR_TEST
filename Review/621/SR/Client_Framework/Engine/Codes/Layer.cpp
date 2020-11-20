@@ -22,7 +22,7 @@ HRESULT Layer::AddGameObjectInLayer(GameObject* pGameObject)
 	return S_OK;
 }
 
-_uint Layer::UpdateGameObject(float fDeltaTime)
+_uint Layer::UpdateGameObject(DOUBLE fDeltaTime)
 {
 	for (auto& pGameObject : m_GameObjects)
 	{
@@ -32,7 +32,7 @@ _uint Layer::UpdateGameObject(float fDeltaTime)
 	return _uint();
 }
 
-_uint Layer::LateUpdateGameObject(float fDeltaTime)
+_uint Layer::LateUpdateGameObject(DOUBLE fDeltaTime)
 {
 	for (auto& pGameObject : m_GameObjects)
 	{
@@ -40,6 +40,11 @@ _uint Layer::LateUpdateGameObject(float fDeltaTime)
 	}
 
 	return _uint();
+}
+
+Layer* Layer::Create()
+{
+	return new Layer;
 }
 
 void Layer::Free()

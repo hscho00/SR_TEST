@@ -15,12 +15,12 @@ HRESULT GameObject::ReadyGameObject(void* _pArg)
     return E_NOTIMPL;
 }
 
-_uint GameObject::UpdateGameObject(float _fDeltaTime)
+_uint GameObject::UpdateGameObject(DOUBLE _fDeltaTime)
 {
     return _uint();
 }
 
-_uint GameObject::LateUpdateGameObject(float _fDeltaTime)
+_uint GameObject::LateUpdateGameObject(DOUBLE _fDeltaTime)
 {
     return _uint();
 }

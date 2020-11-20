@@ -14,8 +14,8 @@ protected:
 public:
 	virtual HRESULT ReadyGameObjectPrototype() = 0;	/* 프로토타입 초기화 */
 	virtual HRESULT ReadyGameObject(void* _pArg = nullptr) = 0; /* 클론 초기화 */
-	virtual _uint UpdateGameObject(float _fDeltaTime) = 0;
-	virtual _uint LateUpdateGameObject(float _fDeltaTime) = 0;
+	virtual _uint UpdateGameObject(DOUBLE _fDeltaTime) = 0;
+	virtual _uint LateUpdateGameObject(DOUBLE _fDeltaTime) = 0;
 	virtual HRESULT RenderGameObject() = 0;
 
 public:
