@@ -40,6 +40,11 @@ _uchar CLayer::LateUpdateGameObject(float fDeltaTime)
 	return _uchar();
 }
 
+CLayer * CLayer::Create()
+{
+	return new CLayer;
+}
+
 void CLayer::Free()
 {
 	for (auto& pGameObject : m_GameObjects)

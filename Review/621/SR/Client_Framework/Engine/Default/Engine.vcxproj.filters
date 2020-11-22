@@ -49,6 +49,12 @@
     <Filter Include="01.Utilities\04.GameObject\01.Layer">
       <UniqueIdentifier>{3a5b059e-af5e-4faa-b68b-f7fffd0df0ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Systems\01.TimeManager">
+      <UniqueIdentifier>{7c2590a1-b0e9-47c7-803e-e00868443e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\01.Vertices">
+      <UniqueIdentifier>{05aa1ac4-07ab-47de-8edb-139620dd0299}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -102,6 +108,15 @@
     <ClInclude Include="..\Headers\Layer.h">
       <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\TimeManager.h">
+      <Filter>00.Systems\01.TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Renderer.h">
+      <Filter>01.Utilities\03.Renerer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Vertices.h">
+      <Filter>01.Utilities\05.Component\01.Vertices</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc">
@@ -138,6 +153,15 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Layer.cpp">
       <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\TimeManager.cpp">
+      <Filter>00.Systems\01.TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Renderer.cpp">
+      <Filter>01.Utilities\03.Renerer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Vertices.cpp">
+      <Filter>01.Utilities\05.Component\01.Vertices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

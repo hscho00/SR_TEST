@@ -4,9 +4,10 @@
 
 enum class ESceneID
 {
+	Static,
 	Logo,
 	Stage,
-	End
+	MaxCount
 };
 
 

@@ -61,19 +61,7 @@ HRESULT CGraphic_Device::Ready_Graphic_Device(HWND hWnd, _uint iWinCX, _uint iWi
 	return S_OK;
 }
 
-void CGraphic_Device::Render_Begin()
-{
-	// 랜더링 되는 과정은 1. 지운다. 2. 그리기 시작한다. 3. 다그린다.4.시연한다. 
-	m_pDevice->Clear(0, nullptr, D3DCLEAR_STENCIL | D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
-	m_pDevice->BeginScene();	
-}
 
-void CGraphic_Device::Render_End(HWND hWND /*= nullptr*/)
-{
-
-	m_pDevice->EndScene(); 
-	m_pDevice->Present(nullptr, nullptr, hWND, nullptr);
-}
 
 void CGraphic_Device::Free()
 {

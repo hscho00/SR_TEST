@@ -159,6 +159,7 @@
     <ClInclude Include="..\Headers\ClientStruct.h" />
     <ClInclude Include="..\Headers\Logo.h" />
     <ClInclude Include="..\Headers\MainApp.h" />
+    <ClInclude Include="..\Headers\Player.h" />
     <ClInclude Include="..\Headers\Stage.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Resource.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="..\Codes\Camera.cpp" />
     <ClCompile Include="..\Codes\Logo.cpp" />
     <ClCompile Include="..\Codes\MainApp.cpp" />
+    <ClCompile Include="..\Codes\Player.cpp" />
     <ClCompile Include="..\Codes\Stage.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="stdafx.cpp">

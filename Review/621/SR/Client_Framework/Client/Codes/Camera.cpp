@@ -16,11 +16,11 @@ Camera* Camera::Create(
     const _vector3& vLookAt,
     const PROJ& Proj)
 {
-    Camera* pInstance = new Camera;
-    pInstance->Ready_Camera(vPos, vLookAt, Proj);
+
+    m_pInstance->Ready_Camera(vPos, vLookAt, Proj);
     
     //View
-    return nullptr;
+    return m_pInstance;
 }
 
 void Camera::Free()

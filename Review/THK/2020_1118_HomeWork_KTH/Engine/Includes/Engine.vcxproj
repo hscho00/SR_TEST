@@ -172,10 +172,13 @@
     <ClInclude Include="..\Headers\Graphic_Device.h" />
     <ClInclude Include="..\Headers\Layer.h" />
     <ClInclude Include="..\Headers\Management.h" />
+    <ClInclude Include="..\Headers\Renderer.h" />
     <ClInclude Include="..\Headers\Scene.h" />
     <ClInclude Include="..\Headers\SceneManager.h" />
+    <ClInclude Include="..\Headers\Time_Manager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\..\..\Desktop\김태훈\수업내용\2020_11월\1주차\201120_프레임워크작성\Framework111\Engine\Codes\Time_Manager.cpp" />
     <ClCompile Include="..\Codes\Base.cpp" />
     <ClCompile Include="..\Codes\Component.cpp" />
     <ClCompile Include="..\Codes\ComponentManager.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="..\Codes\Graphic_Device.cpp" />
     <ClCompile Include="..\Codes\Layer.cpp" />
     <ClCompile Include="..\Codes\Management.cpp" />
+    <ClCompile Include="..\Codes\Renderer.cpp" />
     <ClCompile Include="..\Codes\Scene.cpp" />
     <ClCompile Include="..\Codes\SceneManager.cpp" />
   </ItemGroup>

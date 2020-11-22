@@ -19,6 +19,12 @@
     <Filter Include="01.Scene\01.Stage">
       <UniqueIdentifier>{c234953c-5253-40ea-b6ef-3e666a6a61d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject">
+      <UniqueIdentifier>{5e723402-2110-4a05-ae5c-74c559a55308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Player">
+      <UniqueIdentifier>{846b6052-0fca-46f8-91d2-1514e56f0d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -51,6 +57,9 @@
     <ClInclude Include="..\Headers\Stage.h">
       <Filter>01.Scene\01.Stage</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Player.h">
+      <Filter>02.GameObject\00.Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -67,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Stage.cpp">
       <Filter>01.Scene\01.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Player.cpp">
+      <Filter>02.GameObject\00.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,12 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{9880906a-66bc-47e6-8446-26072d79c231}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject">
+      <UniqueIdentifier>{b5dda864-ba29-45d7-bb9b-1901724ad009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Player">
+      <UniqueIdentifier>{e40fc3e1-5fae-4607-baa0-018f02fdaa0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -63,6 +69,9 @@
     <ClInclude Include="..\Headers\Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Player.h">
+      <Filter>02.GameObject\00.Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -80,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Camera.cpp">
       <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Player.cpp">
+      <Filter>02.GameObject\00.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

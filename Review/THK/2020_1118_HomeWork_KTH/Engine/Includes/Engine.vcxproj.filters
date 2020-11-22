@@ -43,6 +43,9 @@
     <Filter Include="01.Utilities\04.GameObject\01.Layer">
       <UniqueIdentifier>{ebb8d85d-9657-4bac-b9dd-04eceb7cc436}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Systems\01.Time_Manager">
+      <UniqueIdentifier>{eed23ee9-4b58-44ad-92cf-b027e63c3321}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp">
@@ -74,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Layer.cpp">
       <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\Desktop\김태훈\수업내용\2020_11월\1주차\201120_프레임워크작성\Framework111\Engine\Codes\Time_Manager.cpp">
+      <Filter>00.Systems\01.Time_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Renderer.cpp">
+      <Filter>01.Utilities\03.Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="..\Headers\Layer.h">
       <Filter>01.Utilities\04.GameObject\01.Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Time_Manager.h">
+      <Filter>00.Systems\01.Time_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Renderer.h">
+      <Filter>01.Utilities\03.Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 
 enum class SceneID : _int
 {
+	Static,
 	Logo,
 	Stage,
 	End

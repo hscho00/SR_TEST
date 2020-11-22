@@ -160,6 +160,22 @@ _uint CStage::LateUpdateScene()
 	return _uint();
 }
 
+HRESULT CStage::AddPlayerLayer(const wstring & LayerTag)
+{
+	auto pManagement = CManagement::Get_Instance();
+	if (nullptr == pManagement)
+		return E_FAIL;
+
+	if (FAILED(pManagement->AddGameObjectInLayer(
+		(_int)ESceneID::Static,
+		L"GameObejct_Player",
+		(_int)ESceneID::Stage,
+		LayerTag)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 CStage * CStage::Create(LPDIRECT3DDEVICE9 pDevice)
 {
 	if (nullptr == pDevice)
