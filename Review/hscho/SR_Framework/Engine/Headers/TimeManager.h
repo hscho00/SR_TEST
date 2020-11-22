@@ -4,7 +4,7 @@
 #include "Base.h"
 
 BEGIN(Engine)
-class CTimeManager : public CBase
+class CTimeManager final : public CBase
 {
 	DECLARE_SINGLETON(CTimeManager)
 
@@ -13,8 +13,8 @@ private:
 	virtual ~CTimeManager() = default;
 
 public:
-	HRESULT Ready_TimeMgr();
-	void	Compute_TimeMgr();
+	HRESULT ReadyTimeManager();
+	void	UpdateTimeManager();
 
 	float Get_DeltaTime() const { return m_fDeltaTime; }
 
@@ -26,8 +26,9 @@ private:
 	LARGE_INTEGER m_startTime;
 	LARGE_INTEGER m_endTime;
 
+	float m_fInitCPUTickTime;
+	
 	float m_fDeltaTime;
-	float m_fInitTime;
 
 };
 END

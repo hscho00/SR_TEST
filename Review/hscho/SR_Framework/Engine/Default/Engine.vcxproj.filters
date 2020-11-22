@@ -46,7 +46,7 @@
     <Filter Include="01.Utilities\99.Vertices">
       <UniqueIdentifier>{839f46c5-0c93-4997-bec1-61a4fdc281f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utilities\06.TimeManager">
+    <Filter Include="00.Systems\01.TimeManager">
       <UniqueIdentifier>{5698c7ee-a47e-4341-83e3-1ec88558c80d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -85,7 +85,10 @@
       <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
     </ClCompile>
     <ClCompile Include="..\Codes\TimeManager.cpp">
-      <Filter>01.Utilities\06.TimeManager</Filter>
+      <Filter>00.Systems\01.TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Renderer.cpp">
+      <Filter>01.Utilities\03.Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +144,10 @@
       <Filter>01.Utilities\04.GameObject\00.Manager</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\TimeManager.h">
-      <Filter>01.Utilities\06.TimeManager</Filter>
+      <Filter>00.Systems\01.TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Renderer.h">
+      <Filter>01.Utilities\03.Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

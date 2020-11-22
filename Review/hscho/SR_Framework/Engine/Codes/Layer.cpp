@@ -8,13 +8,6 @@ CLayer::CLayer()
 
 }
 
-HRESULT CLayer::ReserveCloneContainer(_uint capacity)
-{
-	m_GameObjects.reserve(capacity);
-
-	return S_OK;
-}
-
 HRESULT CLayer::AddGameObjectInLayer(CGameObject* pGameObject)
 {
 	if (nullptr == pGameObject)
@@ -58,22 +51,22 @@ _uint CLayer::LateUpdateGameObject(float fDeltaTime)
 		if (!pGameObject->IsUsing())
 			continue;
 
-		pGameObject->LateUpdateGameObject(fDeltaTime);
-
-		//if (pObj->IsDraw())
-		//{
-		//	unsigned int group = static_cast<unsigned int>(pObj->Get_RenderGroup());
-		//	m_vecRenderSort[group].push_back(pObj);
-		//}
+		pGameObject->LateUpdateGameObject(fDeltaTime);	// 클라에서 자기 스스로 Renderer에 Add
 	}
 
 	return NO_EVENT;
 }
 
+HRESULT CLayer::ReserveLayerContainer(_uint capacity)
+{
+	m_GameObjects.reserve(capacity);
+
+	return S_OK;
+}
+
 CGameObject* CLayer::GetObjOrNull(_uint idx) const
 {
-	if (0 > idx ||
-		m_GameObjects.size() <= idx)
+	if (m_GameObjects.size() <= idx)
 	{
 		PRINT_LOG(L"Error", L"Out of range CLayer GetObjOrNull");
 		return nullptr;
@@ -82,28 +75,10 @@ CGameObject* CLayer::GetObjOrNull(_uint idx) const
 	return m_GameObjects[idx];
 }
 
-////////////////////////////////////////////////
-HRESULT CLayer::RenderGameObject()
-{
-	for (auto& pGameObject : m_GameObjects)
-	{
-		if (!pGameObject->IsUsing())
-			continue;
-
-		if (!pGameObject->IsDraw())
-			continue;
-
-		pGameObject->RenderGameObject();
-	}
-
-	return S_OK;
-}
-////////////////////////////////////////////////
-
 CLayer* CLayer::Create(_uint vecCapacity)
 {
 	CLayer* pInstance = new CLayer;
-	pInstance->ReserveCloneContainer(vecCapacity);
+	pInstance->ReserveLayerContainer(vecCapacity);
 	return pInstance;
 }
 
@@ -115,4 +90,5 @@ void CLayer::Free()
 	}
 
 	m_GameObjects.clear();
+	m_GameObjects.shrink_to_fit();
 }

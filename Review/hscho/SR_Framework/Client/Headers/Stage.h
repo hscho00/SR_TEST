@@ -15,12 +15,14 @@ public:
 	virtual _uint UpdateScene() override;
 	virtual _uint LateUpdateScene() override;
 
+private:
+	HRESULT AddPlayerLayer(const wstring& LayerTag);
+
 public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual void Free() override;
 
 private:
-	CManagement* m_pManagement;	// CScene이 갖고 있으면 좋을듯
 	CGameObject* m_pPlayer;
 
 };

@@ -15,26 +15,26 @@ private:
 	virtual ~CGameObjectManager() = default;
 
 public:
-	HRESULT ReservePrototypeContainer(_int iSceneCount);
+	// ReadyEngine()
+	HRESULT ReserveContainer(_int iSceneCount, _bool isUseStaticScene = false, _int iStaticScene = 0);
+	
+	//
 	HRESULT AddGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, CGameObject* pPrototype);
-	CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+
+	HRESULT AddLayer(_int iSceneIndex, const wstring& LayerTag, _uint vecCapacity);
+	HRESULT AddGameObjectInLayer(_int iFromSceneIndex, const wstring& GameObjectTag, _int iToSceneIndex, const wstring& LayerTag, void* pArg = nullptr);
+	
 	HRESULT ClearForScene(_int iSceneIndex);
 
-	//
-	HRESULT ReserveLayerContainer(/*_int iSceneCount,*/);	// 음.... ReservePrototypeContainer 랑 한셋트 같은데...
-	HRESULT AddLayer(_int iSceneIndex, const wstring& LayerTag, _uint vecCapacity);
-	HRESULT AddGameObjectInLayer(_int iSceneIndex, const wstring& LayerTag, CGameObject* pClone);
-	CGameObject* GetObjInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx);	// 나중에 GameObjectTag도 찾을 수 있게
-	//unordered_map<wstring, CLayer*>* GetLayerOrNull(_int iSceneIndex) const;
+	CGameObject* GetGameObjectInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx);
+	// + 나중에 idx 말고 GameObjectTag, using 여부도 체크해서 오브젝트 찾을 수 있게 오버로딩 하자
 
 public:
 	_uint UpdateGameObject(_int iSceneIndex, float fDeltaTime);
 	_uint LateUpdateGameObject(_int iSceneIndex, float fDeltaTime);
 
-	/////////////////////////////////////////////////////
-	// 렌더러 생기면 밖으로 빠질 것들
-	HRESULT RenderGameObject();
-	/////////////////////////////////////////////////////
+private:
+	CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
 
 public:
 	virtual void Free() override;
@@ -47,6 +47,8 @@ private:
 	LAYERS* m_pLayers;
 
 	_int m_iSceneCount;
+	_bool m_bUseStatic;
+	_int m_iStaticScene;
 
 };
 END

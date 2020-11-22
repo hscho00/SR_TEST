@@ -1,6 +1,8 @@
 #include "..\Headers\GameObject.h"
 
+//////////////
 #include "Vertices.h"
+//////////////
 
 USING(Engine)
 
@@ -15,6 +17,7 @@ CGameObject::CGameObject(LPDIRECT3DDEVICE9 pDevice)
 	, m_matWorld()
 	/////////////////////////////
 {
+	assert(m_pDevice);
 	SafeAddRef(m_pDevice);
 }
 

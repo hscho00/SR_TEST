@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "..\Headers\Player.h"
 
+#include "Management.h"
+
 //////////////////////
 // 컴포넌트가 와야할 부분
 #include "Vertices.h"
@@ -9,18 +11,16 @@
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pDevice)
     : CGameObject(pDevice)
+    //, m_pManagement(CManagement::Get_Instance())
     , m_fAngle(0.f)
 {
-    m_vPos = _vec3(0.f, 0.f, 0.f);
+    //SafeAddRef(m_pManagement);
 }
 
 HRESULT CPlayer::ReadyGameObjectPrototype()
 {
-    CGameObject::ReadyGameObjectPrototype();
-
-    //
-    m_fAngle = 0.f;
-    m_vPos = _vec3(0.f, 0.f, 0.f);
+    if (FAILED(CGameObject::ReadyGameObjectPrototype()))
+        return E_FAIL;
 
     //
     Vertex vertices[3] = {};
@@ -34,12 +34,17 @@ HRESULT CPlayer::ReadyGameObjectPrototype()
     m_pVertices = CVertices::Create(vertices, 3, indices, 3, 1);
     assert(m_pVertices);
 
+    //
+    m_fAngle = 0.f;
+    m_vPos = _vec3(0.f, 0.f, 0.f);
+
     return S_OK;
 }
 
 HRESULT CPlayer::ReadyGameObject(void* pArg)
 {
-    CGameObject::ReadyGameObject(pArg);
+    if (FAILED(CGameObject::ReadyGameObject(pArg)))
+        return E_FAIL;
 
     m_fAngle = 0.f;
     m_vPos = _vec3(0.f, 0.f, 0.f);
@@ -50,7 +55,10 @@ HRESULT CPlayer::ReadyGameObject(void* pArg)
 _uint CPlayer::UpdateGameObject(float fDeltaTime)
 {
     _uint ret = CGameObject::UpdateGameObject(fDeltaTime);
+    if (ret == OBJ_DEAD)
+        return ret;
 
+    //
     float speed = 5.f;
     if (GetAsyncKeyState('W') & 0x8000)
         m_vPos.y += speed * fDeltaTime;
@@ -64,21 +72,31 @@ _uint CPlayer::UpdateGameObject(float fDeltaTime)
         m_vPos.z += speed * fDeltaTime;;
     if (GetAsyncKeyState('E') & 0x8000)
         m_vPos.z -= speed * fDeltaTime;
-
+    
+    //
     m_fAngle -= 100.f * fDeltaTime;
 
+    //
     _matrix matScale, matRotZ, matTrans;
     D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
     D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
     D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
     m_matWorld = matScale * matRotZ * matTrans;
 
-    return ret;
+    return NO_EVENT;
 }
 
 _uint CPlayer::LateUpdateGameObject(float fDeltaTime)
 {
-    return CGameObject::LateUpdateGameObject(fDeltaTime);;
+    _uint ret = CGameObject::LateUpdateGameObject(fDeltaTime);
+
+    auto pManagement = CManagement::Get_Instance();
+    assert(pManagement);
+
+    if (FAILED(pManagement->AddGameObjectInRenderer(ERenderID::NoAlpha, this)))
+        return ERROR;
+
+    return ret;
 }
 
 HRESULT CPlayer::RenderGameObject()
@@ -94,14 +112,37 @@ HRESULT CPlayer::RenderGameObject()
     return S_OK;
 }
 
+CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pDevice)
+{
+    assert(pDevice);
+
+    CPlayer* pInstance = new CPlayer(pDevice);
+    if (FAILED(pInstance->ReadyGameObjectPrototype()))
+    {
+        PRINT_LOG(L"Warning", L"Failed To Create Player");
+        SafeRelease(pInstance);
+    }
+
+    return pInstance;
+}
+
 CGameObject* CPlayer::Clone(void* pArg)
 {
-    // 복사생정자 이쁘게 만들면 될것 같은데...
-    SafeAddRef(m_pDevice);
-    return static_cast<CGameObject*>(new CPlayer(*this));
+    CPlayer* pClone = new CPlayer(*this); /* 복사생성자 */
+    if (FAILED(pClone->ReadyGameObject(pArg)))
+    {
+        PRINT_LOG(L"Warning", L"Failed To Clone Player");
+        SafeRelease(pClone);
+    }
+
+    SafeAddRef(pClone->m_pDevice);  // 디폴트 복사생성자는 단순 복사이므로 Addref 추가로 해줘야
+
+    return pClone;
 }
 
 void CPlayer::Free()
 {
     CGameObject::Free();
+
+    //SafeRelease(m_pManagement);
 }
