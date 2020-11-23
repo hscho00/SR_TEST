@@ -3,9 +3,8 @@
 
 #include "Base.h"
 
-#include "Component.h"
+#include "VIBuffer_TriColor.h"
 //#include "Transform.h"
-//#include "VIBuffer.h"
 
 BEGIN(Engine)
 class CComponentManager final : public CBase

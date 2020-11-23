@@ -8,6 +8,7 @@ class ENGINE_DLL CGameObject abstract : public CBase
 {
 protected:
 	explicit CGameObject(LPDIRECT3DDEVICE9 pDevice);
+	explicit CGameObject(const CGameObject& other);
 	virtual ~CGameObject() = default;
 
 public:
@@ -27,6 +28,9 @@ public:
 	_bool IsDraw() const { return m_bDraw; }
 	void Set_Draw(_bool bDraw) { m_bDraw = bDraw; }
 
+protected:
+	HRESULT AddComponent(_int iSceneIndex, const wstring& PrototypeTag, const wstring& ComponentTag, class CComponent** ppComponent = nullptr, void* pArg = nullptr);
+
 public:
 	// static CGameObject* Create(LPDIRECT3DDEVICE9 pDevice) 도 만들자 
 	virtual CGameObject* Clone(void* pArg = nullptr) PURE;
@@ -35,16 +39,16 @@ public:
 protected:
 	LPDIRECT3DDEVICE9	m_pDevice;
 
-	unordered_map<wstring, class CComponent*>	m_Components;
+	typedef unordered_map<wstring, class CComponent*> COMPONENTS;
+	COMPONENTS	m_Components;
 
 	_bool m_bUsing;	// false면 update 시 바로 빠져 나감
 	_bool m_bDead;	// true면 초기화 후 using false 처리
 	_bool m_bDraw;	// false면 render X
 
 	//////////////
-	// 컴포넌트가 생기면 대체될것들
+	// Transform 컴포넌트가 생기면 대체될것들
 	_vec3 m_vPos;
-	class CVertices* m_pVertices;
 	_matrix m_matWorld;
 	//////////////
 

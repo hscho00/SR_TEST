@@ -2,20 +2,23 @@
 
 #ifndef __ENGINE_STRUCT_H__
 
-struct Vertex
+BEGIN(Engine)
+
+typedef struct tagVertexColor
 {
-	Vertex() 
-		: x(0.f), y(0.f), z(0.f), color(D3DCOLOR_ARGB(255, 255, 0, 0))
-	{}
+	D3DXVECTOR3 vPosition;
+	_uint iColor;
+	static const _uint FVF;	// D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX0;	// TEX0 : 텍스쳐 사용 X
+}VTX_COLOR;
 
-	Vertex(float _x, float _y, float _z, D3DCOLOR _color)
-		: x(_x), y(_y), z(_z), color(_color)
-	{}
+typedef struct tagVertexTexture
+{
+	D3DXVECTOR3 vPosition;
+	D3DXVECTOR2 vUV;
+	static const _uint FVF;	// D3DFVF_XYZ | D3DFVF_TEX1 /*| D3DFVF_TEXCOORDSIZE2(0)*/;	// TEXCOORDSIZE2 : 2차원좌표(0번인덱스)
+}VTX_TEXTURE;
 
-	float x, y, z;	// 위치
-	DWORD color;	// 색상
-	static const DWORD FVF;
-};
+END
 
 #define __ENGINE_STRUCT_H__
 #endif

@@ -31,7 +31,8 @@
     <ClCompile Include="..\Codes\Scene.cpp" />
     <ClCompile Include="..\Codes\SceneManager.cpp" />
     <ClCompile Include="..\Codes\TimeManager.cpp" />
-    <ClCompile Include="..\Codes\Vertices.cpp" />
+    <ClCompile Include="..\Codes\VIBuffer.cpp" />
+    <ClCompile Include="..\Codes\VIBuffer_TriColor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\Base.h" />
@@ -52,7 +53,8 @@
     <ClInclude Include="..\Headers\Scene.h" />
     <ClInclude Include="..\Headers\SceneManager.h" />
     <ClInclude Include="..\Headers\TimeManager.h" />
-    <ClInclude Include="..\Headers\Vertices.h" />
+    <ClInclude Include="..\Headers\VIBuffer.h" />
+    <ClInclude Include="..\Headers\VIBuffer_TriColor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

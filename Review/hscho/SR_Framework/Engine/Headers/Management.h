@@ -44,6 +44,8 @@ public:
 
 public:
 	/* For.ComponentManager */
+	HRESULT AddComponentPrototype(_int iSceneIndex, const wstring& ComponentTag, CComponent* pPrototype);
+	CComponent* CloneComponentPrototype(_int iSceneIndex, const wstring& ComponentTag, void* pArg = nullptr);
 
 public:
 	/* For.Renderer */

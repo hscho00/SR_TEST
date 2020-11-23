@@ -62,7 +62,19 @@ HRESULT CMainApp::ReadyStaticResources()
 	if (FAILED(m_pManagement->AddGameObjectPrototype((_int)ESceneID::Static,
 													L"GameObject_Player",
 													CPlayer::Create(m_pDevice))))
+	{
 		return E_FAIL;
+	}
+#pragma endregion
+
+	/* For.Component */
+#pragma region Component_VIBuffer_TriColor
+	if (FAILED(m_pManagement->AddComponentPrototype((_int)ESceneID::Static,
+													L"Component_VIBuffer_TriColor",
+													CVIBuffer_TriColor::Create(m_pDevice))))
+	{
+		return E_FAIL;
+	}
 #pragma endregion
 
 	return S_OK;

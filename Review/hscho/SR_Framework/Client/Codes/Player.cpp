@@ -3,36 +3,27 @@
 
 #include "Management.h"
 
-//////////////////////
-// 컴포넌트가 와야할 부분
-#include "Vertices.h"
-//////////////////////
-
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pDevice)
     : CGameObject(pDevice)
-    //, m_pManagement(CManagement::Get_Instance())
+    , m_pVIBufferCom(nullptr)
     , m_fAngle(0.f)
 {
-    //SafeAddRef(m_pManagement);
+
+}
+
+CPlayer::CPlayer(const CPlayer& other)
+    : CGameObject(other)
+    , m_pVIBufferCom(nullptr)    // Clone 할 때, AddComponent() 에서 추가
+    , m_fAngle(other.m_fAngle)
+{
+
 }
 
 HRESULT CPlayer::ReadyGameObjectPrototype()
 {
     if (FAILED(CGameObject::ReadyGameObjectPrototype()))
         return E_FAIL;
-
-    //
-    Vertex vertices[3] = {};
-    WORD indices[3] = {};
-    vertices[0] = Vertex(-1.f, -1.f, 0.f, D3DCOLOR_XRGB(255, 0, 0));
-    vertices[1] = Vertex(0.f, 1.f, 0.f, D3DCOLOR_XRGB(0, 0, 255));
-    vertices[2] = Vertex(1.f, -1.f, 0.f, D3DCOLOR_XRGB(255, 255, 0));
-    indices[0] = 0;
-    indices[1] = 1;
-    indices[2] = 2;
-    m_pVertices = CVertices::Create(vertices, 3, indices, 3, 1);
-    assert(m_pVertices);
 
     //
     m_fAngle = 0.f;
@@ -46,6 +37,10 @@ HRESULT CPlayer::ReadyGameObject(void* pArg)
     if (FAILED(CGameObject::ReadyGameObject(pArg)))
         return E_FAIL;
 
+    if (FAILED(AddComponent()))
+        return E_FAIL;
+
+    //
     m_fAngle = 0.f;
     m_vPos = _vec3(0.f, 0.f, 0.f);
 
@@ -101,13 +96,32 @@ _uint CPlayer::LateUpdateGameObject(float fDeltaTime)
 
 HRESULT CPlayer::RenderGameObject()
 {
-    CGameObject::RenderGameObject();
+    if (FAILED(CGameObject::RenderGameObject()))
+        return E_FAIL;
 
+    //
     m_pDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
-    m_pDevice->SetStreamSource(0, m_pVertices->Get_VertexBuffer(), 0, sizeof(Vertex));
-    m_pDevice->SetIndices(m_pVertices->Get_IndexBuffer());
-    m_pDevice->SetFVF(m_pVertices->Get_FVF());
-    m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pVertices->Get_VerticesCount(), 0, m_pVertices->Get_PrimCount());
+
+    //
+    if (FAILED(m_pVIBufferCom->Render_VIBuffer()))
+        return E_FAIL;
+
+    return S_OK;
+}
+
+HRESULT CPlayer::AddComponent()
+{
+    /* For.Com_VIBuffer */
+    if (!m_pVIBufferCom)
+    {
+        if (FAILED(CGameObject::AddComponent((_int)ESceneID::Static,
+            L"Component_VIBuffer_TriColor",
+            L"Com_VIBuffer",
+            (CComponent**)&m_pVIBufferCom)))
+        {
+            return E_FAIL;
+        }
+    }
 
     return S_OK;
 }
@@ -135,8 +149,6 @@ CGameObject* CPlayer::Clone(void* pArg)
         SafeRelease(pClone);
     }
 
-    SafeAddRef(pClone->m_pDevice);  // 디폴트 복사생성자는 단순 복사이므로 Addref 추가로 해줘야
-
     return pClone;
 }
 
@@ -144,5 +156,5 @@ void CPlayer::Free()
 {
     CGameObject::Free();
 
-    //SafeRelease(m_pManagement);
+    SafeRelease(m_pVIBufferCom);
 }

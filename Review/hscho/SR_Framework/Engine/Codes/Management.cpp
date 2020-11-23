@@ -22,7 +22,7 @@ CManagement::CManagement()
 }
 
 HRESULT CManagement::ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplayMode eDisplaymode,
-                                _int iSceneCount, _bool isUseStaticScene/*= false*/, _int iStaticScene/*= 0*/)
+                                _int iSceneCount, _bool isUseStaticScen5e/*= false*/, _int iStaticScene/*= 0*/)
 {
     assert(m_pGraphic_Dev);
     assert(m_pTimeManager);
@@ -38,6 +38,9 @@ HRESULT CManagement::ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplay
         return E_FAIL;
 
     if (FAILED(m_pGameObjectManager->ReserveContainer(iSceneCount, isUseStaticScene, iStaticScene)))
+        return E_FAIL;
+
+    if (FAILED(m_pComponentManager->ReservePrototypeContainer(iSceneCount)))
         return E_FAIL;
 
     if (FAILED(m_pRenderer->ReadyRenderer(m_pGraphic_Dev->Get_Device())))
@@ -112,6 +115,16 @@ HRESULT CManagement::AddGameObjectInLayer(_int iFromSceneIndex, const wstring& G
 CGameObject* CManagement::GetGameObjectInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx)
 {
     return m_pGameObjectManager->GetGameObjectInLayerOrNull(iSceneIndex, LayerTag, idx);
+}
+
+HRESULT CManagement::AddComponentPrototype(_int iSceneIndex, const wstring& ComponentTag, CComponent* pPrototype)
+{
+    return m_pComponentManager->AddComponentPrototype(iSceneIndex, ComponentTag, pPrototype);
+}
+
+CComponent* CManagement::CloneComponentPrototype(_int iSceneIndex, const wstring& ComponentTag, void* pArg)
+{
+    return m_pComponentManager->CloneComponentPrototype(iSceneIndex, ComponentTag, pArg);
 }
 
 HRESULT CManagement::AddGameObjectInRenderer(ERenderID eID, CGameObject* pGameObject)

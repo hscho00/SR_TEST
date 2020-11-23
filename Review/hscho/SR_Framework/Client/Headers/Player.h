@@ -8,6 +8,7 @@ class CPlayer final : public CGameObject
 {
 public:
 	explicit CPlayer(LPDIRECT3DDEVICE9 pDevice);
+	explicit CPlayer(const CPlayer& other);
 	virtual ~CPlayer() = default;
 
 public:
@@ -16,15 +17,20 @@ public:
 	virtual _uint UpdateGameObject(float fDeltaTime) override;
 	virtual _uint LateUpdateGameObject(float fDeltaTime) override;
 	virtual HRESULT RenderGameObject() override;
-	
+
+private:
+	HRESULT AddComponent();
+
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual CGameObject* Clone(void* pArg = nullptr) override;
 	virtual void Free() override;
 
 private:
-	//CManagement* m_pManagement;	// Player Free 호출 전에 매니지먼트를 먼저 지움...
+	class CVIBuffer* m_pVIBufferCom;
 	float m_fAngle;
+
+	//CManagement* m_pManagement;	// Player Free 호출 전에 매니지먼트를 먼저 지움...
 
 };
 
