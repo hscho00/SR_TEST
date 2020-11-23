@@ -16,7 +16,8 @@ public:
 	virtual _uint LateUpdateScene() override;
 
 private:
-	HRESULT AddPlayerLayer(const wstring& LayerTag);
+	HRESULT AddPlayerAndLayer();
+	HRESULT AddTerrainAndLayer();
 
 public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pDevice);
@@ -24,6 +25,14 @@ public:
 
 private:
 	CGameObject* m_pPlayer;
+
+	/////////////////////
+	// 카메라 생기면 들어낼것들
+	_vec3 m_vCameraPos;
+	_vec3 m_vTargetPos;
+	const _vec3 m_vUpVec;
+	float m_fCameraAngle;
+	/////////////////////
 
 };
 

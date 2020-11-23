@@ -219,28 +219,28 @@ _uint CGameObjectManager::LateUpdateGameObject(_int iSceneIndex, float fDeltaTim
 	return ret;
 }
 
-CGameObject* CGameObjectManager::CloneGameObjectPrototype(_int iSceneIndex,
-														const wstring& GameObjectTag,
-														void* pArg/*= nullptr*/)
-{
-	if (0 > iSceneIndex ||
-		m_iSceneCount <= iSceneIndex)
-	{
-		PRINT_LOG(L"Error", L"Out of range CGameObjectManager CloneGameObjectPrototype");
-		return nullptr;
-	}
-
-	auto iter_find = m_pPrototypes[iSceneIndex].find(GameObjectTag);
-	if (m_pPrototypes[iSceneIndex].end() == iter_find)
-	{
-		WCHAR szBuffer[128] = L"";
-		swprintf_s(szBuffer, L"Not found %s Prototype", GameObjectTag.c_str());
-		PRINT_LOG(L"Warning", szBuffer);
-		return nullptr;
-	}
-
-	return iter_find->second->Clone(pArg);
-}
+//CGameObject* CGameObjectManager::CloneGameObjectPrototype(_int iSceneIndex,
+//														const wstring& GameObjectTag,
+//														void* pArg/*= nullptr*/)
+//{
+//	if (0 > iSceneIndex ||
+//		m_iSceneCount <= iSceneIndex)
+//	{
+//		PRINT_LOG(L"Error", L"Out of range CGameObjectManager CloneGameObjectPrototype");
+//		return nullptr;
+//	}
+//
+//	auto iter_find = m_pPrototypes[iSceneIndex].find(GameObjectTag);
+//	if (m_pPrototypes[iSceneIndex].end() == iter_find)
+//	{
+//		WCHAR szBuffer[128] = L"";
+//		swprintf_s(szBuffer, L"Not found %s Prototype", GameObjectTag.c_str());
+//		PRINT_LOG(L"Warning", szBuffer);
+//		return nullptr;
+//	}
+//
+//	return iter_find->second->Clone(pArg);
+//}
 
 void CGameObjectManager::Free()
 {

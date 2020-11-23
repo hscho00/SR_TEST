@@ -34,7 +34,7 @@ public:
 	_uint LateUpdateGameObject(_int iSceneIndex, float fDeltaTime);
 
 private:
-	CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
+	//CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);
 
 public:
 	virtual void Free() override;

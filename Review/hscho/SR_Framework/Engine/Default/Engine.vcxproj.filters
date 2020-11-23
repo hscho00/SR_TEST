@@ -52,6 +52,9 @@
     <Filter Include="01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor">
       <UniqueIdentifier>{1e067e31-119d-476b-a284-297514eb6c29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor">
+      <UniqueIdentifier>{2831a478-52c9-4386-b031-a43ed1634fa9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\VIBuffer_TriColor.cpp">
       <Filter>01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\VIBuffer_QuadColor.cpp">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="..\Headers\VIBuffer_TriColor.h">
       <Filter>01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\VIBuffer_QuadColor.h">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

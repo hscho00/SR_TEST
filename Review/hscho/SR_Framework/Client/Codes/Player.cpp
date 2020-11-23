@@ -7,7 +7,6 @@
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pDevice)
     : CGameObject(pDevice)
     , m_pVIBufferCom(nullptr)
-    , m_fAngle(0.f)
 {
 
 }
@@ -15,7 +14,6 @@ CPlayer::CPlayer(LPDIRECT3DDEVICE9 pDevice)
 CPlayer::CPlayer(const CPlayer& other)
     : CGameObject(other)
     , m_pVIBufferCom(nullptr)    // Clone 할 때, AddComponent() 에서 추가
-    , m_fAngle(other.m_fAngle)
 {
 
 }
@@ -24,10 +22,6 @@ HRESULT CPlayer::ReadyGameObjectPrototype()
 {
     if (FAILED(CGameObject::ReadyGameObjectPrototype()))
         return E_FAIL;
-
-    //
-    m_fAngle = 0.f;
-    m_vPos = _vec3(0.f, 0.f, 0.f);
 
     return S_OK;
 }
@@ -40,9 +34,11 @@ HRESULT CPlayer::ReadyGameObject(void* pArg)
     if (FAILED(AddComponent()))
         return E_FAIL;
 
-    //
+    //////////////////////////////////////////////////////////////
+    // 나중에 Transform 생기면 수정
     m_fAngle = 0.f;
     m_vPos = _vec3(0.f, 0.f, 0.f);
+    //////////////////////////////////////////////////////////////
 
     return S_OK;
 }
@@ -53,30 +49,27 @@ _uint CPlayer::UpdateGameObject(float fDeltaTime)
     if (ret == OBJ_DEAD)
         return ret;
 
-    //
+    //////////////////////////////////////////////////////////////
     float speed = 5.f;
     if (GetAsyncKeyState('W') & 0x8000)
-        m_vPos.y += speed * fDeltaTime;
+        m_vPos.z += speed * fDeltaTime;
     if (GetAsyncKeyState('S') & 0x8000)
-        m_vPos.y -= speed * fDeltaTime;
+        m_vPos.z -= speed * fDeltaTime;
     if (GetAsyncKeyState('A') & 0x8000)
         m_vPos.x -= speed * fDeltaTime;
     if (GetAsyncKeyState('D') & 0x8000)
         m_vPos.x += speed * fDeltaTime;
-    if (GetAsyncKeyState('Q') & 0x8000)
-        m_vPos.z += speed * fDeltaTime;;
-    if (GetAsyncKeyState('E') & 0x8000)
-        m_vPos.z -= speed * fDeltaTime;
     
     //
     m_fAngle -= 100.f * fDeltaTime;
 
     //
-    _matrix matScale, matRotZ, matTrans;
+    _matrix matScale, matRotY, matTrans;
     D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
-    D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
+    D3DXMatrixRotationY(&matRotY, D3DXToRadian(m_fAngle));
     D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
-    m_matWorld = matScale * matRotZ * matTrans;
+    m_matWorld = matScale * matRotY * matTrans;
+    //////////////////////////////////////////////////////////////
 
     return NO_EVENT;
 }
@@ -101,10 +94,14 @@ HRESULT CPlayer::RenderGameObject()
 
     //
     m_pDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
+    m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
     //
     if (FAILED(m_pVIBufferCom->Render_VIBuffer()))
         return E_FAIL;
+
+    //
+    m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW); // 디폴트상태로
 
     return S_OK;
 }

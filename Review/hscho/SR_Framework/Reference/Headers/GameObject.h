@@ -28,6 +28,10 @@ public:
 	_bool IsDraw() const { return m_bDraw; }
 	void Set_Draw(_bool bDraw) { m_bDraw = bDraw; }
 
+	/////////////////////////////////////
+	const _vec3& Get_Pos() const { return m_vPos; }
+	/////////////////////////////////////
+
 protected:
 	HRESULT AddComponent(_int iSceneIndex, const wstring& PrototypeTag, const wstring& ComponentTag, class CComponent** ppComponent = nullptr, void* pArg = nullptr);
 
@@ -49,6 +53,7 @@ protected:
 	//////////////
 	// Transform 컴포넌트가 생기면 대체될것들
 	_vec3 m_vPos;
+	float m_fAngle;
 	_matrix m_matWorld;
 	//////////////
 

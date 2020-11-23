@@ -25,6 +25,9 @@
     <Filter Include="02.GameObject\00.Player">
       <UniqueIdentifier>{93e49b85-726c-4bbe-8dde-593f406c73f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\01. Terrain">
+      <UniqueIdentifier>{9f4574f2-9bf9-44f8-b0c6-e65ac87a1571}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="..\Headers\Player.h">
       <Filter>02.GameObject\00.Player</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Terrain.h">
+      <Filter>02.GameObject\01. Terrain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -87,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Player.cpp">
       <Filter>02.GameObject\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Terrain.cpp">
+      <Filter>02.GameObject\01. Terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

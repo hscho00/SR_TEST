@@ -37,6 +37,9 @@ HRESULT CMainApp::ReadyMainApp()
 		return E_FAIL;
 	}
 
+	// RenderState
+	m_pDevice->SetRenderState(D3DRS_LIGHTING, false);
+
 	//
 	if (FAILED(m_pManagement->SetUpCurrentScene(CLogo::Create(m_pManagement->GetDevice()))))
 	{
@@ -71,7 +74,7 @@ HRESULT CMainApp::ReadyStaticResources()
 #pragma region Component_VIBuffer_TriColor
 	if (FAILED(m_pManagement->AddComponentPrototype((_int)ESceneID::Static,
 													L"Component_VIBuffer_TriColor",
-													CVIBuffer_TriColor::Create(m_pDevice))))
+													CVIBuffer_TriColor::Create(m_pDevice, D3DCOLOR_XRGB(255, 0, 0)))))
 	{
 		return E_FAIL;
 	}

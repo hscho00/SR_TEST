@@ -11,6 +11,7 @@ CGameObject::CGameObject(LPDIRECT3DDEVICE9 pDevice)
 	, m_bDraw(true)
 	/////////////////////////////
 	, m_vPos()
+	, m_fAngle(0.f)
 	, m_matWorld()
 	/////////////////////////////
 {
@@ -25,6 +26,7 @@ CGameObject::CGameObject(const CGameObject& other)
 	, m_bDraw(other.m_bDraw)
 	/////////////////////////////
 	, m_vPos(other.m_vPos)
+	, m_fAngle(other.m_fAngle)
 	, m_matWorld(other.m_matWorld)
 	/////////////////////////////
 {
