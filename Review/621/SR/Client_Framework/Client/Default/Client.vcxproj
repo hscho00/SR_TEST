@@ -148,7 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\..\Text.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

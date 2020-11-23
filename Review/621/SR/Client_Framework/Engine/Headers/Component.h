@@ -10,6 +10,7 @@ class ENGINE_DLL Component :
 {
 public:
     explicit Component(_lpd3dd9 pDevice);
+    explicit Component(const Component& other);
     virtual ~Component() = default;
 
 public:

@@ -74,7 +74,7 @@ HRESULT Player::ReadyGameObjectPrototype()
 	indices[34] = 3;
 	indices[35] = 7;
 
-	m_pVertices = Vertices::Create(m_pDevice, vertices, 8, indices, 36, 1);
+	m_pVertices = VIBuffer::Create(m_pDevice, vertices, 8, indices, 36, 1);
 	//assert(m_pVertices);
 	return S_OK;
 }
@@ -117,6 +117,11 @@ HRESULT Player::RenderGameObject()
 	}
 	
 	return S_OK;
+}
+
+HRESULT Player::AddComponent()
+{
+	return E_NOTIMPL;
 }
 
 Player* Player::Create(_lpd3dd9 pDevice)
