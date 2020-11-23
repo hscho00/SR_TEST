@@ -9,6 +9,7 @@ class Player final : public GameObject
 {
 private:
 	explicit Player(_lpd3dd9 pDevice);
+	explicit Player(const Player& other);
 	virtual	~Player() = default;
 
 public:
@@ -25,7 +26,11 @@ public:
 	virtual HRESULT RenderGameObject() override;
 
 private:
+	HRESULT	AddComponent();
+
+private:
 	_vector3 m_vAngle;
+	class VIBuffer* m_pVIBufferCom = nullptr;
 };
 
 #endif

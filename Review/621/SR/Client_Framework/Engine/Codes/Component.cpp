@@ -7,6 +7,12 @@ Component::Component(_lpd3dd9 pDevice)
 	SafeAddRef(m_pDevice);
 }
 
+Component::Component(const Component& other)
+	: m_pDevice(other.m_pDevice)
+{
+	SafeAddRef(m_pDevice);
+}
+
 HRESULT Component::ReadyComponentPrototype()
 {
 	return S_OK;

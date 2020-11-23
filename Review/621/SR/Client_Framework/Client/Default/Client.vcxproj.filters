@@ -45,9 +45,6 @@
     <ClInclude Include="..\Headers\MainApp.h">
       <Filter>00.MainApp</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\ClientDefine.h">
-      <Filter>98.Header\Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Headers\ClientExtern.h">
       <Filter>98.Header\Include</Filter>
     </ClInclude>
@@ -71,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="..\Headers\Player.h">
       <Filter>02.GameObject\00.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ClientDefine.h">
+      <Filter>98.Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,5 @@
     <Text Include="ReadMe.txt">
       <Filter>99.Default</Filter>
     </Text>
-    <Text Include="..\..\Text.txt" />
   </ItemGroup>
 </Project>
