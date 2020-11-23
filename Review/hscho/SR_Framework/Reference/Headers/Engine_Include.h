@@ -10,7 +10,7 @@ Standard
 #include <unordered_map>
 #include <algorithm>
 #include <functional>
-#pragma warning(disable : 4251)
+#pragma warning(disable : 4251)	// stl
 
 #include <cassert>
 

@@ -11,18 +11,12 @@ private:
 	virtual ~CLayer() = default;
 
 public:
-	HRESULT ReserveCloneContainer(_uint capacity);		// vector reserve. 이름 별로 맘에 안듦
 	HRESULT AddGameObjectInLayer(class CGameObject* pGameObject);
 	_uint UpdateGameObject(float fDeltaTime);
 	_uint LateUpdateGameObject(float fDeltaTime);
 
-	//
+	HRESULT ReserveLayerContainer(_uint capacity);		// vector reserve
 	CGameObject* GetObjOrNull(_uint idx) const;
-
-	/////////////////////////////////
-	// 렌더러 생기면 밖으로 빠질 것들
-	HRESULT RenderGameObject();
-	/////////////////////////////////
 
 public:
 	static CLayer* Create(_uint vecCapacity);

@@ -5,23 +5,34 @@ IMPLEMENT_SINGLETON(CSceneManager)
 
 CSceneManager::CSceneManager()
 	: m_pCurrentScene(nullptr)
-	, m_iSceneID(-1)
 {
 
 }
 
-HRESULT CSceneManager::SetUpCurrentScene(_int iSceneID, CScene* pCurrentScene)
+HRESULT CSceneManager::SetUpCurrentScene(CScene* pNextScene)
 {
-	if (nullptr == pCurrentScene)
-		return E_FAIL;
-
-	if (m_iSceneID != iSceneID)
+	if (nullptr == pNextScene
+		|| (pNextScene->Get_SceneIndex() == -1)) // m_iSceneIndex 꼭 지정해 주시오
 	{
-		SafeRelease(m_pCurrentScene);
-		m_pCurrentScene = pCurrentScene;
-
-		m_iSceneID = iSceneID;
+		SafeRelease(pNextScene);	// 밖에서 생성한 것을 넘겨주므로 받은건 release
+									// m_pCurrentScene은 변화 X
+		return E_FAIL;
 	}
+
+	if (nullptr == m_pCurrentScene)
+	{
+		m_pCurrentScene = pNextScene;
+		return S_OK;
+	}
+
+	if (m_pCurrentScene->Get_SceneIndex() == pNextScene->Get_SceneIndex())
+	{
+		SafeRelease(pNextScene);
+		return S_OK;
+	}
+	
+	SafeRelease(m_pCurrentScene);
+	m_pCurrentScene = pNextScene;
 
 	return S_OK;
 }

@@ -11,17 +11,22 @@ protected:
 	virtual ~CScene() = default;
 
 public:
-	virtual HRESULT ReadyScene();
-	virtual _uint UpdateScene();
-	virtual _uint LateUpdateScene();
+	virtual HRESULT ReadyScene() PURE;
+	virtual _uint UpdateScene() PURE;
+	virtual _uint LateUpdateScene() PURE;
 
 public:
-	virtual void Free() override;
+	_int Get_SceneIndex() const { return m_iSceneIndex; }
+
+public:
+	virtual void Free() override PURE;
 
 protected:
 	LPDIRECT3DDEVICE9	m_pDevice;
+	class CTimeManager* m_pTimeManager;
+	class CGameObjectManager* m_pGameObjectManager;
 
-	_int m_iSceneIndex;
+	_int m_iSceneIndex;	// 생성 시 꼭 초기화 필요함
 
 };
 END

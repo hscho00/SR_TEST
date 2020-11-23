@@ -1,19 +1,12 @@
 #include "stdafx.h"
 #include "..\Headers\Stage.h"
 
-#include "Layer.h"
-#include "Player.h"
-
 
 CStage::CStage(LPDIRECT3DDEVICE9 pDevice)
     : CScene(pDevice)
-    , m_pManagement(CManagement::Get_Instance())
     , m_pPlayer(nullptr)
 {
     m_iSceneIndex = (_int)ESceneID::Stage;
-
-    // ㅠㅠ
-    //SafeAddRef(m_pManagement);
 }
 
 HRESULT CStage::ReadyScene()
@@ -23,18 +16,9 @@ HRESULT CStage::ReadyScene()
 
     PRINT_LOG(L"Stage", L"Stage");
 
-    /////////////////////////////////////////////////
-    // 플레이어 레이어 추가
-    m_pManagement->AddLayer(m_iSceneIndex, L"Player", 1);
-
-    // 플레이어 프로토타입 생성
-    CPlayer* pPlayer = new CPlayer(m_pDevice);
-    pPlayer->ReadyGameObjectPrototype();
-    m_pManagement->AddObjPrototype(m_iSceneIndex, L"Player_0", pPlayer);
-
-    // 플레이어 클론 생성
-    m_pPlayer = m_pManagement->CloneObjPrototype(m_iSceneIndex, L"Player_0");
-    m_pManagement->AddObjInLayer(m_iSceneIndex, L"Player", m_pPlayer);
+    //
+    if (FAILED(AddPlayerLayer(L"Layer_Player")))
+        return E_FAIL;
 
     // View Mat
     _vec3 cameraPos(0.f, 0.f, -5.f);
@@ -64,20 +48,6 @@ _uint CStage::UpdateScene()
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::UpdateScene();
 
-    if (!m_pPlayer && (GetAsyncKeyState('Z') & 0x8000))
-    {
-        m_pPlayer = m_pManagement->GetObjInLayerOrNull(m_iSceneIndex, L"Player", 0);
-        assert(m_pPlayer);
-        m_pPlayer->Set_Using(true);
-    }
-    if (m_pPlayer && (GetAsyncKeyState('X') & 0x8000))
-    {
-        m_pPlayer->Set_Dead(true);
-        m_pPlayer = nullptr;
-    }
-
-    m_pManagement->UpdateGameObject(m_iSceneIndex);
-
 	return NO_EVENT;
 }
 
@@ -86,9 +56,34 @@ _uint CStage::LateUpdateScene()
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::LateUpdateScene();
 
-    m_pManagement->LateUpdateGameObject(m_iSceneIndex);
+    if (m_pPlayer)
+    {
+        if (!m_pPlayer->IsUsing() && (GetAsyncKeyState('Z') & 0x8000))
+            m_pPlayer->Set_Using(true);
+        else if (!m_pPlayer->IsDead() && (GetAsyncKeyState('X') & 0x8000))
+            m_pPlayer->Set_Dead(true);
+    }
 
 	return NO_EVENT;
+}
+
+HRESULT CStage::AddPlayerLayer(const wstring& LayerTag)
+{
+    auto pManagement = CManagement::Get_Instance();
+    assert(pManagement);
+
+    if (FAILED(pManagement->AddLayer(m_iSceneIndex, LayerTag, 1)))
+        return E_FAIL;
+
+    if (FAILED(pManagement->AddGameObjectInLayer((_int)ESceneID::Static, L"GameObject_Player",
+                                                (_int)ESceneID::Stage, LayerTag)))
+        return E_FAIL;
+
+    m_pPlayer = pManagement->GetGameObjectInLayerOrNull((_int)ESceneID::Stage, LayerTag, 0);
+    assert(m_pPlayer);
+    SafeAddRef(m_pPlayer);
+
+    return S_OK;
 }
 
 CStage* CStage::Create(LPDIRECT3DDEVICE9 pDevice)
@@ -111,5 +106,5 @@ void CStage::Free()
 	// 오버라이딩 시 부모의 함수를 꼭 호출해 주자
 	CScene::Free();
 
-    //SafeRelease(m_pManagement);
+    SafeRelease(m_pPlayer);
 }

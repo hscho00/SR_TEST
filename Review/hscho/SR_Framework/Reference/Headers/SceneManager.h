@@ -14,7 +14,7 @@ private:
 	virtual ~CSceneManager() = default;
 
 public:
-	HRESULT SetUpCurrentScene(_int iSceneID, CScene* pCurrentScene);
+	HRESULT SetUpCurrentScene(CScene* pNextScene);
 	_uint UpdateScene();
 	_uint LateUpdateScene();
 
@@ -23,7 +23,6 @@ public:
 
 private:
 	CScene*	m_pCurrentScene;
-	_int	m_iSceneID;
 
 };
 END

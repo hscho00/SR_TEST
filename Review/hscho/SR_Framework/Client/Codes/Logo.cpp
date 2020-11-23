@@ -29,13 +29,12 @@ _uint CLogo::UpdateScene()
 	{
 		CManagement* pManagement = CManagement::Get_Instance();
 		if (nullptr == pManagement)
-			return 0;
+			return ERROR;
 
-		if (FAILED(pManagement->SetUpCurrentScene((_int)ESceneID::Stage,
-			CStage::Create(m_pDevice))))
+		if (FAILED(pManagement->SetUpCurrentScene(CStage::Create(m_pDevice))))
 		{
 			PRINT_LOG(L"Error", L"Failed To SetUpCurrentScene");
-			return 0;
+			return ERROR;
 		}
 
 		return CHANGE_SCENE;

@@ -18,10 +18,6 @@ public:
 	virtual HRESULT RenderGameObject() PURE;
 
 public:
-	virtual CGameObject* Clone(void* pArg = nullptr) PURE;
-	virtual void Free() override PURE;
-
-public:
 	_bool IsUsing() const { return m_bUsing; }
 	void Set_Using(_bool bUsing) { m_bUsing = bUsing; }
 
@@ -31,10 +27,11 @@ public:
 	_bool IsDraw() const { return m_bDraw; }
 	void Set_Draw(_bool bDraw) { m_bDraw = bDraw; }
 
-	//////////////
-	const _matrix& Get_MatWorld() const { return m_matWorld; }
-	//////////////
-
+public:
+	// static CGameObject* Create(LPDIRECT3DDEVICE9 pDevice) 도 만들자 
+	virtual CGameObject* Clone(void* pArg = nullptr) PURE;
+	virtual void Free() override PURE;
+	
 protected:
 	LPDIRECT3DDEVICE9	m_pDevice;
 

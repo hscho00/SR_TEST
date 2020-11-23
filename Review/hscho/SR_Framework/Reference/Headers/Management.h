@@ -3,10 +3,11 @@
 
 #include "Base.h"
 #include "Grahpic_Device.h"
-#include "SceneManager.h"
-#include "GameObjectManager.h"
-#include "ComponentManager.h"
 #include "TimeManager.h"
+#include "GameObjectManager.h"
+#include "SceneManager.h"
+#include "ComponentManager.h"
+#include "Renderer.h"
 
 
 BEGIN(Engine)
@@ -20,9 +21,11 @@ private:
 
 public:
 	/* For.General */
-	HRESULT ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplayMode eDisplaymode);
+	HRESULT ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplayMode eDisplaymode, 
+						_int iSceneCount, _bool isUseStaticScene = false, _int iStaticScene = 0);
 	_uint UpdateEngine();
-	_uint RenderEngine();
+	_uint RenderEngine(HWND hWnd = nullptr);
+	HRESULT ClearForScene(_int iSceneIndex);
 
 public:
 	/* For.GraphicDev */
@@ -30,25 +33,21 @@ public:
 
 public:
 	/* For.SceneManager */
-	HRESULT SetUpCurrentScene(_int iSceneID, CScene* pCurrentScene);
-
-public:
-	/* For.Renderer */
+	HRESULT SetUpCurrentScene(CScene* pCurrentScene);
 
 public:
 	/* For.GameObjectManager */
-	HRESULT ReadyGameObjectManager(_int iSceneCount);
-	HRESULT AddObjPrototype(_int iSceneIndex, const wstring & GameObjectTag, CGameObject * pPrototype);
-	CGameObject* CloneObjPrototype(_int iSceneIndex, const wstring & GameObjectTag, void* pArg = nullptr);
-	HRESULT ClearForScene(_int iSceneIndex);
+	HRESULT AddGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, CGameObject* pPrototype);
 	HRESULT AddLayer(_int iSceneIndex, const wstring& LayerTag, _uint vecCapacity);
-	HRESULT AddObjInLayer(_int iSceneIndex, const wstring& LayerTag, CGameObject* pClone);
-	CGameObject* GetObjInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx);
-	HRESULT UpdateGameObject(_int iSceneIndex);
-	HRESULT LateUpdateGameObject(_int iSceneIndex);
+	HRESULT AddGameObjectInLayer(_int iFromSceneIndex, const wstring& GameObjectTag, _int iToSceneIndex, const wstring& LayerTag, void* pArg = nullptr);
+	CGameObject* GetGameObjectInLayerOrNull(_int iSceneIndex, const wstring& LayerTag, _uint idx);
 
 public:
 	/* For.ComponentManager */
+
+public:
+	/* For.Renderer */
+	HRESULT AddGameObjectInRenderer(ERenderID eID, class CGameObject* pGameObject);
 
 public:
 	virtual void Free() override;
@@ -56,12 +55,14 @@ public:
 
 private:
 	CGraphic_Device* m_pGraphic_Dev;
-	CSceneManager* m_pSceneManager;
-	CGameObjectManager* m_pGameObjectManager;
-	CComponentManager* m_pComponentManager;
 	CTimeManager* m_pTimeManager;
+	CGameObjectManager* m_pGameObjectManager;
+	CSceneManager* m_pSceneManager;
+	CComponentManager* m_pComponentManager;
+	CRenderer* m_pRenderer;
 
 	_uint m_iUpdateEvent;
+
 };
 END
 

@@ -27,6 +27,7 @@
     <ClCompile Include="..\Codes\Graphic_Device.cpp" />
     <ClCompile Include="..\Codes\Layer.cpp" />
     <ClCompile Include="..\Codes\Management.cpp" />
+    <ClCompile Include="..\Codes\Renderer.cpp" />
     <ClCompile Include="..\Codes\Scene.cpp" />
     <ClCompile Include="..\Codes\SceneManager.cpp" />
     <ClCompile Include="..\Codes\TimeManager.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\Headers\Grahpic_Device.h" />
     <ClInclude Include="..\Headers\Layer.h" />
     <ClInclude Include="..\Headers\Management.h" />
+    <ClInclude Include="..\Headers\Renderer.h" />
     <ClInclude Include="..\Headers\Scene.h" />
     <ClInclude Include="..\Headers\SceneManager.h" />
     <ClInclude Include="..\Headers\TimeManager.h" />

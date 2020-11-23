@@ -4,9 +4,10 @@
 
 enum class ESceneID : int
 {
+	Static,
 	Logo,
 	Stage,
-	End
+	MaxCount
 };
 
 #define __CLIENT_ENUM_H__
