@@ -2,6 +2,19 @@
 #ifndef __CLIENT_STRUCT_H__
 #define __CLIENT_STRUCT_H__
 
+struct Vertex
+{
+	Vertex() {}
+	Vertex(float _x, float _y, float _z) 
+	: x(_x), y(_y), z(_z)
+	{}
+
+	float x, y, z;
+	static const DWORD FVF;		//¿Ö static??
+};
+
+const DWORD Vertex::FVF = D3DFVF_XYZ;
+
 struct ColorVertex
 {
 	ColorVertex() {}

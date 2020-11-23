@@ -3,7 +3,6 @@
 #define __GAMEOBJECT_H__
 
 #include "Base.h"
-#include "Vertices.h"
 
 CODEBEGIN(Engine)
 class ENGINE_DLL GameObject abstract : public CBase
@@ -26,13 +25,7 @@ public:
 protected:
 	_lpd3dd9 m_pDevice;
 
-	typedef	unordered_map<wstring, class Component*> COMPONENTS;
-	COMPONENTS m_pComponents;
-
-	// 컴포넌트 필요
-	_vector3 m_vPos;
-	Vertices* m_pVertices;
-	_matrix m_matWorld;
+	unordered_map<wstring, class Component*> m_pComponents;
 };
 CODEEND
 #endif

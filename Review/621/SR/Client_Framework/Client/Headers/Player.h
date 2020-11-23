@@ -24,8 +24,7 @@ public:
 	virtual _uint LateUpdateGameObject(DOUBLE _fDeltaTime) override;
 	virtual HRESULT RenderGameObject() override;
 
-private:
-	_vector3 m_vAngle;
+
 };
 
 #endif

@@ -52,9 +52,6 @@
     <Filter Include="00.Systems\01.TimeManager">
       <UniqueIdentifier>{7c2590a1-b0e9-47c7-803e-e00868443e9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utilities\05.Component\01.Vertices">
-      <UniqueIdentifier>{05aa1ac4-07ab-47de-8edb-139620dd0299}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -114,9 +111,6 @@
     <ClInclude Include="..\Headers\Renderer.h">
       <Filter>01.Utilities\03.Renerer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Headers\Vertices.h">
-      <Filter>01.Utilities\05.Component\01.Vertices</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc">
@@ -159,9 +153,6 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Renderer.cpp">
       <Filter>01.Utilities\03.Renerer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Codes\Vertices.cpp">
-      <Filter>01.Utilities\05.Component\01.Vertices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
