@@ -7,6 +7,12 @@ Player::Player(_lpd3dd9 pDevice)
 {
 }
 
+Player::Player(const Player& other)
+	: GameObject(other)
+	, m_vAngle(other.m_vAngle)
+{
+}
+
 HRESULT Player::ReadyGameObjectPrototype()
 {
 	if (FAILED(GameObject::ReadyGameObjectPrototype()))
@@ -14,15 +20,25 @@ HRESULT Player::ReadyGameObjectPrototype()
 
 	m_vPos = _vector3(0.f, 0.f, 0.f);
 
-	Vertex vertices[8];
-	vertices[0] = Vertex(-1.f, -1.f, -1.f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[1] = Vertex(-1.f, 1.f, -1.f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[2] = Vertex(1.f, 1.f, -1.f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[3] = Vertex(1.f, -1.f, -1.f,D3DCOLOR_XRGB(255, 0, 0));
-	vertices[4] = Vertex(-1.f, -1.f, 1.f,D3DCOLOR_XRGB(255, 0, 0));
-	vertices[5] = Vertex(-1.f, 1.f, 1.f,D3DCOLOR_XRGB(255, 0, 0));
-	vertices[6] = Vertex(1.f, 1.f, 1.f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[7] = Vertex(1.f, -1.f, 1.f, D3DCOLOR_XRGB(255, 0, 0));
+	return S_OK;
+}
+
+HRESULT Player::ReadyGameObject(void* _pArg /*= nullptr*/)	// clone ÀÇ ·¹µð...
+{
+	if (FAILED(GameObject::ReadyGameObject(_pArg)))
+	{
+		return E_FAIL;
+	}
+
+	VTX_COLOR vertices[8];
+	vertices[0] = VTX_COLOR(-1.f, -1.f, -1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[1] = VTX_COLOR(-1.f, 1.f, -1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[2] = VTX_COLOR(1.f, 1.f, -1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[3] = VTX_COLOR(1.f, -1.f, -1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[4] = VTX_COLOR(-1.f, -1.f, 1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[5] = VTX_COLOR(-1.f, 1.f, 1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[6] = VTX_COLOR(1.f, 1.f, 1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
+	vertices[7] = VTX_COLOR(1.f, -1.f, 1.f, D3DCOLOR_ARGB(255, 255, 0, 0));
 
 	WORD indices[36];
 
@@ -74,17 +90,16 @@ HRESULT Player::ReadyGameObjectPrototype()
 	indices[34] = 3;
 	indices[35] = 7;
 
-	m_pVertices = VIBuffer::Create(m_pDevice, vertices, 8, indices, 36, 1);
-	//assert(m_pVertices);
-	return S_OK;
-}
-
-HRESULT Player::ReadyGameObject(void* _pArg /*= nullptr*/)
-{
-	if (FAILED(GameObject::ReadyGameObject(_pArg)))
+	if (FAILED(AddComponent()))
 	{
 		return E_FAIL;
 	}
+
+	if (FAILED(static_cast<VIBuffer_TriColor*>(m_pVIBufferCom)->SettingVertices(vertices, 8, indices, 36, 1)))
+	{
+		return E_FAIL;
+	}
+
 	return S_OK;
 }
 
@@ -116,12 +131,29 @@ HRESULT Player::RenderGameObject()
 		return E_FAIL;
 	}
 	
+	if (FAILED(m_pVIBufferCom->Render_VIBuffer()))
+	{
+		return E_FAIL;
+	}
 	return S_OK;
 }
 
-HRESULT Player::AddComponent()
+HRESULT Player::AddComponent()	
 {
-	return E_NOTIMPL;
+	/* Com_VIBuffer */
+	if (FAILED(GameObject::AddComponent(
+		(_int)SceneID::Static,
+		L"Component_VIBuffer_TriColor",
+		L"Com_VIBuffer",
+		(Component**)&m_pVIBufferCom
+	)))
+	{
+		return E_FAIL;
+	}
+
+	// 
+	
+	return S_OK;
 }
 
 Player* Player::Create(_lpd3dd9 pDevice)
@@ -141,17 +173,21 @@ Player* Player::Create(_lpd3dd9 pDevice)
 
 GameObject* Player::Clone(void* _pArg/* = nullptr*/)
 {
-	Player* pClone = new Player(*this);
+	Player* pClone = new Player(*this);	
 
 	if (FAILED(pClone->ReadyGameObject(_pArg)))
 	{
 		LOG_MSG(L"Error", L"Player clone creation failed.");
 		SafeRelease(pClone);
 	}
+
+
 	return pClone;
 }
 
 void Player::Free()
 {
 	GameObject::Free();
+
+	SafeRelease(m_pVIBufferCom);
 }

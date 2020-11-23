@@ -25,6 +25,9 @@ HRESULT MainApp::ReadyMainApp()
 	}
 	SafeAddRef(m_pDevice);
 
+	if (FAILED(ReadyStaticResources()))
+		return E_FAIL;
+
 	if (FAILED(m_pManagement->SetUpCurrentScene((_int)SceneID::Logo,
 	Logo::Create(m_pManagement->GetDevice()))))
 	{
@@ -54,6 +57,18 @@ HRESULT MainApp::ReadyStaticResources()
 		return E_FAIL;
 	}
 #pragma endregion
+
+	/* Compnenet */
+#pragma region Component_VIBuffer_TriColor
+	if (FAILED(m_pManagement->AddComponentPrototype(
+		(_int)SceneID::Static,
+		L"Component_VIBuffer_TriColor",
+		VIBuffer_TriColor::Create(m_pDevice))))
+	{
+		return E_FAIL;
+	}
+#pragma endregion
+
 	return S_OK;
 }
 

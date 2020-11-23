@@ -19,8 +19,6 @@ public:
 	
 public:
 	HRESULT ReadyGraphicDevice(HWND hWnd, _uint iWinCX, _uint iWinCY, DisplayMode eDisplayMode);
-	void RenderBegin();
-	void RenderEnd(HWND hWnd = nullptr);
 
 public:
 	virtual void Free() override;

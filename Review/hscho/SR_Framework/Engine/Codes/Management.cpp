@@ -37,8 +37,8 @@ HRESULT CManagement::ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplay
     if (FAILED(m_pTimeManager->ReadyTimeManager()))
         return E_FAIL;
 
-    if (FAILED(m_pGameObjectManager->ReserveContainer(iSceneCount, isUseStaticScene, iStaticScene)))
-        return E_FAIL;
+    //if (FAILED(m_pGameObjectManager->ReserveContainer(iSceneCount, isUseStaticScene, iStaticScene)))
+    //    return E_FAIL;
 
     if (FAILED(m_pComponentManager->ReservePrototypeContainer(iSceneCount)))
         return E_FAIL;
