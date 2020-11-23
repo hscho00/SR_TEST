@@ -22,7 +22,7 @@ CManagement::CManagement()
 }
 
 HRESULT CManagement::ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplayMode eDisplaymode,
-                                _int iSceneCount, _bool isUseStaticScen5e/*= false*/, _int iStaticScene/*= 0*/)
+                                _int iSceneCount, _bool isUseStaticScene/*= false*/, _int iStaticScene/*= 0*/)
 {
     assert(m_pGraphic_Dev);
     assert(m_pTimeManager);
@@ -90,6 +90,11 @@ HRESULT CManagement::ClearForScene(_int iSceneIndex)
 LPDIRECT3DDEVICE9 CManagement::GetDevice()
 {
     return m_pGraphic_Dev->Get_Device();
+}
+
+float CManagement::Get_DeltaTime() const
+{
+    return m_pTimeManager->Get_DeltaTime();
 }
 
 HRESULT CManagement::SetUpCurrentScene(CScene* pCurrentScene)

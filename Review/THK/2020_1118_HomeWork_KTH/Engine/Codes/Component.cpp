@@ -22,5 +22,6 @@ HRESULT CComponent::ReadyComponent(void * pArg)
 
 void CComponent::Free()
 {
+
 	SafeRelease(m_pDevice);
 }

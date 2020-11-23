@@ -1,6 +1,8 @@
 #pragma once
 #ifndef __PLAYER_H__
 
+#include "GameObject.h"
+
 USING(Engine)
 class CPlayer final : public CGameObject
 {
@@ -15,11 +17,17 @@ public:
 	virtual _uint LateUpdateGameObject(float fDeltaTime) override;
 	virtual HRESULT RenderGameObject() override;
 
+protected:
+	HRESULT AddComponent();
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual void Free() override;
 	virtual CGameObject * Clone(void * pArg = nullptr) override;
+
+
+private:
+	class CVIBuffer* m_pVIBufferCom = nullptr;
 
 };
 

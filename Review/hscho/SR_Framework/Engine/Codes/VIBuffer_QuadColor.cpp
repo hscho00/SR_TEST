@@ -1,29 +1,29 @@
-#include "VIBuffer_TriColor.h"
+#include "..\Headers\VIBuffer_QuadColor.h"
 
 USING(Engine)
 
-CVIBuffer_TriColor::CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice)
+CVIBuffer_QuadColor::CVIBuffer_QuadColor(LPDIRECT3DDEVICE9 pDevice)
 	: CVIBuffer(pDevice)
 	, m_iColor(0)
 {
 
 }
 
-CVIBuffer_TriColor::CVIBuffer_TriColor(const CVIBuffer_TriColor& other)
+CVIBuffer_QuadColor::CVIBuffer_QuadColor(const CVIBuffer_QuadColor& other)
 	: CVIBuffer(other)
 	, m_iColor(other.m_iColor)
 {
 
 }
 
-HRESULT CVIBuffer_TriColor::ReadyComponentPrototype()
+HRESULT CVIBuffer_QuadColor::ReadyComponentPrototype()
 {
 	//
 	m_iVertexSize = sizeof(VTX_COLOR);
-	m_iVertexCount = 3;
+	m_iVertexCount = 4;
 	m_iFVF = VTX_COLOR::FVF;
-	m_iTriCount = 1;
-	m_iIndexCount = 3;
+	m_iTriCount = 2;
+	m_iIndexCount = 6;
 
 	//
 	if (FAILED(CVIBuffer::ReadyComponentPrototype()))
@@ -33,7 +33,7 @@ HRESULT CVIBuffer_TriColor::ReadyComponentPrototype()
 	VTX_COLOR* pVertex = nullptr;
 	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
 
-	pVertex[0].vPosition = D3DXVECTOR3(0.f, 1.f, 0.f);		// 정점 세팅 시 디폴트 시계 방향으로
+	pVertex[0].vPosition = D3DXVECTOR3(1.f, 1.f, 0.f);		// 정점 세팅 시 디폴트 시계 방향으로
 	pVertex[0].iColor = m_iColor;							// 디폴트 컬링 설정이 반시계방향 이므로
 
 	pVertex[1].vPosition = D3DXVECTOR3(1.f, -1.f, 0.f);
@@ -41,6 +41,9 @@ HRESULT CVIBuffer_TriColor::ReadyComponentPrototype()
 
 	pVertex[2].vPosition = D3DXVECTOR3(-1.f, -1.f, 0.f);
 	pVertex[2].iColor = m_iColor;
+
+	pVertex[3].vPosition = D3DXVECTOR3(-1.f, 1.f, 0.f);
+	pVertex[3].iColor = m_iColor;
 
 	m_pVB->Unlock();
 
@@ -51,13 +54,16 @@ HRESULT CVIBuffer_TriColor::ReadyComponentPrototype()
 	pIndex[0] = 0;
 	pIndex[1] = 1;
 	pIndex[2] = 2;
+	pIndex[3] = 0;
+	pIndex[4] = 2;
+	pIndex[5] = 3;
 
 	m_pIB->Unlock();
 
 	return S_OK;
 }
 
-HRESULT CVIBuffer_TriColor::ReadyComponent(void* pArg)
+HRESULT CVIBuffer_QuadColor::ReadyComponent(void* pArg)
 {
 	if (FAILED(CVIBuffer::ReadyComponent(pArg)))
 		return E_FAIL;
@@ -65,43 +71,41 @@ HRESULT CVIBuffer_TriColor::ReadyComponent(void* pArg)
 	return S_OK;
 }
 
-HRESULT CVIBuffer_TriColor::Render_VIBuffer()
+HRESULT CVIBuffer_QuadColor::Render_VIBuffer()
 {
 	if (FAILED(CVIBuffer::Render_VIBuffer()))
 		return E_FAIL;
 
-	/* 도형을 그리는 함수 */
-	//return m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_iTriCount);
 	return m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iVertexCount, 0, m_iTriCount);
 }
 
-CVIBuffer_TriColor* CVIBuffer_TriColor::Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color)
+CVIBuffer_QuadColor* CVIBuffer_QuadColor::Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color)
 {
-	CVIBuffer_TriColor* pInstance = new CVIBuffer_TriColor(pDevice);
+	CVIBuffer_QuadColor* pInstance = new CVIBuffer_QuadColor(pDevice);
 	pInstance->m_iColor = color;
 
 	if (FAILED(pInstance->ReadyComponentPrototype()))
 	{
-		PRINT_LOG(L"Error", L"Failed To Create CVIBuffer_TriColor");
+		PRINT_LOG(L"Error", L"Failed To Create CVIBuffer_QuadColor");
 		SafeRelease(pInstance);
 	}
 
 	return pInstance;
 }
 
-CComponent* CVIBuffer_TriColor::Clone(void* pArg)
+CComponent* CVIBuffer_QuadColor::Clone(void* pArg)
 {
-	CVIBuffer_TriColor* pClone = new CVIBuffer_TriColor(*this);
+	CVIBuffer_QuadColor* pClone = new CVIBuffer_QuadColor(*this);
 	if (FAILED(pClone->ReadyComponent(pArg)))
 	{
-		PRINT_LOG(L"Error", L"Failed To Clone CVIBuffer_TriColor");
+		PRINT_LOG(L"Error", L"Failed To Clone CVIBuffer_QuadColor");
 		SafeRelease(pClone);
 	}
 
 	return pClone;
 }
 
-void CVIBuffer_TriColor::Free()
+void CVIBuffer_QuadColor::Free()
 {
 	CVIBuffer::Free();
 }

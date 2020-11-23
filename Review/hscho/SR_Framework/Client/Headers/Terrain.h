@@ -1,15 +1,15 @@
 #pragma once
-#ifndef __PLAYER_H__
+#ifndef __TERRAIN_H__
 
 #include "GameObject.h"
 
 USING(Engine)
-class CPlayer final : public CGameObject
+class CTerrain final: public CGameObject
 {
 public:
-	explicit CPlayer(LPDIRECT3DDEVICE9 pDevice);
-	explicit CPlayer(const CPlayer& other);
-	virtual ~CPlayer() = default;
+	explicit CTerrain(LPDIRECT3DDEVICE9 pDevice);
+	explicit CTerrain(const CTerrain& other);
+	virtual ~CTerrain() = default;
 
 public:
 	virtual HRESULT ReadyGameObjectPrototype() override;
@@ -22,16 +22,14 @@ private:
 	HRESULT AddComponent();
 
 public:
-	static CPlayer* Create(LPDIRECT3DDEVICE9 pDevice);
+	static CTerrain* Create(LPDIRECT3DDEVICE9 pDevice);
 	virtual CGameObject* Clone(void* pArg = nullptr) override;
 	virtual void Free() override;
 
 private:
 	class CVIBuffer* m_pVIBufferCom;
 
-	//CManagement* m_pManagement;	// Player Free 호출 전에 매니지먼트를 먼저 지움...
-
 };
 
-#define __PLAYER_H__
+#define __TERRAIN_H__
 #endif

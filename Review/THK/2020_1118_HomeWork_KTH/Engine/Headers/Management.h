@@ -22,7 +22,7 @@ public:
 	/* For.General */
 	HRESULT ReadyEngine(HWND hWnd, _uint iWinCX, _uint iWinCY, EDisplayMode eDisplaymode, _uint iSceneCount);
 	_uint UpdateEngine();
-	_uint RenderEngine(HWND hWnd);
+	_uint RenderEngine(HWND hWnd = nullptr);
 	HRESULT ClearForScene(_int iSceneIndex);
 public:
 	/* For.GraphicDev */

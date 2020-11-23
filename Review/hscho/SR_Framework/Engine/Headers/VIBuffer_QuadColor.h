@@ -1,15 +1,15 @@
 #pragma once
-#ifndef __VIBUFFER_TRICOLOR_H__
+#ifndef __VIBUFFER_QUADCOLOR_H__
 
 #include "VIBuffer.h"
 
 BEGIN(Engine)
-class ENGINE_DLL CVIBuffer_TriColor final : public CVIBuffer
+class ENGINE_DLL CVIBuffer_QuadColor final : public CVIBuffer
 {
 protected:
-	explicit CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice);
-	explicit CVIBuffer_TriColor(const CVIBuffer_TriColor& other);
-	virtual ~CVIBuffer_TriColor() = default;
+	explicit CVIBuffer_QuadColor(LPDIRECT3DDEVICE9 pDevice);
+	explicit CVIBuffer_QuadColor(const CVIBuffer_QuadColor& other);
+	virtual ~CVIBuffer_QuadColor() = default;
 
 public:
 	virtual HRESULT ReadyComponentPrototype() override;
@@ -17,7 +17,7 @@ public:
 	virtual HRESULT Render_VIBuffer() override;
 
 public:
-	static CVIBuffer_TriColor* Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color);
+	static CVIBuffer_QuadColor* Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color);
 	virtual CComponent* Clone(void* pArg = nullptr) override;
 	virtual void Free() override;
 
@@ -27,6 +27,6 @@ private:
 };
 END
 
-#define __VIBUFFER_TRICOLOR_H__
+#define __VIBUFFER_QUADCOLOR_H__
 #endif
 

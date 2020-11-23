@@ -32,6 +32,10 @@ public:
 	LPDIRECT3DDEVICE9 GetDevice();
 
 public:
+	/* For.TimeManager */
+	float Get_DeltaTime() const;
+
+public:
 	/* For.SceneManager */
 	HRESULT SetUpCurrentScene(CScene* pCurrentScene);
 

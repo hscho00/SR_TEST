@@ -32,6 +32,7 @@
     <ClCompile Include="..\Codes\SceneManager.cpp" />
     <ClCompile Include="..\Codes\TimeManager.cpp" />
     <ClCompile Include="..\Codes\VIBuffer.cpp" />
+    <ClCompile Include="..\Codes\VIBuffer_QuadColor.cpp" />
     <ClCompile Include="..\Codes\VIBuffer_TriColor.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +55,7 @@
     <ClInclude Include="..\Headers\SceneManager.h" />
     <ClInclude Include="..\Headers\TimeManager.h" />
     <ClInclude Include="..\Headers\VIBuffer.h" />
+    <ClInclude Include="..\Headers\VIBuffer_QuadColor.h" />
     <ClInclude Include="..\Headers\VIBuffer_TriColor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
