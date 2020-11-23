@@ -1,5 +1,5 @@
 #include "..\Headers\GameObject.h"
-
+#include "Management.h"
 
 USING(Engine)
 
@@ -40,4 +40,32 @@ HRESULT CGameObject::RenderGameObject()
 void CGameObject::Free()
 {
 	SafeRelease(m_pDevice);
+}
+
+HRESULT CGameObject::AddComponent(_int iSceneIndex,
+	const wstring & PrototypeTag,
+	const wstring & ComponentTag, 
+	CComponent ** ppComponent, 
+	void * pArg)
+{
+
+	auto pManagement = CManagement::Get_Instance();
+	if (nullptr == pManagement)
+		return E_FAIL;
+
+	CComponent* pClone = pManagement->CloneComponentPrototype(
+		iSceneIndex, PrototypeTag, pArg);
+
+	if (pClone == nullptr)
+		return E_FAIL;
+	
+	m_Components.insert(make_pair(ComponentTag, pClone));
+
+	if (ppComponent)
+	{
+		*ppComponent = pClone;
+		SafeAddRef(pClone);
+	}
+	
+	return S_OK;
 }

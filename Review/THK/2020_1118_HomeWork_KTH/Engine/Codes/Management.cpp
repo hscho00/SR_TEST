@@ -74,6 +74,7 @@ _uint CManagement::RenderEngine(HWND hWnd)
 
 	if (nullptr == m_pRenderer)
 		return E_FAIL;
+
 	return m_pRenderer->Render(hWnd);
 }
 

@@ -21,10 +21,19 @@ public:
 public:
 	virtual CGameObject* Clone(void* pArg = nullptr) = 0;
 	virtual void Free() override;
+
+protected:
+	HRESULT AddComponent(
+		_int iSceneIndex,
+		const wstring& PrototypeTag,
+		const wstring& ComponentTag,
+		class CComponent** ppComponent,
+		void* pArg = nullptr);
 protected:
 	LPDIRECT3DDEVICE9 m_pDevice;
 
-
+	typedef unordered_map<wstring, class CComponent*> COMPONENTS;
+	COMPONENTS	m_Components;
 
 
 };

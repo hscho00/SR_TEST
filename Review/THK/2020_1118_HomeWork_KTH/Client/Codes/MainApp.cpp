@@ -29,6 +29,8 @@ HRESULT CMainApp::ReadyMainApp()
 		PRINT_LOG(L"Error", L"Failed To SetUpCurrentScene");
 		return E_FAIL;
 	}
+	if (FAILED(m_pDevice->SetRenderState(D3DRS_LIGHTING, FALSE)))
+		return E_FAIL;
 
 	return S_OK;
 }
@@ -36,7 +38,7 @@ HRESULT CMainApp::ReadyMainApp()
 int CMainApp::UpdateMainApp()
 {
 	m_pManagement->UpdateEngine();
-	//m_pManagement->RenderEngine();
+	m_pManagement->RenderEngine();
 
 	return 0;
 }
@@ -49,6 +51,15 @@ HRESULT CMainApp::ReadyStaticResources()
 		L"GameObject_Player",
 		CPlayer::Create(m_pDevice))))
 		return E_FAIL;
+#pragma endregion
+
+#pragma endregion Component_VIBuffer_TriColor
+	//if (FAILED(m_pManagement->AddComponentPrototype(
+	//	(_int)ESceneID::Static,
+	//	L"Component_VIBuffer_TriColor",
+	//	CVIBuffer_TriColor::Create(m_pDevice))))
+	//	return E_FAIL;
+
 #pragma endregion
 
 
