@@ -20,6 +20,7 @@
 // STL
 //#include <vector>
 
+
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include "Client_Define.h"
 #include "Client_Extern.h"
@@ -41,5 +42,14 @@
 #define new DBG_NEW 
 
 #endif
+
+#endif // _DEBUG
+
+
+// 디버그용 콘솔창
+#ifdef _DEBUG
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+
+#include <iostream>
 
 #endif // _DEBUG

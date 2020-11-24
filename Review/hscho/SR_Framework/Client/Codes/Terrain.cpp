@@ -36,14 +36,14 @@ HRESULT CTerrain::ReadyGameObject(void* pArg)
 
     //////////////////////////////////////////////////////////////
     // 나중에 Transform 생기면 수정
-    m_fAngle = 90.f;
-    m_vPos = _vec3(0.f, -3.f, 0.f);
+    //m_fAngle = 90.f;
+    //m_vPos = _vec3(0.f, -3.f, 0.f);
 
-    _matrix matScale, matRotX, matTrans;
-    D3DXMatrixScaling(&matScale, 10.f, 10.f, 1.f);
-    D3DXMatrixRotationX(&matRotX, D3DXToRadian(m_fAngle));
-    D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
-    m_matWorld = matScale * matRotX * matTrans;
+    //_matrix matScale, matRotX, matTrans;
+    //D3DXMatrixScaling(&matScale, 10.f, 10.f, 1.f);
+    //D3DXMatrixRotationX(&matRotX, D3DXToRadian(m_fAngle));
+    //D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
+    //m_matWorld = matScale * matRotX * matTrans;
     //////////////////////////////////////////////////////////////
 
     return S_OK;
@@ -101,7 +101,7 @@ HRESULT CTerrain::AddComponent()
     if (!m_pVIBufferCom)
     {
         if (FAILED(CGameObject::AddComponent((_int)ESceneID::Stage,
-            L"Component_VIBuffer_QuadColor",
+            L"Component_VIBuffer_TerrainColor",
             L"Com_VIBuffer",
             (CComponent**)&m_pVIBufferCom)))
         {

@@ -17,6 +17,10 @@ CGameObject::CGameObject(LPDIRECT3DDEVICE9 pDevice)
 {
 	assert(m_pDevice);
 	SafeAddRef(m_pDevice);
+
+	//////////////////////////////////////////////////////////////
+	D3DXMatrixIdentity(&m_matWorld);
+	//////////////////////////////////////////////////////////////
 }
 
 CGameObject::CGameObject(const CGameObject& other)

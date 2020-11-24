@@ -55,6 +55,9 @@
     <Filter Include="01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor">
       <UniqueIdentifier>{2831a478-52c9-4386-b031-a43ed1634fa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor">
+      <UniqueIdentifier>{5aa760df-f9c9-4f31-b181-0baa9820a4a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Codes\Base.cpp">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\VIBuffer_QuadColor.cpp">
       <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\VIBuffer_TerrainColor.cpp">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="..\Headers\VIBuffer_QuadColor.h">
       <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_QuadColor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\VIBuffer_TerrainColor.h">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "..\Headers\Stage.h"
 
 #include "VIBuffer_QuadColor.h"
+#include "VIBuffer_TerrainColor.h"
 #include "Terrain.h"
 
 
@@ -34,6 +35,15 @@ HRESULT CStage::ReadyScene()
     if (FAILED(pManagement->AddComponentPrototype(m_iSceneIndex,
         L"Component_VIBuffer_QuadColor",
         CVIBuffer_QuadColor::Create(m_pDevice, 0xffffffff))))
+    {
+        return E_FAIL;
+    }
+#pragma endregion
+
+#pragma region Component_VIBuffer_TerrainColor
+    if (FAILED(pManagement->AddComponentPrototype(m_iSceneIndex,
+        L"Component_VIBuffer_TerrainColor",
+        CVIBuffer_TerrainColor::Create(m_pDevice, 50, 50, 0xffffffff))))
     {
         return E_FAIL;
     }

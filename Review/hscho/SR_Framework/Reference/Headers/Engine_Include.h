@@ -14,6 +14,10 @@ Standard
 
 #include <cassert>
 
+#ifdef _DEBUG
+#include <iostream>	// 디버그용 콘솔창 출력
+#endif // _DEBUG
+
 using namespace std;
 
 /*
