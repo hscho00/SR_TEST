@@ -3,6 +3,7 @@
 #include "Logo.h"
 #include "Player.h"
 #include "Terrain.h"
+#include "Camera.h"
 
 MainApp::MainApp()
 	: m_pManagement(Management::Get_Instance())
@@ -120,26 +121,50 @@ HRESULT MainApp::ReadyDefaultSetting()
 
 	D3DXMATRIX matView, matProj;
 
-	/* 뷰행렬 만드는 함수 */
-	D3DXMatrixLookAtLH(
-		&matView, /* 반환 값 */
-		&D3DXVECTOR3(0.f, 5.f, -5.f), /* 월드상 카메라 위치 Eye */
-		&D3DXVECTOR3(0.f, 0.f, 0.f), /* 카메라가 바라보는 지점 At */
-		&D3DXVECTOR3(0.f, 1.f, 0.f) /* Up벡터 */);
+	PROJ Proj;
 
+	Proj.fWidth = (float)WINCX;
+	Proj.fHeight = (float)WINCY;
+	Proj.fNear = 1.f;
+	Proj.fFar = 1000.f;
+	Proj.fFovy = D3DXToRadian(90.f);	// 시야각 D3DX_PI / 4.f;
+
+	Camera::Get_Instance()->Create(
+		m_pDevice,
+		_vector3(0.f, 5.f, -5.f),	/* 월드 상 카메라 위치 Eye */
+		_vector3(0.f, 0.f, 0.f),	/* 카메라가 바라보는 지점 At */
+		Proj						/* Up 벡터 */
+	);
+	
+	matView = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::VIEW);
 	if (FAILED(m_pDevice->SetTransform(D3DTS_VIEW, &matView)))
 		return E_FAIL;
-
-	/* 원근 투영 행렬을 만드는 함수 */
-	D3DXMatrixPerspectiveFovLH(
-		&matProj, /* 반환 값 */
-		D3DXToRadian(90.f), /* 시야각 FovY */
-		float(WINCX) / WINCY, /* 종횡비 Aspect */
-		1.f, /* 카메라와 근편명과의 Z거리 Near */
-		1000.f /* 카메라와 원평면과의 Z거리 Far */);
-
+	
+	matProj = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::PROJ);
 	if (FAILED(m_pDevice->SetTransform(D3DTS_PROJECTION, &matProj)))
 		return E_FAIL;
+	
+	///* 뷰행렬 만드는 함수 */
+	//D3DXMatrixLookAtLH(
+	//	&matView, /* 반환 값 */
+	//	&D3DXVECTOR3(0.f, 5.f, -5.f), /* 월드상 카메라 위치 Eye */
+	//	&D3DXVECTOR3(0.f, 0.f, 0.f), /* 카메라가 바라보는 지점 At */
+	//	&D3DXVECTOR3(0.f, 1.f, 0.f) /* Up벡터 */);
+
+	//if (FAILED(m_pDevice->SetTransform(D3DTS_VIEW, &matView)))
+	//	return E_FAIL;
+
+	///* 원근 투영 행렬을 만드는 함수 */
+	//D3DXMatrixPerspectiveFovLH(
+	//	&matProj, /* 반환 값 */
+	//	D3DXToRadian(90.f), /* 시야각 FovY */
+	//	float(WINCX) / WINCY, /* 종횡비 Aspect */
+	//	1.f, /* 카메라와 근편명과의 Z거리 Near */
+	//	1000.f /* 카메라와 원평면과의 Z거리 Far */);
+
+	//if (FAILED(m_pDevice->SetTransform(D3DTS_PROJECTION, &matProj)))
+	//	return E_FAIL;
+
 
 	return S_OK;
 }
@@ -159,5 +184,6 @@ void MainApp::Free()
 {
 	SafeRelease(m_pDevice);
 	SafeRelease(m_pManagement);
+	Camera::Destroy_Instance();
 	Management::ReleaseEngine();
 }

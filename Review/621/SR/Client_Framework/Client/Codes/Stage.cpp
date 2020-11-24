@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "..\Headers\Stage.h"
+#include "Camera.h"
 
 Stage::Stage(LPDIRECT3DDEVICE9 pDevice)
     : Scene(pDevice)
@@ -33,6 +34,9 @@ _uint Stage::UpdateScene()
 _uint Stage::LateUpdateScene()
 {
     Scene::LateUpdateScene();
+	
+	//Test Camera
+	Camera::Get_Instance()->UpdateCamera();
 
     return _uint();
 }
