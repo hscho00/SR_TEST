@@ -25,12 +25,6 @@
     <Filter Include="01.Utilities\01.Management">
       <UniqueIdentifier>{7939a86e-cda9-4c70-b628-e470d15cc864}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utilities\02.Scene">
-      <UniqueIdentifier>{23f14802-ee50-44aa-8dd4-2a87835ad9e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Utilities\02.Scene\00.Manager">
-      <UniqueIdentifier>{478ec746-97f3-4727-b277-00282da693e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Utilities\03.Renerer">
       <UniqueIdentifier>{7f617389-c21e-4d49-92f3-035601763d3e}</UniqueIdentifier>
     </Filter>
@@ -57,6 +51,12 @@
     </Filter>
     <Filter Include="01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor">
       <UniqueIdentifier>{9b33c8a2-ca0d-4ef9-b22c-b06117c0bbc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene">
+      <UniqueIdentifier>{23f14802-ee50-44aa-8dd4-2a87835ad9e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\02.Scene\00.Manager">
+      <UniqueIdentifier>{478ec746-97f3-4727-b277-00282da693e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

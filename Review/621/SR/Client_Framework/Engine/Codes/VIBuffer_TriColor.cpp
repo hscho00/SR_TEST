@@ -25,10 +25,10 @@ HRESULT VIBuffer_TriColor::Render_VIBuffer()
 	return m_pDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_iPrimCount);
 }
 
-VIBuffer_TriColor* VIBuffer_TriColor::Create(_lpd3dd9 pDevice, VTX_COLOR vertices[], _uint verticesCount, WORD indices[], _uint indicesCount, _uint primCount)
+VIBuffer_TriColor* VIBuffer_TriColor::Create(_lpd3dd9 pDevice)
 {
 	VIBuffer_TriColor* pInstance = new VIBuffer_TriColor(pDevice);
-	if (FAILED(pInstance->ReadyVertices(vertices, verticesCount, indices, indicesCount, primCount)))
+	if (FAILED(pInstance->ReadyComponentPrototype()))
 	{
 		LOG_MSG(L"Error", L"Create Vertices has failed.");
 		SafeRelease(pInstance);
@@ -53,7 +53,7 @@ void VIBuffer_TriColor::Free()
 	VIBuffer::Free();
 }
 
-HRESULT VIBuffer_TriColor::ReadyVertices(VTX_COLOR vertices[], _uint verticesCount, WORD indices[], _uint indicesCount, _uint primCount)
+HRESULT VIBuffer_TriColor::SettingVertices(VTX_COLOR vertices[], _uint verticesCount, WORD indices[], _uint indicesCount, _uint primCount)
 {
 	m_iVerticesCount = verticesCount;
 	m_iVerticesSize = sizeof(vertices) / sizeof(verticesCount);
@@ -85,9 +85,18 @@ HRESULT VIBuffer_TriColor::ReadyVertices(VTX_COLOR vertices[], _uint verticesCou
 		return E_FAIL;
 	}
 
-	VTX_COLOR* pVertices;
+	VTX_COLOR* pVertices = nullptr;
 	m_pVertexBuffer->Lock(0, 0, (void**)&pVertices, 0);
-	memcpy_s(pVertices, verticesCount * m_iVerticesSize, vertices, verticesCount * sizeof(m_iVerticesSize));
+	for(int i = 0; i <= )
+	pVertices[0] = vertices[0];
+	pVertices[1] = vertices[1];
+	pVertices[2] = vertices[2];
+	pVertices[3] = vertices[3];
+	pVertices[4] = vertices[4];
+	pVertices[5] = vertices[5];
+	pVertices[6] = vertices[6];
+	pVertices[7] = vertices[7];
+	//memcpy_s(pVertices, verticesCount * m_iVerticesSize, vertices, verticesCount * sizeof(m_iVerticesSize));
 	m_pVertexBuffer->Unlock();
 
 	WORD* pIndices;

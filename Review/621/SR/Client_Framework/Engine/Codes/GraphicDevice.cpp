@@ -57,19 +57,6 @@ HRESULT GraphicDevice::ReadyGraphicDevice(HWND hWnd, _uint iWinCX, _uint iWinCY,
 	return S_OK;
 }
 
-
-void GraphicDevice::RenderBegin()
-{
-	Device_->Clear(0, nullptr, D3DCLEAR_STENCIL | D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
-	Device_->BeginScene();
-}
-
-void GraphicDevice::RenderEnd(HWND hWnd)
-{
-	Device_->EndScene();
-	Device_->Present(nullptr, nullptr, hWnd, nullptr);
-}
-
 void GraphicDevice::Free()
 {
 	if (SafeRelease(Device_))

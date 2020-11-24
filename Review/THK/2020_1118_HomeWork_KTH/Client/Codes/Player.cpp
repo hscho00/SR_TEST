@@ -12,6 +12,9 @@ HRESULT CPlayer::ReadyGameObjectPrototype()
 	if (FAILED(CGameObject::ReadyGameObjectPrototype()))
 		return E_FAIL;
 
+	if (FAILED(AddComponent()))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -50,7 +53,21 @@ HRESULT CPlayer::RenderGameObject()
 	if (FAILED(CGameObject::RenderGameObject()))
 		return E_FAIL;
 
+	if (FAILED(m_pVIBufferCom->Render_VIBuffer()))
+		return E_FAIL;
+	return S_OK;
 
+	
+}
+
+HRESULT CPlayer::AddComponent()
+{
+	if (FAILED(CGameObject::AddComponent(
+		(_int)ESceneID::Stage,
+		L"Component_VIBuffer_TriColor",
+		L"Com_VIBuffer",
+		(CComponent**)&m_pVIBufferCom)))
+		return E_FAIL;
 	return S_OK;
 }
 

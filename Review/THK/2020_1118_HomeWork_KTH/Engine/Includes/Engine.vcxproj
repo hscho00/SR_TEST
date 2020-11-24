@@ -176,6 +176,8 @@
     <ClInclude Include="..\Headers\Scene.h" />
     <ClInclude Include="..\Headers\SceneManager.h" />
     <ClInclude Include="..\Headers\Time_Manager.h" />
+    <ClInclude Include="..\Headers\VIBuffer.h" />
+    <ClInclude Include="..\Headers\VIBuffer_TriColor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\..\..\Desktop\김태훈\수업내용\2020_11월\1주차\201120_프레임워크작성\Framework111\Engine\Codes\Time_Manager.cpp" />
@@ -190,6 +192,8 @@
     <ClCompile Include="..\Codes\Renderer.cpp" />
     <ClCompile Include="..\Codes\Scene.cpp" />
     <ClCompile Include="..\Codes\SceneManager.cpp" />
+    <ClCompile Include="..\Codes\VIBuffer.cpp" />
+    <ClCompile Include="..\Codes\VIBuffer_TriColor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

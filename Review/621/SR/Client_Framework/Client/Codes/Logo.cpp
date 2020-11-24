@@ -27,6 +27,36 @@ HRESULT Logo::ReadyScene()
 {
 	Scene::ReadyScene();
 
+	//m_pDevice->CreateVertexBuffer(
+	//	3 * sizeof(ColorVertex),
+	//	D3DUSAGE_WRITEONLY,
+	//	ColorVertex::FVF,
+	//	D3DPOOL_MANAGED,
+	//	&Triangle,
+	//	0
+	//);
+
+	//ColorVertex* v;
+	//Triangle->Lock(0, 0, (void**)&v, 0);
+	//v[0] = ColorVertex(-1.f, 0.f, 2.f, D3DCOLOR_XRGB(255, 0, 0));
+	//v[1] = ColorVertex(0.f, 1.f, 2.f, D3DCOLOR_XRGB(0, 255, 0));
+	//v[2] = ColorVertex(1.f, 0.f, 2.f, D3DCOLOR_XRGB(0, 0, 255));
+
+	//Triangle->Unlock();
+
+	//// 투영 매트릭스 지정
+	//_matrix	proj;
+	//D3DXMatrixPerspectiveFovLH(
+	//	&proj,
+	//	D3DX_PI * 0.5f,
+	//	(float)WINCX / (float)WINCY,
+	//	1.f,
+	//	1000.f
+	//);
+	//m_pDevice->SetTransform(D3DTS_PROJECTION, &proj);
+	//m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	//m_pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
+
 
 	//// 카메라의 위치와 방향 조정
 	//_vector3	position(0.f, 0.f, -5.f);
@@ -56,21 +86,21 @@ _uint Logo::UpdateScene()
 {
 	Scene::UpdateScene();
 	
-	//if (GetAsyncKeyState(VK_RETURN) & 0x8000)
-	//{
-	//	Management* pManagement = Management::Get_Instance();
-	//	if (nullptr == pManagement)
-	//		return 0;
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+	{
+		Management* pManagement = Management::Get_Instance();
+		if (nullptr == pManagement)
+			return 0;
 
-	//	if (FAILED(pManagement->SetUpCurrentScene((_int)SceneID::Stage,
-	//		Stage::Create(m_pDevice))))
-	//	{
-	//		LOG_MSG(L"Error", L"SetUpCurrentScene has Failed");
-	//		return 0;
-	//	}
+		if (FAILED(pManagement->SetUpCurrentScene((_int)SceneID::Stage,
+			Stage::Create(m_pDevice))))
+		{
+			LOG_MSG(L"Error", L"SetUpCurrentScene has Failed");
+			return 0;
+		}
 
-	//	return CHANGE_SCNENE;
-	//}
+		return CHANGE_SCNENE;
+	}
 	//else if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	//{
 	//	m_cube_position.x -= 0.01f;
@@ -155,8 +185,4 @@ _uint Logo::LateUpdateScene()
 void Logo::Free()
 {
 	Scene::Free();
-	VB->Release();
-	IB->Release();
-	m_pDevice->Release();
-
 }

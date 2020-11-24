@@ -3,7 +3,7 @@
 #define __COMPONENTMANAGER_H__
 
 #include "Base.h"
-#include "Component.h"
+#include "VIBuffer_TriColor.h"
 
 CODEBEGIN(Engine)
 class ComponentManager :

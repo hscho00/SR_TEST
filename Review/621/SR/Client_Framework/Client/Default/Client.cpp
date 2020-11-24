@@ -62,7 +62,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		pMainApp->UpdateMainApp();
 	}
 
-	//pMainApp->Release();
+	pMainApp->Release();
 
 	return (int)msg.wParam;
 }
