@@ -83,6 +83,7 @@ HRESULT Renderer::Ready_Renderer(_lpd3dd9 pDevice)
 {
 	bSetting = TRUE;
 	m_pDevice = pDevice;
+	SafeAddRef(m_pDevice);
 	return S_OK;
 }
 

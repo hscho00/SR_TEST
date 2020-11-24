@@ -9,8 +9,10 @@ Management::Management()
 	, m_pTimeManager(TimeManager::Get_Instance())
 	, m_pGameObjectManager(GameObjectManager::Get_Instance())
 	, m_pComponentManager(ComponentManager::Get_Instance())
+	, m_pRenderer(Renderer::Get_Instance())
 {
 	SafeAddRef(m_pGraphic_Dev);
+	SafeAddRef(m_pRenderer);
 	SafeAddRef(m_pTimeManager);
 	SafeAddRef(m_pSceneManager);
 	SafeAddRef(m_pGameObjectManager);
@@ -176,12 +178,12 @@ void Management::ReleaseEngine()
 {
 	if (Management::Destroy_Instance())
 		LOG_MSG(L"Warning", L"Management release failed.");
-
+	
 	if (Renderer::Destroy_Instance())
 		LOG_MSG(L"Warning", L"Renderer release failed.");
 
 	if(GameObjectManager::Destroy_Instance())
-		LOG_MSG(L"Warning", L"GameObjectManager release failed.");
+		LOG_MSG(L"Warning", L"GameObjectManager release failed.")
 
 	if (ComponentManager::Destroy_Instance())
 		LOG_MSG(L"Warning", L"ComponentManager release failed.");

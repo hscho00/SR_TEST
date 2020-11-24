@@ -19,7 +19,6 @@ public:
 	virtual void Free() override;
 
 private:
-	IDirect3DVertexBuffer9* Triangle = 0;
-	_matrix	world;
+	HRESULT AddPlayerLayer(const wstring& LayerTag);
 };
 

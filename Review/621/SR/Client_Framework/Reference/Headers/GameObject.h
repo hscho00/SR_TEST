@@ -3,13 +3,13 @@
 #define __GAMEOBJECT_H__
 
 #include "Base.h"
-#include "Vertices.h"
 
 CODEBEGIN(Engine)
 class ENGINE_DLL GameObject abstract : public CBase
 {
 protected:
 	explicit	GameObject(_lpd3dd9 _pDevice);
+	explicit	GameObject(const GameObject& other);
 	virtual		~GameObject() = default;
 
 public:
@@ -24,14 +24,21 @@ public:
 	virtual void Free() override;
 
 protected:
+	HRESULT AddComponent(
+		int	iSceneIndex,
+		const wstring & PrototypeTag,
+		const wstring & ComponentTag,
+		class Component** ppComponent,
+		void* pArg = nullptr);
+
+protected:
 	_lpd3dd9 m_pDevice;
 
 	typedef	unordered_map<wstring, class Component*> COMPONENTS;
-	COMPONENTS m_pComponents;
+	COMPONENTS m_Components;
 
 	// 컴포넌트 필요
 	_vector3 m_vPos;
-	Vertices* m_pVertices;
 	_matrix m_matWorld;
 };
 CODEEND

@@ -21,7 +21,7 @@ HRESULT GameObject::ReadyGameObjectPrototype()
 }
 
 HRESULT GameObject::ReadyGameObject(void* _pArg)
-{
+{    
     return S_OK;
 }
 
@@ -75,5 +75,7 @@ HRESULT GameObject::AddComponent(
         SafeAddRef(pClone);
     }
 
+    // 프로토 타입의 컴포넌트를 프로토타입 오브젝트의 컴포넌트 리스트에 추가하는 방식
+    
     return S_OK;
 }

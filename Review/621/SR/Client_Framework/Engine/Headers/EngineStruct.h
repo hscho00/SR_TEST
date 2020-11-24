@@ -7,10 +7,10 @@ CODEBEGIN(Engine)
 typedef struct tagVertexColor
 {
 	tagVertexColor()
-		: vPosition(0.f,0.f,0.f), iColor(D3DCOLOR_ARGB(255, 255, 0, 0))
+		: vPosition(0.f,0.f,0.f), iColor(D3DCOLOR_ARGB(255, 255, 255, 255))
 	{}
 
-	tagVertexColor(float _x, float _y, float _z, D3DCOLOR _color)
+	tagVertexColor(float _x, float _y, float _z, _uint _color)
 		: vPosition(_x, _y, _z), iColor(_color)
 	{}
 	
