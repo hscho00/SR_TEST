@@ -101,7 +101,7 @@ HRESULT CPlayer::RenderGameObject()
         return E_FAIL;
 
     //
-    m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW); // 디폴트상태로
+    m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW); // 디폴트 상태로
 
     return S_OK;
 }

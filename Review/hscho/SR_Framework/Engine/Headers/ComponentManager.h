@@ -4,6 +4,7 @@
 #include "Base.h"
 
 #include "VIBuffer_TriColor.h"
+#include "VIBuffer_QuadColor.h"
 //#include "Transform.h"
 
 BEGIN(Engine)
