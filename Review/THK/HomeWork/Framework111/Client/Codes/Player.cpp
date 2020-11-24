@@ -54,14 +54,14 @@ _uint CPlayer::LateUpdateGameObject(float fDeltaTime)
 
 HRESULT CPlayer::RenderGameObject()
 {
-	/*static float fDegree = 0.f;
+	static float fDegree = 0.f;
 
 	D3DXMATRIX matRot;
 	D3DXMatrixRotationY(&matRot, D3DXToRadian(fDegree));
 
 	m_pDevice->SetTransform(D3DTS_WORLD, &matRot);
 
-	fDegree += 0.001f;*/
+	fDegree += 0.01f;
 
 	if (FAILED(CGameObject::RenderGameObject()))
 		return E_FAIL;
