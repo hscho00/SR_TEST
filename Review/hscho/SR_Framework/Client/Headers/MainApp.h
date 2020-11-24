@@ -16,6 +16,7 @@ public:
 
 private:
 	HRESULT ReadyStaticResources();
+	HRESULT ReadyDefaultSetting();
 
 public:
 	static CMainApp* Create();

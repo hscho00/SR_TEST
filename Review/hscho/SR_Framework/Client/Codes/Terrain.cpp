@@ -62,11 +62,14 @@ _uint CTerrain::LateUpdateGameObject(float fDeltaTime)
 {
     _uint ret = CGameObject::LateUpdateGameObject(fDeltaTime);
 
-    auto pManagement = CManagement::Get_Instance();
-    assert(pManagement);
+    if (m_bDraw)
+    {
+        auto pManagement = CManagement::Get_Instance();
+        assert(pManagement);
 
-    if (FAILED(pManagement->AddGameObjectInRenderer(ERenderID::NoAlpha, this)))
-        return ERROR;
+        if (FAILED(pManagement->AddGameObjectInRenderer(ERenderID::NoAlpha, this)))
+            return ERROR;
+    }
 
     return ret;
 }
@@ -80,8 +83,14 @@ HRESULT CTerrain::RenderGameObject()
     m_pDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
 
     //
+    m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+    //
     if (FAILED(m_pVIBufferCom->Render_VIBuffer()))
         return E_FAIL;
+
+    //
+    m_pDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
     return S_OK;
 }

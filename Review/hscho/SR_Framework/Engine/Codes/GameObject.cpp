@@ -62,6 +62,15 @@ HRESULT CGameObject::RenderGameObject()
 	return S_OK;
 }
 
+CComponent* CGameObject::GetComponentOrNull(const wstring& ComponentTag)
+{
+	auto iter_find = m_Components.find(ComponentTag);
+	if (m_Components.end() == iter_find)
+		return nullptr;
+
+	return iter_find->second;
+}
+
 HRESULT CGameObject::AddComponent(_int iSceneIndex, const wstring& PrototypeTag, const wstring& ComponentTag, CComponent** ppComponent/*= nullptr*/, void* pArg/*= nullptr*/)
 {
 	auto pManagement = CManagement::Get_Instance();

@@ -78,11 +78,14 @@ _uint CPlayer::LateUpdateGameObject(float fDeltaTime)
 {
     _uint ret = CGameObject::LateUpdateGameObject(fDeltaTime);
 
-    auto pManagement = CManagement::Get_Instance();
-    assert(pManagement);
+    if (m_bDraw)    // 부모에서 하면 좋은데... Renderer 에 넣는걸 여기서 하니까 어쩔수 없을듯
+    {
+        auto pManagement = CManagement::Get_Instance();
+        assert(pManagement);
 
-    if (FAILED(pManagement->AddGameObjectInRenderer(ERenderID::NoAlpha, this)))
-        return ERROR;
+        if (FAILED(pManagement->AddGameObjectInRenderer(ERenderID::NoAlpha, this)))
+            return ERROR;
+    }
 
     return ret;
 }

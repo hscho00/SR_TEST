@@ -18,6 +18,16 @@ typedef struct tagVertexTexture
 	static const _uint FVF;	// D3DFVF_XYZ | D3DFVF_TEX1 /*| D3DFVF_TEXCOORDSIZE2(0)*/;	// TEXCOORDSIZE2 : 2Â÷¿øÁÂÇ¥(0¹øÀÎµ¦½º)
 }VTX_TEXTURE;
 
+typedef struct tagIndex16
+{
+	WORD _1, _2, _3;
+}INDEX16;
+
+typedef struct tagIndex32
+{
+	DWORD _1, _2, _3;
+}INDEX32;
+
 END
 
 #define __ENGINE_STRUCT_H__

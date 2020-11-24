@@ -23,7 +23,9 @@ HRESULT CVIBuffer_QuadColor::ReadyComponentPrototype()
 	m_iVertexCount = 4;
 	m_iFVF = VTX_COLOR::FVF;
 	m_iTriCount = 2;
-	m_iIndexCount = 6;
+
+	m_iIndexSize = sizeof(INDEX16);
+	m_IndexFormat = D3DFMT_INDEX16;
 
 	//
 	if (FAILED(CVIBuffer::ReadyComponentPrototype()))
@@ -48,15 +50,16 @@ HRESULT CVIBuffer_QuadColor::ReadyComponentPrototype()
 	m_pVB->Unlock();
 
 	//
-	WORD* pIndex = nullptr;
+	INDEX16* pIndex = nullptr;
 	m_pIB->Lock(0, 0, (void**)&pIndex, 0);
 
-	pIndex[0] = 0;
-	pIndex[1] = 1;
-	pIndex[2] = 2;
-	pIndex[3] = 0;
-	pIndex[4] = 2;
-	pIndex[5] = 3;
+	pIndex[0]._1 = 0;
+	pIndex[0]._2 = 1;
+	pIndex[0]._3 = 2;
+
+	pIndex[1]._1 = 0;
+	pIndex[1]._2 = 2;
+	pIndex[1]._3 = 3;
 
 	m_pIB->Unlock();
 

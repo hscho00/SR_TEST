@@ -14,7 +14,8 @@ CVIBuffer::CVIBuffer(LPDIRECT3DDEVICE9 pDevice)
 	, m_iTriCount(0)
 	, m_iFVF(0)
 	, m_pIB(nullptr)
-	, m_iIndexCount(0)
+	, m_iIndexSize(0)
+	, m_IndexFormat()
 {
 
 }
@@ -27,7 +28,8 @@ CVIBuffer::CVIBuffer(const CVIBuffer& other)
 	, m_iTriCount(other.m_iTriCount)
 	, m_iFVF(other.m_iFVF)
 	, m_pIB(other.m_pIB)
-	, m_iIndexCount(other.m_iIndexCount)
+	, m_iIndexSize(other.m_iIndexSize)
+	, m_IndexFormat(other.m_IndexFormat)
 {
 
 }
@@ -35,7 +37,7 @@ CVIBuffer::CVIBuffer(const CVIBuffer& other)
 HRESULT CVIBuffer::ReadyComponentPrototype()
 {
 	if (FAILED(m_pDevice->CreateVertexBuffer(m_iVertexSize * m_iVertexCount, /* 버텍스버퍼가 관리할 배열의 총 사이즈 */
-											0, /* dynamic 아니면 정적버퍼 */
+											0, /* dynamic 아니면 정적버퍼(0) */
 											m_iFVF, /* FVF */
 											D3DPOOL_MANAGED, /* 메모리 보관 방식. 정적버퍼 쓸 경우 D3DPOOL_MANAGED, 동적버퍼(D3DUSAGE_DYNAMIC) 쓸 경우 DEFAULT 쓰자. 
 																D3DUSAGE_DYNAMIC 와 D3DPOOL_MANAGED는 호환성이 없기 때문에, 동시에는 사용할 수 없다. */
@@ -46,9 +48,9 @@ HRESULT CVIBuffer::ReadyComponentPrototype()
 		return E_FAIL;
 	}
 
-	if (FAILED(m_pDevice->CreateIndexBuffer(m_iIndexCount * sizeof(WORD),
+	if (FAILED(m_pDevice->CreateIndexBuffer(m_iIndexSize * m_iTriCount,
 											0,
-											D3DFMT_INDEX16,
+											m_IndexFormat,
 											D3DPOOL_MANAGED,
 											&m_pIB,
 											nullptr)))

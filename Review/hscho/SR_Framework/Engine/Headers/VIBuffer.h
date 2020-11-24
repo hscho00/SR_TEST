@@ -35,7 +35,8 @@ protected:
 	인덱스 : 하나의 폴리곤을 구성하는 정점들의 이웃관계를 표현하는 도구.
 	*/
 	LPDIRECT3DINDEXBUFFER9 m_pIB;
-	_uint m_iIndexCount;
+	_uint		m_iIndexSize;
+	D3DFORMAT	m_IndexFormat;
 
 };
 END

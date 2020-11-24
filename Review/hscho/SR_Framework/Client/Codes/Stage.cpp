@@ -33,7 +33,7 @@ HRESULT CStage::ReadyScene()
 #pragma region Component_VIBuffer_QuadColor
     if (FAILED(pManagement->AddComponentPrototype(m_iSceneIndex,
         L"Component_VIBuffer_QuadColor",
-        CVIBuffer_QuadColor::Create(m_pDevice, 0xff008000))))
+        CVIBuffer_QuadColor::Create(m_pDevice, 0xffffffff))))
     {
         return E_FAIL;
     }
@@ -60,15 +60,6 @@ HRESULT CStage::ReadyScene()
     _matrix viewMat;
     D3DXMatrixLookAtLH(&viewMat, &m_vCameraPos, &m_vTargetPos, &m_vUpVec);
     m_pDevice->SetTransform(D3DTS_VIEW, &viewMat);
-
-    // Proj Mat
-    _matrix projMat;
-    D3DXMatrixPerspectiveFovLH(&projMat,
-                                D3DX_PI * 0.5f,
-                                (float)WINCX / (float)WINCY,
-                                1.f,
-                                1000.f);
-    m_pDevice->SetTransform(D3DTS_PROJECTION, &projMat);
 
     return S_OK;
 }

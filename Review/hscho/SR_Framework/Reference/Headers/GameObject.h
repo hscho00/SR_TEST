@@ -12,6 +12,8 @@ protected:
 	virtual ~CGameObject() = default;
 
 public:
+
+public:
 	virtual HRESULT ReadyGameObjectPrototype() PURE;	/* 프로토타입 초기화 */
 	virtual HRESULT ReadyGameObject(void* pArg = nullptr) PURE; /* 클론 초기화 */
 	virtual _uint UpdateGameObject(float fDeltaTime) PURE;
@@ -27,6 +29,8 @@ public:
 
 	_bool IsDraw() const { return m_bDraw; }
 	void Set_Draw(_bool bDraw) { m_bDraw = bDraw; }
+
+	class CComponent* GetComponentOrNull(const wstring& ComponentTag);
 
 	/////////////////////////////////////
 	const _vec3& Get_Pos() const { return m_vPos; }
