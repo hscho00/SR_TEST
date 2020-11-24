@@ -22,13 +22,13 @@ public:
     BOOL    get_Setting() { return bSetting; }
 
 public:
-
     HRESULT AddGameObjectInRenderer(RenderID Id, class GameObject* GameObject);
     HRESULT Render(HWND hWnd = nullptr);
 
 private:
     HRESULT Ready_Renderer(_lpd3dd9 pDevice);
-
+   
+public:
     HRESULT RenderPriority();
     HRESULT RenderNoAlpha();
     HRESULT RenderAlpha();

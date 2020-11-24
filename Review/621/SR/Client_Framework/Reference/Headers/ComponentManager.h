@@ -4,6 +4,8 @@
 
 #include "Base.h"
 #include "VIBuffer_TriColor.h"
+#include "VIBuffer_RectColor.h"
+#include "VIBuffer_TerrainColor.h"
 
 CODEBEGIN(Engine)
 class ComponentManager :

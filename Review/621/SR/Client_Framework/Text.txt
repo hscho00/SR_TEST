@@ -85,3 +85,57 @@ d3d9x.lib 추가
 
 로컬 -> 월드 -> 뷰 -> 투영 -> 뷰포트
 
+
+게임오브젝트에 컴포넌트 얻어오는 함수 작성
+
+MainApp ReadyDefaultSetting 함수 생성
+
+VIBuffer_RectColor 클래스 생성
+
+렌더링 파이프 라인
+
+3차원 공간을 2차원 공간으로 옮겨놓는 작업
+로컬 스페이스 -> 월드 스페이스 -> 뷰 스페이스 (-> 후면 추려내기 -> 조명 ->) 투영 스페이스 (-> 클리핑 ->) 뷰 포트 -> 레스터 라이즈 -> 픽셀 쉐이더
+
+정점 쉐이더 (정점을 변환하는 과정)
+로컬 스페이스 ~ 뷰 포트
+
+픽셀 쉐이더 (픽셀에 색상을 입히는 과정)
+픽셀 쉐이드
+
+레스터 라이즈 : 픽셀의 정보를 만드는 단계
+
+뷰스페이스 : 카메라 시점의 공간
+
+D3DXMartrixLookAtLH() : 뷰 행렬을 만드는 함수
+
+D3DTS_VIEW : view 행렬을 명시
+
+투영 스페이스 : 
+
+원근투영
+- 카메라의 거리에 따라 크기가 달라짐(Default)
+- x, y의 값을 z로 나눔
+
+직교투영 
+- 카메라의 거리에 상관없이 크기가 같음(UI)
+
+D3DXMartixPerspectiveFovLH
+원근 투영 행렬을 만듬
+Fov Field of View
+
+D3DXMartixOrthoLH
+직교 투영 행렬
+
+카메라와 근평면 간의 거리 : near
+카메라의 원평견 간의 거리 : far
+
+프레임이 떨어지면 far를 줄임
+
+D3DTS_PROJ : 투영 행렬임을 명시
+
+set_renderstate :
+D3DCULL_CCW		:	반시계 방향 추려내기(Default)
+D3DCULL_CW		:	시계 방향 추려내기
+D3DCULL_NONE	:	추려내기 off
+D3DRS_CULLMODE, D3DCULL_NONE : 후면 추려내기 off

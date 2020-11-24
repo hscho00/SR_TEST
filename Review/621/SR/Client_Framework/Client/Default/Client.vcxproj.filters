@@ -31,6 +31,9 @@
     <Filter Include="02.GameObject\00.Player">
       <UniqueIdentifier>{e40fc3e1-5fae-4607-baa0-018f02fdaa0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\01.Terrain">
+      <UniqueIdentifier>{80e963cc-4711-46ac-bf76-a60c74f3d08b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -72,6 +75,9 @@
     <ClInclude Include="..\Headers\ClientDefine.h">
       <Filter>98.Header</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\Terrain.h">
+      <Filter>02.GameObject\01.Terrain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="..\Codes\Player.cpp">
       <Filter>02.GameObject\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\Terrain.cpp">
+      <Filter>02.GameObject\01.Terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

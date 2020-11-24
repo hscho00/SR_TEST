@@ -23,6 +23,7 @@ public:
 
 private:
 	HRESULT	ReadyStaticResources();
+	HRESULT ReadyDefaultSetting();
 
 private:
 	Management* m_pManagement = nullptr;

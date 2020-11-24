@@ -23,6 +23,9 @@ public:
 	virtual GameObject* Clone(void* _pArg = nullptr) = 0;
 	virtual void Free() override;
 
+public:
+	class Component* GetComponent(const wstring & ComponentTag);
+
 protected:
 	HRESULT AddComponent(
 		int	iSceneIndex,

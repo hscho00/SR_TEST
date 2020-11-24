@@ -52,6 +52,14 @@ void GameObject::Free()
     m_Components.clear();
 }
 
+Component* GameObject::GetComponent(const wstring& ComponentTag)
+{
+    auto iter_find = m_Components.find(ComponentTag);
+    if (m_Components.end() == iter_find)
+        return nullptr;
+    return iter_find->second;
+}
+
 HRESULT GameObject::AddComponent(
     int iSceneIndex, 
     const wstring& PrototypeTag, 

@@ -23,12 +23,15 @@ public:
 
 protected:
     IDirect3DVertexBuffer9* m_pVertexBuffer;    
-    IDirect3DIndexBuffer9*  m_pIndexBuffer;
+    
     _uint                   m_iVerticesCount;   // vertex °³¼ö
     _uint                   m_iVerticesSize = 0;
-    _uint                   m_iIndexSize = 0;
     _uint                   m_iPrimCount;   //
     _uint                   m_iFVF = 0;
+
+    IDirect3DIndexBuffer9*  m_pIndexBuffer = nullptr;
+    _uint                   m_iIndexSize = 0;;
+    D3DFORMAT               m_IndexFormat;
 };
 
 CODEEND
