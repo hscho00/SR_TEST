@@ -21,7 +21,7 @@ CVIBuffer::CVIBuffer(LPDIRECT3DDEVICE9 pDevice)
 
 CVIBuffer::CVIBuffer(const CVIBuffer& other)
 	: CComponent(other)
-	, m_pVB(other.m_pVB)
+	, m_pVB(other.m_pVB)	// 얕은 복사. 정점 버퍼를 또 만들 필요 없다!
 	, m_iVertexSize(other.m_iVertexSize)
 	, m_iVertexCount(other.m_iVertexCount)
 	, m_iTriCount(other.m_iTriCount)
@@ -35,7 +35,7 @@ CVIBuffer::CVIBuffer(const CVIBuffer& other)
 HRESULT CVIBuffer::ReadyComponentPrototype()
 {
 	if (FAILED(m_pDevice->CreateVertexBuffer(m_iVertexSize * m_iVertexCount, /* 버텍스버퍼가 관리할 배열의 총 사이즈 */
-											0, /* 0이면 정적버퍼 */
+											0, /* dynamic 아니면 정적버퍼 */
 											m_iFVF, /* FVF */
 											D3DPOOL_MANAGED, /* 메모리 보관 방식. 정적버퍼 쓸 경우 D3DPOOL_MANAGED, 동적버퍼(D3DUSAGE_DYNAMIC) 쓸 경우 DEFAULT 쓰자. 
 																D3DUSAGE_DYNAMIC 와 D3DPOOL_MANAGED는 호환성이 없기 때문에, 동시에는 사용할 수 없다. */

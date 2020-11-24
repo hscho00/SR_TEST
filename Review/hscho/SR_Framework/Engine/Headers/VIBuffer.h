@@ -30,6 +30,10 @@ protected:
 	_uint m_iTriCount;
 	_uint m_iFVF; /* Flexible Vertex Format */
 
+	/*
+	인덱스버퍼 컴객체 : 여러 인덱스들을 배열 형식으로 보관하고 관리하는 컴객체.
+	인덱스 : 하나의 폴리곤을 구성하는 정점들의 이웃관계를 표현하는 도구.
+	*/
 	LPDIRECT3DINDEXBUFFER9 m_pIB;
 	_uint m_iIndexCount;
 
