@@ -19,6 +19,8 @@ HRESULT Layer::AddGameObjectInLayer(GameObject* pGameObject)
 		return E_FAIL;
 	}
 
+	m_GameObjects.push_back(pGameObject);
+
 	return S_OK;
 }
 

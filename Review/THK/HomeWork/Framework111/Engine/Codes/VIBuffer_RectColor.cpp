@@ -14,10 +14,15 @@ CVIBuffer_RectColor::CVIBuffer_RectColor(const CVIBuffer_RectColor & other)
 
 HRESULT CVIBuffer_RectColor::ReadyComponentPrototype()
 {
+
+	int nX = 100;
+	int nY = 100;
+	int iSize = 1;
+	int iIndex = 0;
 	m_iVertexSize = sizeof(VTX_COLOR);
-	m_iVertexCount = 4;
+	m_iVertexCount = (nX + 1) * (nY + 1);
 	m_iFVF = FVF_VTX_COLOR;
-	m_iTriCount = 2;
+	m_iTriCount = (nX * nY) * 2;
 
 	m_iIndexSize = sizeof(INDEX16);
 	m_IndexFormat = D3DFMT_INDEX16;
@@ -29,31 +34,45 @@ HRESULT CVIBuffer_RectColor::ReadyComponentPrototype()
 
 	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
 
-	pVertex[0].vPosition = D3DXVECTOR3(-1.f, 1.f, 0.f);
-	pVertex[0].iColor = D3DCOLOR_ARGB(255, 255, 0, 0);
+	//pVertex[0].vPosition = D3DXVECTOR3(-1.f, 1.f, 0.f);
+	//pVertex[0].iColor = D3DCOLOR_ARGB(255, 255, 0, 0);
 
-	pVertex[1].vPosition = D3DXVECTOR3(1.f, 1.f, 0.f);
-	pVertex[1].iColor = D3DCOLOR_ARGB(255, 0, 255, 0);
+	//pVertex[1].vPosition = D3DXVECTOR3(1.f, 1.f, 0.f);
+	//pVertex[1].iColor = D3DCOLOR_ARGB(255, 0, 255, 0);
 
-	pVertex[2].vPosition = D3DXVECTOR3(1.f, -1.f, 0.f);
-	pVertex[2].iColor = D3DCOLOR_ARGB(255, 255, 0, 255);
+	//pVertex[2].vPosition = D3DXVECTOR3(1.f, -1.f, 0.f);
+	//pVertex[2].iColor = D3DCOLOR_ARGB(255, 255, 0, 255);
 
-	pVertex[3].vPosition = D3DXVECTOR3(-1.f, -1.f, 0.f);
-	pVertex[3].iColor = D3DCOLOR_ARGB(255, 0, 255, 0);	
+	//pVertex[3].vPosition = D3DXVECTOR3(-1.f, -1.f, 0.f);
+	//pVertex[3].iColor = D3DCOLOR_ARGB(255, 0, 255, 0);	
+
+
+	for (int Y = 0; Y <= nY; ++Y)
+	{
+		for (int X = 0; X <= nX; ++X)
+		{
+			iIndex = X + (Y *(nX + 1));
+			pVertex[iIndex].vPosition = D3DXVECTOR3((float)(iSize *X), 0.f, (float)(iSize*Y));
+			pVertex[iIndex].iColor = D3DCOLOR_ARGB(255, 255, 255, 0);
+		}
+	}
 
 	m_pVB->Unlock();
 
 	INDEX16* pIndex = nullptr;
 
 	m_pIB->Lock(0, 0, (void**)&pIndex, 0);
-
-	pIndex[0]._1 = 0;
-	pIndex[0]._2 = 1;
-	pIndex[0]._3 = 2;
-
-	pIndex[1]._1 = 0;
-	pIndex[1]._2 = 2;
-	pIndex[1]._3 = 3;
+	int nTemp = 0;
+	for (int Y = 0; Y < nY; ++Y)
+	{
+		for (int X = 0; X < nX; ++X)
+		{
+			iIndex = X + (Y *(nX + 1));
+			pIndex[nTemp*2] = { (WORD)iIndex, (WORD)(iIndex + nX + 1), (WORD)(iIndex + 1) };
+			pIndex[nTemp*2 + 1] = { (WORD)(iIndex + nX + 1),(WORD)(iIndex + nX + 2)	, (WORD)(iIndex + 1) };
+			++nTemp;
+		}
+	}
 
 	m_pIB->Unlock();
 

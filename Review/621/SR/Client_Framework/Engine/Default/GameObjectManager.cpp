@@ -87,7 +87,7 @@ HRESULT GameObjectManager::AddGameObjectinLayer(
 		WCHAR szBuffer[128] = L"";
 		swprintf_s(szBuffer, L"Failed To Clone %s Prototype", gameobject_tag.c_str());
 
-		LOG_MSG(L"Warning", szBuffer);
+		LOG_MSG(L"Error", szBuffer);
 		return E_FAIL;
 	}
 
@@ -138,7 +138,6 @@ HRESULT GameObjectManager::ClearForScene(_int iSceneIndex)
 		LOG_MSG(L"Error", L"GameObject PrototypeContainer Out of range");
 		return E_FAIL;
 	}
-
 
 	for (auto& Pair : m_pLayers[iSceneIndex])
 	{

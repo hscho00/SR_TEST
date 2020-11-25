@@ -58,6 +58,12 @@
     <Filter Include="01.Utilities\02.Scene\00.Manager">
       <UniqueIdentifier>{478ec746-97f3-4727-b277-00282da693e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_RectColor">
+      <UniqueIdentifier>{2dbc33d6-031c-40b3-9e57-362bab1ad0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor">
+      <UniqueIdentifier>{05dd4caf-0c87-49b6-a470-dec35f3d14b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -123,6 +129,12 @@
     <ClInclude Include="..\Headers\VIBuffer_TriColor.h">
       <Filter>01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor</Filter>
     </ClInclude>
+    <ClInclude Include="..\Headers\VIBuffer_RectColor.h">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_RectColor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\VIBuffer_TerrainColor.h">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc">
@@ -172,9 +184,12 @@
     <ClCompile Include="..\Codes\VIBuffer_TriColor.cpp">
       <Filter>01.Utilities\05.Component\01.VIBuffer\00.VIBuffer_TriColor</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\Text.txt" />
+    <ClCompile Include="..\Codes\VIBuffer_RectColor.cpp">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\01.VIBuffer_RectColor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Codes\VIBuffer_TerrainColor.cpp">
+      <Filter>01.Utilities\05.Component\01.VIBuffer\02.VIBuffer_TerrainColor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

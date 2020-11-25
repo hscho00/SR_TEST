@@ -20,5 +20,6 @@ public:
 
 private:
 	HRESULT AddPlayerLayer(const wstring& LayerTag);
+	HRESULT AddTerrainLayer(const wstring& LayerTag);
 };
 

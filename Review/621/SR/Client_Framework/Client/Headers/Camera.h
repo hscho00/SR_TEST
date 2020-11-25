@@ -4,16 +4,6 @@
 
 #include "Base.h"
 
-typedef struct _tatProj
-{
-	float fWidth;
-	float fHeight;
-
-	float fFovy;
-	float fNear;
-	float fFar;
-} PROJ, *PPROJ;
-
 class Camera
 {
 	DECLARE_SINGLETON(Camera)
@@ -24,6 +14,7 @@ private:
 
 public:
 	static Camera*	Create(
+		_lpd3dd9 pDevice,
 		const _vector3& vPos,
 		const _vector3& vLookAt,
 		const PROJ&	Proj);
@@ -53,17 +44,28 @@ public:
 
 public:
 	void Ready_Camera(
+		_lpd3dd9 pDevice,
 		const _vector3& vPos,
 		const _vector3& vLookAt,
 		const PROJ& Proj);
 	_uint Release();
 
 public:
-	void CalculateAxis();
-	void CalculateView();
-	void CalculateProj();
+	_uint UpdateCamera();
+
+public:
+	const _matrix& Get_Transform(CameraCt _CameraCt) { return m_Transform[(_int)_CameraCt]; }
+
+public:
+	void CalculateAxis();		// 
+	void CalculateView();		// 뷰 행렬 
+	void CalculateProj();		// 투영 행렬
+
+	BOOL CalculateMove();		// 카메라의 이동
+	BOOL CalculateRot();		// 카메라의 회전
 
 private:
+	_lpd3dd9	m_pDevice;
 	CameraType	m_CameraType;
 	
 	// View
@@ -79,6 +81,9 @@ private:
 
 	BOOL		m_bMove;
 	BOOL		m_bRot;
+
+	//Stat
+	_float		m_MoveSpeed = 0.03f;
 
 };
 

@@ -12,12 +12,13 @@ Camera::~Camera()
 }
 
 Camera* Camera::Create(
+    _lpd3dd9 pDevice,
     const _vector3& vPos,
     const _vector3& vLookAt,
     const PROJ& Proj)
 {
 
-    m_pInstance->Ready_Camera(vPos, vLookAt, Proj);
+    m_pInstance->Ready_Camera(pDevice, vPos, vLookAt, Proj);
     
     //View
     return m_pInstance;
@@ -27,8 +28,9 @@ void Camera::Free()
 {
 }
 
-void Camera::Ready_Camera(const _vector3& vPos, const _vector3& vLookAt, const PROJ& Proj)
+void Camera::Ready_Camera(_lpd3dd9 pDevice, const _vector3& vPos, const _vector3& vLookAt, const PROJ& Proj)
 {
+    m_pDevice = pDevice;
     //view
     m_Pos = vPos;
     m_LookAt = vLookAt;
@@ -54,7 +56,33 @@ void Camera::Ready_Camera(const _vector3& vPos, const _vector3& vLookAt, const P
 
 _uint Camera::Release()
 {
+    Free();
+    delete this;
     return 0;
+}
+
+_uint Camera::UpdateCamera()
+{
+    m_bMove = CalculateMove();
+
+    if (m_bMove)
+    {
+        CalculateView();
+    }
+    
+    m_bMove = FALSE;
+
+    D3DXMATRIX matView, matProj;
+
+    matView = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::VIEW);
+    if (FAILED(m_pDevice->SetTransform(D3DTS_VIEW, &matView)))
+        return E_FAIL;
+
+    matProj = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::PROJ);
+    if (FAILED(m_pDevice->SetTransform(D3DTS_PROJECTION, &matProj)))
+        return E_FAIL;
+    
+    return _uint();
 }
 
 void Camera::CalculateAxis()
@@ -122,6 +150,76 @@ void Camera::CalculateView()
 
 void Camera::CalculateProj()
 {
+    float Aspect = m_Proj.fWidth / m_Proj.fHeight;
+    // 윈도우 창의 가로세로 비율
+
+    float h = 1 / tanf(m_Proj.fFovy / 2.f);
+    float w = h / Aspect;
+
+    // 시야각은 보통 동일한 각도를 사용하므로, h를 대체
+    // 투영 공간은 기본적으로 정사각형의 비율에 맞추여져 있기 때문에,
+    // 정점 연산에 추가적으로 윈도우 창의 가로 세로의 비율을 반영해주어야 함
+
+    float a = m_Proj.fFar / (m_Proj.fFar - m_Proj.fNear);
+    float b = -m_Proj.fNear * a;
+
+    m_Transform[(_int)CameraCt::PROJ] = _matrix
+    {
+        w,  0,  0,  0,
+        0,  h,  0,  0,
+        0,  0,  a,  1,
+        0,  0,  b,  0
+    };
+
+    
+}
+
+BOOL Camera::CalculateMove()
+{
+    BOOL MoveCheck = FALSE;
+
+    _vector3 vMove = _vector3(0.f, 0.f, 0.f);    // 이동값 벡터
+
+    if (GetAsyncKeyState('W') & 0x8000)
+    {
+        vMove.z += m_MoveSpeed;
+        MoveCheck = TRUE;
+    }
+    if (GetAsyncKeyState('S') & 0x8000)
+    {
+        vMove.z -= m_MoveSpeed;
+        MoveCheck = TRUE;
+    }
+    if (GetAsyncKeyState('A') & 0x8000)
+    {
+        vMove.x -= m_MoveSpeed;
+        MoveCheck = TRUE;
+    }
+    if (GetAsyncKeyState('D') & 0x8000)
+    {
+        vMove.x += m_MoveSpeed;
+        MoveCheck = TRUE;
+    }
+    if (GetAsyncKeyState('Q') & 0x8000)
+    {
+        m_Pos += m_vAxis[(_int)CameraAx::Z]*0.03f;
+        MoveCheck = TRUE;
+    }
+    if (GetAsyncKeyState('E') & 0x8000)
+    {
+        m_Pos -= m_vAxis[(_int)CameraAx::Z] * 0.03f;
+        MoveCheck = TRUE;
+    }
+
+    m_Pos += vMove;
+    m_LookAt += vMove;
+
+    return MoveCheck;
+}
+
+BOOL Camera::CalculateRot()
+{
+    return 0;
 }
 
 

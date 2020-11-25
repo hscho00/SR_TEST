@@ -134,8 +134,7 @@ HRESULT Management::AddGameObjectInLayer(
 	const wstring& LayerTag, 
 	void* pArg)
 {
-	if (nullptr == m_pGameObjectManager)
-		return E_FAIL;
+	assert(m_pGameObjectManager);
 
 	return m_pGameObjectManager->AddGameObjectinLayer(iFromSceneIndex, GameObjectTag, iToSceneIndex, LayerTag, pArg);
 }
@@ -178,15 +177,15 @@ void Management::ReleaseEngine()
 {
 	if (Management::Destroy_Instance())
 		LOG_MSG(L"Warning", L"Management release failed.");
-	
-	if (Renderer::Destroy_Instance())
-		LOG_MSG(L"Warning", L"Renderer release failed.");
 
 	if(GameObjectManager::Destroy_Instance())
 		LOG_MSG(L"Warning", L"GameObjectManager release failed.")
 
 	if (ComponentManager::Destroy_Instance())
 		LOG_MSG(L"Warning", L"ComponentManager release failed.");
+
+	if (Renderer::Destroy_Instance())
+		LOG_MSG(L"Warning", L"Renderer release failed.");
 
 	if (SceneManager::Destroy_Instance())
 		LOG_MSG(L"Warning", L"SceneManager release failed.");

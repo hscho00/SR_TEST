@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "..\Headers\Stage.h"
+#include "Camera.h"
 
 Stage::Stage(LPDIRECT3DDEVICE9 pDevice)
     : Scene(pDevice)
@@ -10,8 +11,15 @@ HRESULT Stage::ReadyScene()
 {
     Scene::ReadyScene();
 
-	if (FAILED(AddPlayerLayer(L"Layer_Player")))
+	LOG_MSG(L"Stage", L"Stage");
+
+	//if (FAILED(AddPlayerLayer(L"Layer_Player")))
+	//	return E_FAIL;
+
+	if (FAILED(AddTerrainLayer(L"Layer_Terrain")))
+	{
 		return E_FAIL;
+	}
 
 	return S_OK;
 }
@@ -26,6 +34,9 @@ _uint Stage::UpdateScene()
 _uint Stage::LateUpdateScene()
 {
     Scene::LateUpdateScene();
+	
+	//Test Camera
+	Camera::Get_Instance()->UpdateCamera();
 
     return _uint();
 }
@@ -61,5 +72,21 @@ HRESULT Stage::AddPlayerLayer(const wstring& LayerTag)
 		(_int)SceneID::Stage, LayerTag)))
 		return E_FAIL;
 
+	return S_OK;
+}
+
+HRESULT Stage::AddTerrainLayer(const wstring& LayerTag)
+{
+	auto pManagement = Management::Get_Instance();
+	assert(pManagement);
+
+	if (FAILED(pManagement->AddGameObjectInLayer(
+		(_int)SceneID::Static, L"GameObject_Terrain",
+		(_int)SceneID::Stage, LayerTag
+	)))
+	{
+		return E_FAIL;
+	}
+	
 	return S_OK;
 }

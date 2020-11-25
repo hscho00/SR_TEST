@@ -10,6 +10,7 @@ class ENGINE_DLL VIBuffer_TriColor final :
 {
 private:
 	explicit VIBuffer_TriColor(_lpd3dd9 pDevice);
+	explicit VIBuffer_TriColor(const VIBuffer_TriColor& other);
 	virtual ~VIBuffer_TriColor() = default;
 
 public:
@@ -22,13 +23,8 @@ public:
 	virtual Component* Clone(void* pArg = nullptr) override;
 	virtual void Free() override;
 
-public:
-	HRESULT SettingVertices(
-		VTX_COLOR vertices[],
-		_uint verticesCount,
-		WORD indices[],
-		_uint indicesCount,
-		_uint primCount);
+private:
+	_uint m_iColor;
 };
 CODEEND
 
