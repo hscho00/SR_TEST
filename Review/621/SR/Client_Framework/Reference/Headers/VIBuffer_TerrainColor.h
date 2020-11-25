@@ -14,7 +14,7 @@ private:
     virtual ~VIBuffer_TerrainColor() = default;
 
 public:
-    static VIBuffer_TerrainColor* Create(LPDIRECT3DDEVICE9 pDevice, _uint _terrain_x = 4, _uint _terrain_y = 4);
+    static VIBuffer_TerrainColor* Create(LPDIRECT3DDEVICE9 pDevice, _uint _terrain_x = 4, _uint _terrain_y = 4, _float _VertexIntervel = 1.f);
     virtual Component* Clone(void* pArg = nullptr) override;
     virtual void Free() override;
 
@@ -25,10 +25,11 @@ public:
 
 public:
     int CalaulateVerticesIndex();
-    void SetSize(_uint _terrain_x = 4, _uint _terrain_y = 4);
+    void SetSize(_uint _terrain_x = 4, _uint _terrain_y = 4, _float _VertexIntervel = 1.f);
 private:
     _uint   Terrain_x = 4;
     _uint   Terrain_y = 4;
+    _float  m_VertexIntervel = 1.f;
 
 };
 CODEEND

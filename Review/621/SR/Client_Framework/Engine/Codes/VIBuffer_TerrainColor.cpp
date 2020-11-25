@@ -11,13 +11,14 @@ VIBuffer_TerrainColor::VIBuffer_TerrainColor(const VIBuffer_TerrainColor& other)
 	: VIBuffer(other)
 	, Terrain_x(other.Terrain_x)
 	, Terrain_y(other.Terrain_y)
+	, m_VertexIntervel(other.m_VertexIntervel)
 {
 }
 
-VIBuffer_TerrainColor* VIBuffer_TerrainColor::Create(LPDIRECT3DDEVICE9 pDevice, _uint _terrain_x, _uint _terrain_y)
+VIBuffer_TerrainColor* VIBuffer_TerrainColor::Create(LPDIRECT3DDEVICE9 pDevice, _uint _terrain_x, _uint _terrain_y, _float _VertexIntervel)
 {
 	VIBuffer_TerrainColor* pInstance = new VIBuffer_TerrainColor(pDevice);
-	pInstance->SetSize(_terrain_x, _terrain_x);
+	pInstance->SetSize(_terrain_x, _terrain_y, _VertexIntervel);
 	if (FAILED(pInstance->ReadyComponentPrototype()))
 	{
 		LOG_MSG(L"Error", L"VIBuffer_TerrainColor Creation has Failed");
@@ -46,7 +47,6 @@ void VIBuffer_TerrainColor::Free()
 
 HRESULT VIBuffer_TerrainColor::ReadyComponentPrototype()
 {
-
 	m_iVerticesSize = sizeof(VTX_COLOR);
 	m_iVerticesCount = (Terrain_x + 1) * (Terrain_y + 1);	// CalaulateVerticesCount 버틱스 구하는 함수
 	m_iFVF = FVF_VTX_COLOR;
@@ -97,7 +97,7 @@ int VIBuffer_TerrainColor::CalaulateVerticesIndex()
 	{
 		for (_uint j = 0; j <= Terrain_x; ++j)
 		{
-			pVertex[ (Terrain_x+1)*i + j].vPosition = _vector3(float(j), 0.f, float(i));
+			pVertex[ (Terrain_x+1)*i + j].vPosition = _vector3(float(j * m_VertexIntervel), 0.f, float(i * m_VertexIntervel));
 			pVertex[(Terrain_x + 1) * i + j].iColor = D3DCOLOR_ARGB(255, 255, 0, 0);
 		}
 	}
@@ -112,7 +112,6 @@ int VIBuffer_TerrainColor::CalaulateVerticesIndex()
 	{
 		for (_uint j = 0; j < Terrain_x; ++j)
 		{
-			
 			pIndex[(Terrain_x*2) * i + (j * 2)]._1 = (Terrain_x + 1)*(i+1) + j;						// 5
 			pIndex[(Terrain_x*2) * i + (j * 2)]._2 = (Terrain_x + 1)*(i+1) + j+1;						// 6
 			pIndex[(Terrain_x*2) * i + (j * 2)]._3 = (Terrain_x + 1)*(i) + j+1;		//1
@@ -150,8 +149,9 @@ int VIBuffer_TerrainColor::CalaulateVerticesIndex()
 	return 0;
 }
 
-void VIBuffer_TerrainColor::SetSize(_uint _terrain_x, _uint _terrain_y)
+void VIBuffer_TerrainColor::SetSize(_uint _terrain_x, _uint _terrain_y, _float _VertexIntervel)
 {
+	m_VertexIntervel = _VertexIntervel;
 	Terrain_x = _terrain_x;
 	Terrain_y = _terrain_y;
 }

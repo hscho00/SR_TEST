@@ -8,6 +8,7 @@
 #include "GameObjectManager.h"
 #include "ComponentManager.h"
 #include "TimeManager.h"
+#include "KeyManager.h"
 #include "Renderer.h"
 
 CODEBEGIN(Engine)
@@ -31,6 +32,9 @@ public:
 public:
 	/* For.GraphicDev */
 	LPDIRECT3DDEVICE9 GetDevice();
+
+public:
+	const float Get_DeltaTime() { return m_pTimeManager->Get_DeltaTime(); }
 
 public:
 	/* For.SceneManager */
@@ -60,6 +64,7 @@ private:
 	GameObjectManager* m_pGameObjectManager = nullptr;
 	ComponentManager* m_pComponentManager = nullptr;
 	Renderer* m_pRenderer = nullptr;
+	KeyManager* m_pKeyManager = nullptr;
 	DOUBLE fDeltaTime = 0;
 	_uint m_iUpdateEvent = 0;
 };

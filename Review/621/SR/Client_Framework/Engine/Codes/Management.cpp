@@ -10,6 +10,7 @@ Management::Management()
 	, m_pGameObjectManager(GameObjectManager::Get_Instance())
 	, m_pComponentManager(ComponentManager::Get_Instance())
 	, m_pRenderer(Renderer::Get_Instance())
+	, m_pKeyManager(KeyManager::Get_Instance())
 {
 	SafeAddRef(m_pGraphic_Dev);
 	SafeAddRef(m_pRenderer);
@@ -51,7 +52,8 @@ _uint Management::UpdateEngine()
 		return 0;
 
 	/* for.DeltaTime*/
-	fDeltaTime = m_pTimeManager->UpdateTimeManager();
+	m_pTimeManager->UpdateTimeManager();
+	fDeltaTime = m_pTimeManager->Get_DeltaTime();
 
 	/* for.Update */
 	m_iUpdateEvent = m_pSceneManager->UpdateScene();
@@ -67,6 +69,9 @@ _uint Management::UpdateEngine()
 
 _uint Management::LateUpdateEngine()
 {
+	/* for.DeltaTime*/
+	fDeltaTime = m_pTimeManager->Get_DeltaTime();
+
 	m_iUpdateEvent = m_pSceneManager->LateUpdateScene();
 	if (CHANGE_SCNENE == m_iUpdateEvent)
 		return m_iUpdateEvent;

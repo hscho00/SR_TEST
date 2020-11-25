@@ -64,22 +64,20 @@ _uint Camera::Release()
 _uint Camera::UpdateCamera()
 {
     m_bMove = CalculateMove();
+    m_bRot = CalculateRot();
 
-    if (m_bMove)
+    if (m_bMove || m_bRot)
     {
         CalculateView();
     }
     
     m_bMove = FALSE;
+    m_bRot = FALSE;
 
-    D3DXMATRIX matView, matProj;
+    D3DXMATRIX matView;
 
     matView = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::VIEW);
     if (FAILED(m_pDevice->SetTransform(D3DTS_VIEW, &matView)))
-        return E_FAIL;
-
-    matProj = Camera::Get_Instance()->Get_Transform(Camera::CameraCt::PROJ);
-    if (FAILED(m_pDevice->SetTransform(D3DTS_PROJECTION, &matProj)))
         return E_FAIL;
     
     return _uint();
@@ -146,6 +144,8 @@ void Camera::CalculateView()
     // 실제 뷰행렬
     // _11 ~ _33 까지는 카과메라의 축
     // _41 ~ _43 까지는 내저의 결과
+
+
 }
 
 void Camera::CalculateProj()
@@ -219,7 +219,42 @@ BOOL Camera::CalculateMove()
 
 BOOL Camera::CalculateRot()
 {
-    return 0;
+    BOOL m_bRight = FALSE;
+    BOOL m_bUp = FALSE;
+
+    _matrix     matRot;         // 회전행렬을 담을 변수
+    _vector3    vDist;          // Look과 eye의 차이를 담을 벡터 
+        
+    if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+    {
+        m_Angle.y += 0.0001f;
+        m_bRight = TRUE;
+    }
+    if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+    {
+        m_Angle.y -= 0.0001f;
+        m_bRight = TRUE;
+    }
+
+    if (m_bRight)
+    {
+        D3DXMatrixRotationY(&matRot, m_Angle.y);
+        memcpy(&matRot._41, &m_LookAt, sizeof(_vector3));
+        vDist = m_Pos - m_LookAt;
+
+        for (int i = 0; i < (_int)CameraAx::END; i++)
+        {
+            D3DXVec3TransformNormal(&m_vAxis[i], &m_vAxis[i], &matRot);
+            D3DXVec3Normalize(&m_vAxis[i], &m_vAxis[i]);
+        }
+
+        D3DXVec3TransformCoord(&m_Pos, &vDist, &matRot);
+
+    }
+
+
+
+    return (m_bRight | m_bUp);
 }
 
 

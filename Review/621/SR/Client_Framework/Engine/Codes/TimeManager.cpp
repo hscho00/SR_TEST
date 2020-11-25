@@ -4,6 +4,7 @@ USING(Engine)
 IMPLEMENT_SINGLETON(TimeManager)
 
 TimeManager::TimeManager()
+	: m_fInitCPUTickTime(0.f), m_fDeltaTime(0.f)
 {
 	ZeroMemory(&m_CpuCount, sizeof(LARGE_INTEGER));
 	ZeroMemory(&m_StartTime, sizeof(LARGE_INTEGER));
@@ -20,10 +21,16 @@ void TimeManager::ReadyTimeManager()
 DOUBLE TimeManager::UpdateTimeManager()
 {
 	QueryPerformanceFrequency(&m_CpuCount);
-	QueryPerformanceCounter(&m_GoalTime);
-	DOUBLE fDeltaTime = float(m_GoalTime.QuadPart - m_StartTime.QuadPart);
+	m_fDeltaTime = float(m_GoalTime.QuadPart - m_StartTime.QuadPart) / m_CpuCount.QuadPart;
 	m_StartTime.QuadPart = m_GoalTime.QuadPart;
-	return fDeltaTime;
+
+	m_fInitCPUTickTime += m_fDeltaTime;
+	if (m_fInitCPUTickTime > 1.f)
+	{
+		QueryPerformanceFrequency(&m_CpuCount);
+		m_fInitCPUTickTime = 0.f;
+	}
+	return m_fDeltaTime;
 }
 
 void TimeManager::Free()

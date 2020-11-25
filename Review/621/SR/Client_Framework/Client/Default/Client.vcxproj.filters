@@ -31,8 +31,14 @@
     <Filter Include="02.GameObject\01.Terrain">
       <UniqueIdentifier>{80e963cc-4711-46ac-bf76-a60c74f3d08b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test_Camera">
+    <Filter Include="XX.Test">
+      <UniqueIdentifier>{fb0f9693-89e9-4c0c-9ad3-1ac63c3aabe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XX.Test\00.Test_Camera">
       <UniqueIdentifier>{9880906a-66bc-47e6-8446-26072d79c231}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XX.Test\01.Test_Mouse">
+      <UniqueIdentifier>{61ae6e0f-b57e-463f-9483-0762a5075f7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +73,7 @@
       <Filter>98.Header\Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\Camera.h">
-      <Filter>Test_Camera</Filter>
+      <Filter>XX.Test\00.Test_Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\Player.h">
       <Filter>02.GameObject\00.Player</Filter>
@@ -94,7 +100,7 @@
       <Filter>01.Scene\01.Stage</Filter>
     </ClCompile>
     <ClCompile Include="..\Codes\Camera.cpp">
-      <Filter>Test_Camera</Filter>
+      <Filter>XX.Test\00.Test_Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\Codes\Player.cpp">
       <Filter>02.GameObject\00.Player</Filter>

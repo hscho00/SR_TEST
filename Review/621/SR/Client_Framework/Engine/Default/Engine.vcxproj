@@ -31,6 +31,7 @@
     <ClInclude Include="..\Headers\GameObject.h" />
     <ClInclude Include="..\Headers\GameObjectManager.h" />
     <ClInclude Include="..\Headers\GraphicDevice.h" />
+    <ClInclude Include="..\Headers\KeyManager.h" />
     <ClInclude Include="..\Headers\Layer.h" />
     <ClInclude Include="..\Headers\Management.h" />
     <ClInclude Include="..\Headers\Renderer.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="..\Codes\ComponentManager.cpp" />
     <ClCompile Include="..\Codes\GameObject.cpp" />
     <ClCompile Include="..\Codes\GraphicDevice.cpp" />
+    <ClCompile Include="..\Codes\KeyManager.cpp" />
     <ClCompile Include="..\Codes\Layer.cpp" />
     <ClCompile Include="..\Codes\Management.cpp" />
     <ClCompile Include="..\Codes\Renderer.cpp" />

@@ -57,7 +57,7 @@ public:
 	const _matrix& Get_Transform(CameraCt _CameraCt) { return m_Transform[(_int)_CameraCt]; }
 
 public:
-	void CalculateAxis();		// 
+	void CalculateAxis();		// 우향 벡터 계산
 	void CalculateView();		// 뷰 행렬 
 	void CalculateProj();		// 투영 행렬
 
@@ -84,6 +84,7 @@ private:
 
 	//Stat
 	_float		m_MoveSpeed = 0.03f;
+	_vector3	m_Angle = _vector3(0.f, 0.f, 0.f);
 
 };
 

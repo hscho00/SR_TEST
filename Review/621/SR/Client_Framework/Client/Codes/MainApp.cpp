@@ -87,7 +87,7 @@ HRESULT MainApp::ReadyStaticResources()
 	if (FAILED(m_pManagement->AddComponentPrototype(
 		(_int)SceneID::Static,
 		L"Component_VIBuffer_Terrain",
-		VIBuffer_TerrainColor::Create(m_pDevice, 100, 100))))
+		VIBuffer_TerrainColor::Create(m_pDevice, 5, 2, 10.f))))
 		return E_FAIL;
 #pragma endregion
 
