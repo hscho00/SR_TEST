@@ -179,7 +179,7 @@ CGameObject* CGameObjectManager::GetGameObjectInLayerOrNull(_int iSceneIndex, co
 	return m_pLayers[iSceneIndex][LayerTag]->GetObjOrNull(idx);
 }
 
-_uint CGameObjectManager::UpdateGameObject(_int iSceneIndex, float fDeltaTime)
+_uint CGameObjectManager::UpdateGameObject(_int iSceneIndex, _float fDeltaTime)
 {
 	_uint ret = NO_EVENT;
 
@@ -199,7 +199,7 @@ _uint CGameObjectManager::UpdateGameObject(_int iSceneIndex, float fDeltaTime)
 	return ret;
 }
 
-_uint CGameObjectManager::LateUpdateGameObject(_int iSceneIndex, float fDeltaTime)
+_uint CGameObjectManager::LateUpdateGameObject(_int iSceneIndex, _float fDeltaTime)
 {
 	_uint ret = NO_EVENT;
 

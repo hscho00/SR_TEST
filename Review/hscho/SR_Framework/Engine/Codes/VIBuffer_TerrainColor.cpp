@@ -2,34 +2,37 @@
 
 USING(Engine)
 
-CVIBuffer_TerrainColor::CVIBuffer_TerrainColor(LPDIRECT3DDEVICE9 pDevice)
+CVIBuffer_TerrainColor::CVIBuffer_TerrainColor(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color,
+												_uint iVertexCountX, _uint iVertexCountZ, _float fVertexInterval)
 	: CVIBuffer(pDevice)
-	, m_iCX(0)
-	, m_iCY(0)
-	, m_iColor(0)
+	, m_iColor(color)
+	, m_iVertexCountX(iVertexCountX)
+	, m_iVertexCountZ(iVertexCountZ)
+	, m_fVertexInterval(fVertexInterval)
 {
 
 }
 
 CVIBuffer_TerrainColor::CVIBuffer_TerrainColor(const CVIBuffer_TerrainColor& other)
 	: CVIBuffer(other)
-	, m_iCX(other.m_iCX)
-	, m_iCY(other.m_iCY)
-	, m_iColor(other.m_iCY)
+	, m_iColor(other.m_iColor)
+	, m_iVertexCountX(other.m_iVertexCountX)
+	, m_iVertexCountZ(other.m_iVertexCountZ)
+	, m_fVertexInterval(other.m_fVertexInterval)
 {
 
 }
 
 HRESULT CVIBuffer_TerrainColor::ReadyComponentPrototype()
 {
-	if (2 > m_iCX || 2 > m_iCY)
+	if (2 > m_iVertexCountX || 2 > m_iVertexCountZ)
 		return E_FAIL;
 
 	//
 	m_iVertexSize = sizeof(VTX_COLOR);
-	m_iVertexCount = m_iCX * m_iCY;
+	m_iVertexCount = m_iVertexCountX * m_iVertexCountZ;
 	m_iFVF = VTX_COLOR::FVF;
-	m_iTriCount = (m_iCX - 1) * (m_iCY - 1) * 2;
+	m_iTriCount = (m_iVertexCountX - 1) * (m_iVertexCountZ - 1) * 2;
 
 	m_iIndexSize = sizeof(INDEX16);
 	m_IndexFormat = D3DFMT_INDEX16;
@@ -40,19 +43,19 @@ HRESULT CVIBuffer_TerrainColor::ReadyComponentPrototype()
 
 	//
 	VTX_COLOR* pVertex = nullptr;
+	_uint iVertexIndex = 0;
+
 	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
 
-	for (_uint i = 0; i < m_iCY; ++i)
+	for (_uint z = 0; z < m_iVertexCountZ; ++z)
 	{
-		for (_uint j = 0; j < m_iCX; ++j)
+		for (_uint x = 0; x < m_iVertexCountX; ++x)
 		{
-			pVertex[i * m_iCX + j].vPosition = _vec3((float)j, 0.f, (float)i);
-			pVertex[i * m_iCX + j].iColor = m_iColor;
+			iVertexIndex = z * m_iVertexCountX + x;
+			assert(iVertexIndex < m_iVertexCount);
 
-			//cout << i * m_iCX + j << ": "
-			//	<< pVertex[i * m_iCX + j].vPosition.x << ", "
-			//	<< pVertex[i * m_iCX + j].vPosition.y << ", "
-			//	<< pVertex[i * m_iCX + j].vPosition.z << endl;
+			pVertex[iVertexIndex].vPosition = D3DXVECTOR3(x * m_fVertexInterval, 0.f, z * m_fVertexInterval);
+			pVertex[iVertexIndex].iColor = m_iColor;
 		}
 	}
 
@@ -60,39 +63,24 @@ HRESULT CVIBuffer_TerrainColor::ReadyComponentPrototype()
 
 	//
 	INDEX16* pIndex = nullptr;
-	_uint idx = 0;
+	_uint iTriIndex = 0;
+
 	m_pIB->Lock(0, 0, (void**)&pIndex, 0);
 
-	for (_uint i = 0; i < m_iCY - 1; ++i)
+	for (_uint z = 0; z < m_iVertexCountZ - 1; ++z)		// 상단 가장자리에 있는 버텍스는 위로 더 이을 삼각형이 없으므로 -1
 	{
-		for (_uint j = 0; j < m_iCX - 1; ++j)
+		for (_uint x = 0; x < m_iVertexCountX - 1; ++x)	// 우측 가장자리에 있는 버텍스는 옆으로 더 이을 삼각형이 없으므로 -1
 		{
-			// 0 : i * m_iCX + j
-			// 1 : (i * m_iCX + j) + 1
-			// 2 : (i + 1) * m_iCX + j
-			// 3 : ((i + 1) * m_iCX + j) + 1
+			iVertexIndex = z * m_iVertexCountX + x;
+			assert(iVertexIndex < m_iVertexCount);
 
-			// (0,2,3) (0,3,1) 시계방향
+			pIndex[iTriIndex]._1 = iVertexIndex + m_iVertexCountX;
+			pIndex[iTriIndex]._2 = iVertexIndex + m_iVertexCountX + 1;
+			pIndex[iTriIndex++]._3 = iVertexIndex + 1;
 
-			pIndex[idx]._1 = i * m_iCX + j;
-			pIndex[idx]._2 = (i + 1) * m_iCX + j;
-			pIndex[idx]._3 = ((i + 1) * m_iCX + j) + 1;
-			++idx;
-
-			//cout << (idx - 1) << ": "
-			//	<< pIndex[idx - 1]._1 << ", "
-			//	<< pIndex[idx - 1]._2 << ", "
-			//	<< pIndex[idx - 1]._3 << endl;
-
-			pIndex[idx]._1 = i * m_iCX + j;
-			pIndex[idx]._2 = ((i + 1) * m_iCX + j) + 1;
-			pIndex[idx]._3 = (i * m_iCX + j) + 1;
-			++idx;
-
-			//cout << (idx - 1) << ": "
-			//	<< pIndex[idx - 1]._1 << ", "
-			//	<< pIndex[idx - 1]._2 << ", "
-			//	<< pIndex[idx - 1]._3 << endl;
+			pIndex[iTriIndex]._1 = iVertexIndex + m_iVertexCountX;
+			pIndex[iTriIndex]._2 = iVertexIndex + 1;
+			pIndex[iTriIndex++]._3 = iVertexIndex;
 		}
 	}
 
@@ -117,13 +105,10 @@ HRESULT CVIBuffer_TerrainColor::Render_VIBuffer()
 	return m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iVertexCount, 0, m_iTriCount);
 }
 
-CVIBuffer_TerrainColor* CVIBuffer_TerrainColor::Create(LPDIRECT3DDEVICE9 pDevice, _uint iCX, _uint iCY, D3DCOLOR color)
+CVIBuffer_TerrainColor* CVIBuffer_TerrainColor::Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color,
+													_uint iVertexCountX, _uint iVertexCountZ, _float fVertexInterval/*= 1.f*/)
 {
-	CVIBuffer_TerrainColor* pInstance = new CVIBuffer_TerrainColor(pDevice);
-	pInstance->m_iCX = iCX;		// 생성자를 더 만드는게 좋지만 귀찮
-	pInstance->m_iCY = iCY;
-	pInstance->m_iColor = color;
-
+	CVIBuffer_TerrainColor* pInstance = new CVIBuffer_TerrainColor(pDevice, color, iVertexCountX, iVertexCountZ, fVertexInterval);
 	if (FAILED(pInstance->ReadyComponentPrototype()))
 	{
 		PRINT_LOG(L"Error", L"Failed To Create CVIBuffer_TerrainColor");

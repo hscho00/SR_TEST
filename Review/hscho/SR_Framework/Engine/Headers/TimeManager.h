@@ -16,7 +16,7 @@ public:
 	HRESULT ReadyTimeManager();
 	void	UpdateTimeManager();
 
-	float Get_DeltaTime() const { return m_fDeltaTime; }
+	_float Get_DeltaTime() const { return m_fDeltaTime; }
 
 public:
 	virtual void Free() override;
@@ -26,9 +26,9 @@ private:
 	LARGE_INTEGER m_startTime;
 	LARGE_INTEGER m_endTime;
 
-	float m_fInitCPUTickTime;
+	_float m_fInitCPUTickTime;
 	
-	float m_fDeltaTime;
+	_float m_fDeltaTime;
 
 };
 END

@@ -16,8 +16,8 @@ public:
 public:
 	virtual HRESULT ReadyGameObjectPrototype() PURE;	/* 프로토타입 초기화 */
 	virtual HRESULT ReadyGameObject(void* pArg = nullptr) PURE; /* 클론 초기화 */
-	virtual _uint UpdateGameObject(float fDeltaTime) PURE;
-	virtual _uint LateUpdateGameObject(float fDeltaTime) PURE;
+	virtual _uint UpdateGameObject(_float fDeltaTime) PURE;
+	virtual _uint LateUpdateGameObject(_float fDeltaTime) PURE;
 	virtual HRESULT RenderGameObject() PURE;
 
 public:
@@ -57,7 +57,7 @@ protected:
 	//////////////
 	// Transform 컴포넌트가 생기면 대체될것들
 	_vec3 m_vPos;
-	float m_fAngle;
+	_float m_fAngle;
 	_matrix m_matWorld;
 	//////////////
 

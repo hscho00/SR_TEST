@@ -25,7 +25,7 @@ HRESULT CLayer::AddGameObjectInLayer(CGameObject* pGameObject)
 	return S_OK;
 }
 
-_uint CLayer::UpdateGameObject(float fDeltaTime)
+_uint CLayer::UpdateGameObject(_float fDeltaTime)
 {
 	for (auto& pGameObject : m_GameObjects)
 	{
@@ -44,7 +44,7 @@ _uint CLayer::UpdateGameObject(float fDeltaTime)
 	return NO_EVENT;
 }
 
-_uint CLayer::LateUpdateGameObject(float fDeltaTime)
+_uint CLayer::LateUpdateGameObject(_float fDeltaTime)
 {
 	for (auto& pGameObject : m_GameObjects)
 	{

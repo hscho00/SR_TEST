@@ -48,7 +48,7 @@ HRESULT CGameObject::ReadyGameObject(void* pArg)
 	return S_OK;
 }
 
-_uint CGameObject::UpdateGameObject(float fDeltaTime)
+_uint CGameObject::UpdateGameObject(_float fDeltaTime)
 {
 	if (m_bDead)
 		return OBJ_DEAD;
@@ -56,7 +56,7 @@ _uint CGameObject::UpdateGameObject(float fDeltaTime)
 	return NO_EVENT;
 }
 
-_uint CGameObject::LateUpdateGameObject(float fDeltaTime)
+_uint CGameObject::LateUpdateGameObject(_float fDeltaTime)
 {
 	return NO_EVENT;
 }

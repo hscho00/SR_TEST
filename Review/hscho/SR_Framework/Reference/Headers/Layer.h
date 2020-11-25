@@ -12,8 +12,8 @@ private:
 
 public:
 	HRESULT AddGameObjectInLayer(class CGameObject* pGameObject);
-	_uint UpdateGameObject(float fDeltaTime);
-	_uint LateUpdateGameObject(float fDeltaTime);
+	_uint UpdateGameObject(_float fDeltaTime);
+	_uint LateUpdateGameObject(_float fDeltaTime);
 
 	HRESULT ReserveLayerContainer(_uint capacity);		// vector reserve
 	CGameObject* GetObjOrNull(_uint idx) const;

@@ -14,8 +14,8 @@ public:
 public:
 	virtual HRESULT ReadyGameObjectPrototype() override;
 	virtual HRESULT ReadyGameObject(void* pArg = nullptr) override;
-	virtual _uint UpdateGameObject(float fDeltaTime) override;
-	virtual _uint LateUpdateGameObject(float fDeltaTime) override;
+	virtual _uint UpdateGameObject(_float fDeltaTime) override;
+	virtual _uint LateUpdateGameObject(_float fDeltaTime) override;
 	virtual HRESULT RenderGameObject() override;
 
 private:

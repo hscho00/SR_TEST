@@ -30,8 +30,8 @@ public:
 	// + 나중에 idx 말고 GameObjectTag, using 여부도 체크해서 오브젝트 찾을 수 있게 오버로딩 하자
 
 public:
-	_uint UpdateGameObject(_int iSceneIndex, float fDeltaTime);
-	_uint LateUpdateGameObject(_int iSceneIndex, float fDeltaTime);
+	_uint UpdateGameObject(_int iSceneIndex, _float fDeltaTime);
+	_uint LateUpdateGameObject(_int iSceneIndex, _float fDeltaTime);
 
 private:
 	//CGameObject* CloneGameObjectPrototype(_int iSceneIndex, const wstring& GameObjectTag, void* pArg = nullptr);

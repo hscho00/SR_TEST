@@ -92,7 +92,7 @@ LPDIRECT3DDEVICE9 CManagement::GetDevice()
     return m_pGraphic_Dev->Get_Device();
 }
 
-float CManagement::Get_DeltaTime() const
+_float CManagement::Get_DeltaTime() const
 {
     return m_pTimeManager->Get_DeltaTime();
 }

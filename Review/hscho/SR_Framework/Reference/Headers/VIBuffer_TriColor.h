@@ -7,7 +7,7 @@ BEGIN(Engine)
 class ENGINE_DLL CVIBuffer_TriColor final : public CVIBuffer
 {
 protected:
-	explicit CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice);
+	explicit CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color);
 	explicit CVIBuffer_TriColor(const CVIBuffer_TriColor& other);
 	virtual ~CVIBuffer_TriColor() = default;
 

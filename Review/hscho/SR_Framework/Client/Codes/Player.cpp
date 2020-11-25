@@ -43,14 +43,14 @@ HRESULT CPlayer::ReadyGameObject(void* pArg)
     return S_OK;
 }
 
-_uint CPlayer::UpdateGameObject(float fDeltaTime)
+_uint CPlayer::UpdateGameObject(_float fDeltaTime)
 {
     _uint ret = CGameObject::UpdateGameObject(fDeltaTime);
     if (ret == OBJ_DEAD)
         return ret;
 
     //////////////////////////////////////////////////////////////
-    float speed = 5.f;
+    _float speed = 5.f;
     if (GetAsyncKeyState('W') & 0x8000)
         m_vPos.z += speed * fDeltaTime;
     if (GetAsyncKeyState('S') & 0x8000)
@@ -74,7 +74,7 @@ _uint CPlayer::UpdateGameObject(float fDeltaTime)
     return NO_EVENT;
 }
 
-_uint CPlayer::LateUpdateGameObject(float fDeltaTime)
+_uint CPlayer::LateUpdateGameObject(_float fDeltaTime)
 {
     _uint ret = CGameObject::LateUpdateGameObject(fDeltaTime);
 
