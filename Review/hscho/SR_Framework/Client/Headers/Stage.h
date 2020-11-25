@@ -31,7 +31,7 @@ private:
 	_vec3 m_vCameraPos;
 	_vec3 m_vTargetPos;
 	const _vec3 m_vUpVec;
-	float m_fCameraAngle;
+	_float m_fCameraAngle;
 	/////////////////////
 
 };

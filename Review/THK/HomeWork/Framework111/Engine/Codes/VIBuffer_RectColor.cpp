@@ -31,6 +31,7 @@ HRESULT CVIBuffer_RectColor::ReadyComponentPrototype()
 		return E_FAIL;
 
 	VTX_COLOR* pVertex = nullptr;
+	
 
 	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
 

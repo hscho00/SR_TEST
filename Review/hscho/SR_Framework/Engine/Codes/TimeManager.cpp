@@ -22,7 +22,7 @@ void CTimeManager::UpdateTimeManager()
 {
 	QueryPerformanceCounter(&m_endTime);
 
-	m_fDeltaTime = float(m_endTime.QuadPart - m_startTime.QuadPart) / m_CPUTick.QuadPart;
+	m_fDeltaTime = _float(m_endTime.QuadPart - m_startTime.QuadPart) / m_CPUTick.QuadPart;
 	m_startTime.QuadPart = m_endTime.QuadPart;
 
 	m_fInitCPUTickTime += m_fDeltaTime;

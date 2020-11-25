@@ -2,9 +2,9 @@
 
 USING(Engine)
 
-CVIBuffer_TriColor::CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice)
+CVIBuffer_TriColor::CVIBuffer_TriColor(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color)
 	: CVIBuffer(pDevice)
-	, m_iColor(0)
+	, m_iColor(color)
 {
 
 }
@@ -79,9 +79,7 @@ HRESULT CVIBuffer_TriColor::Render_VIBuffer()
 
 CVIBuffer_TriColor* CVIBuffer_TriColor::Create(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color)
 {
-	CVIBuffer_TriColor* pInstance = new CVIBuffer_TriColor(pDevice);
-	pInstance->m_iColor = color;
-
+	CVIBuffer_TriColor* pInstance = new CVIBuffer_TriColor(pDevice, color);
 	if (FAILED(pInstance->ReadyComponentPrototype()))
 	{
 		PRINT_LOG(L"Error", L"Failed To Create CVIBuffer_TriColor");

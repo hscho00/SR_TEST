@@ -122,7 +122,7 @@ HRESULT CMainApp::ReadyDefaultSetting()
 	   투영(n차원을 n-1차원으로 만드는 과정) 행렬을 만드는 함수 */
 	D3DXMatrixPerspectiveFovLH(&matProj, /* 반환 값 */
 								D3DX_PI * 0.5f, /* 시야각(Field of View) FovY. 투영스페이스는 정사각형이기 때문에 X or Y 하나만 있어도 충분.*/
-								(float)WINCX / WINCY, /* 종횡비 Aspect */
+								(_float)WINCX / WINCY, /* 종횡비 Aspect */
 								1.f, /* 카메라와 근편명과의 Z거리 Near. 0으로 나눌 수 없으므로 0은 X*/
 								1000.f /* 카메라와 원평면과의 Z거리 Far */);
 

@@ -49,7 +49,7 @@ HRESULT CTerrain::ReadyGameObject(void* pArg)
     return S_OK;
 }
 
-_uint CTerrain::UpdateGameObject(float fDeltaTime)
+_uint CTerrain::UpdateGameObject(_float fDeltaTime)
 {
     _uint ret = CGameObject::UpdateGameObject(fDeltaTime);
     if (ret == OBJ_DEAD)
@@ -58,7 +58,7 @@ _uint CTerrain::UpdateGameObject(float fDeltaTime)
     return NO_EVENT;
 }
 
-_uint CTerrain::LateUpdateGameObject(float fDeltaTime)
+_uint CTerrain::LateUpdateGameObject(_float fDeltaTime)
 {
     _uint ret = CGameObject::LateUpdateGameObject(fDeltaTime);
 

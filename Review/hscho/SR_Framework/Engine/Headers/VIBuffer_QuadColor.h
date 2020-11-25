@@ -7,7 +7,7 @@ BEGIN(Engine)
 class ENGINE_DLL CVIBuffer_QuadColor final : public CVIBuffer
 {
 protected:
-	explicit CVIBuffer_QuadColor(LPDIRECT3DDEVICE9 pDevice);
+	explicit CVIBuffer_QuadColor(LPDIRECT3DDEVICE9 pDevice, D3DCOLOR color);
 	explicit CVIBuffer_QuadColor(const CVIBuffer_QuadColor& other);
 	virtual ~CVIBuffer_QuadColor() = default;
 

@@ -33,7 +33,7 @@ public:
 
 public:
 	/* For.TimeManager */
-	float Get_DeltaTime() const;
+	_float Get_DeltaTime() const;
 
 public:
 	/* For.SceneManager */
