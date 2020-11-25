@@ -5,6 +5,7 @@
 typedef bool _bool;
 typedef char _char;
 typedef int _int;
+typedef float _float;
 
 typedef unsigned char _uchar;
 typedef unsigned int _uint;

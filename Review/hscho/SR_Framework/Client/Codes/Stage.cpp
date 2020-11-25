@@ -43,7 +43,7 @@ HRESULT CStage::ReadyScene()
 #pragma region Component_VIBuffer_TerrainColor
     if (FAILED(pManagement->AddComponentPrototype(m_iSceneIndex,
         L"Component_VIBuffer_TerrainColor",
-        CVIBuffer_TerrainColor::Create(m_pDevice, 50, 50, 0xffffffff))))
+        CVIBuffer_TerrainColor::Create(m_pDevice, 0xff008000, 50, 50))))
     {
         return E_FAIL;
     }
@@ -85,7 +85,7 @@ _uint CStage::UpdateScene()
         auto pManagement = CManagement::Get_Instance();
         assert(pManagement);
 
-        float speed = 50.f;
+        _float speed = 50.f;
         if (GetAsyncKeyState('Q') & 0x8000)
             m_fCameraAngle += speed * pManagement->Get_DeltaTime();
         if (GetAsyncKeyState('E') & 0x8000)
