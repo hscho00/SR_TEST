@@ -79,20 +79,20 @@ HRESULT CVIBuffer_TerrainColor::ReadyComponentPrototype()
 			pIndex[idx]._3 = ((i + 1) * m_iCX + j) + 1;
 			++idx;
 
-			//cout << (idx - 1) << ": "
-			//	<< pIndex[idx - 1]._1 << ", "
-			//	<< pIndex[idx - 1]._2 << ", "
-			//	<< pIndex[idx - 1]._3 << endl;
+			cout << (idx - 1) << ": "
+				<< pIndex[idx - 1]._1 << ", "
+				<< pIndex[idx - 1]._2 << ", "
+				<< pIndex[idx - 1]._3 << endl;
 
 			pIndex[idx]._1 = i * m_iCX + j;
 			pIndex[idx]._2 = ((i + 1) * m_iCX + j) + 1;
 			pIndex[idx]._3 = (i * m_iCX + j) + 1;
 			++idx;
 
-			//cout << (idx - 1) << ": "
-			//	<< pIndex[idx - 1]._1 << ", "
-			//	<< pIndex[idx - 1]._2 << ", "
-			//	<< pIndex[idx - 1]._3 << endl;
+			cout << (idx - 1) << ": "
+				<< pIndex[idx - 1]._1 << ", "
+				<< pIndex[idx - 1]._2 << ", "
+				<< pIndex[idx - 1]._3 << endl;
 		}
 	}
 
